@@ -1,6 +1,5 @@
 #include "salle.hh"
-
-
+#include "entite.hh"
 
 salle::salle(int width, int height, sf::Color color,int gauchedroite, int hautbas ) {
     this->width = width;
@@ -16,6 +15,23 @@ salle::salle(int width, int height, sf::Color color,int gauchedroite, int hautba
 
     if (gauchedroite==1){
         creermur(porte1,20.0f,height/2-20,20.0f,40.0f,sf::Color::White);
+    }
+    else if (gauchedroite==2){
+        creermur(porte2,width-40.0f,height/2-20,20.0f,40.0f,sf::Color::White);
+    }
+    else if (gauchedroite==3){
+        creermur(porte1,20.0f,height/2-20,20.0f,40.0f,sf::Color::White);
+        creermur(porte2,width-40.0f,height/2-20,20.0f,40.0f,sf::Color::White);
+    }
+    if (hautbas==1){
+        creermur(porte3,width/2-20,20,40.0f,20.0f,sf::Color::White);
+    }
+    else if (hautbas==2){
+        creermur(porte4,width/2-20,height-40,40.0f,20.0f,sf::Color::White);
+    }
+    else if (hautbas==3){
+        creermur(porte3,width/2-20,20,40.0f,20.0f,sf::Color::White);
+        creermur(porte4,width/2-20,height-40,40.0f,20.0f,sf::Color::White);
     }
 }
 
@@ -35,3 +51,4 @@ void salle::creermur(sf::RectangleShape &wall, int startx,int starty,int width, 
     wall.setPosition(startx, starty);
     wall.setFillColor(color);
 }
+

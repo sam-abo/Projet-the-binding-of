@@ -1,5 +1,6 @@
 #include "entite.hh"
 
+
 Entity::Entity(float size, sf::Color color, float x, float y, float vitesse) : x(x),y(y),vitesse(vitesse){
     forme.setRadius(size);
     forme.setFillColor(color);
@@ -51,3 +52,37 @@ void Entity::deplacer(const sf::Vector2f& newPosition) {
     forme.setPosition(newPosition);
 }
 
+void Entity::changersalle( salle* &salleActive, salle &newsalle, std::string direction){
+    if (direction=="gauche"){
+        if (getGlobalBounds().intersects(salleActive->Getp1().getGlobalBounds()) && &newsalle!= salleActive) {
+                // Teleportez l'entite à la position specifiee dans la deuxième salle
+                deplacer(sf::Vector2f(newsalle.getwidth()-200,(newsalle.getheight())/2));
+                // Changez la salle active
+                salleActive=&newsalle;
+            }
+    }
+    if (direction=="droite"){
+        if (getGlobalBounds().intersects(salleActive->Getp2().getGlobalBounds()) && &newsalle!= salleActive) {
+                // Teleportez l'entite à la position specifiee dans la deuxième salle
+                deplacer(sf::Vector2f(100,(newsalle.getheight())/2));
+                // Changez la salle active
+                salleActive=&newsalle;
+            }
+    }
+    if (direction=="haut"){
+        if (getGlobalBounds().intersects(salleActive->Getp3().getGlobalBounds()) && &newsalle!= salleActive) {
+                // Teleportez l'entite à la position specifiee dans la deuxième salle
+                deplacer(sf::Vector2f((newsalle.getwidth())/2,(newsalle.getheight())-200));
+                // Changez la salle active
+                salleActive=&newsalle;
+            }
+    }
+    if (direction=="bas"){
+        if (getGlobalBounds().intersects(salleActive->Getp4().getGlobalBounds()) && &newsalle!= salleActive) {
+                // Teleportez l'entite à la position specifiee dans la deuxième salle
+                deplacer(sf::Vector2f((newsalle.getwidth())/2,100));
+                // Changez la salle active
+                salleActive=&newsalle;
+            }
+    }
+}

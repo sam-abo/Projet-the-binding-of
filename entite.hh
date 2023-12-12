@@ -10,6 +10,7 @@ public:
 
     void mouvement();
     void dessiner(sf::RenderWindow& window);
+    void changersalle(salle* &salleActive, salle &newsalle, std::string direction);
 
     sf::FloatRect getGlobalBounds();
     void collision(const sf::FloatRect& otherBounds,sf::Vector2f prevPositionEntity1);
