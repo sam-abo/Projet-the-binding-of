@@ -5,7 +5,7 @@
 
 class salle : public carte {
     public:
-        salle(int widht, int height, sf::Color color);
+        salle(int widht, int height, sf::Color color,int hautbas, int gauchedroite);
         void dessiner(sf::RenderWindow& window);
         void creermur(sf::RectangleShape &wall, int startx,int starty, int width, int height, sf::Color color);
         sf::RectangleShape Getw1 () const {return wall1;}
