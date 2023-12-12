@@ -22,8 +22,8 @@ void salle::dessiner(sf::RenderWindow& window){
     window.draw(wall4);
 }
 
-void salle::creermur(sf::RectangleShape &wall, int startx,int starty,int widht, int height, sf::Color color){
-    wall.setSize(sf::Vector2f(widht, height));
+void salle::creermur(sf::RectangleShape &wall, int startx,int starty,int width, int height, sf::Color color){
+    wall.setSize(sf::Vector2f(width, height));
     wall.setPosition(startx, starty);
     wall.setFillColor(color);
 }
