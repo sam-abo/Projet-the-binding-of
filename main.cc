@@ -18,7 +18,7 @@ int main() {
     salle* salleActive = &s1;
 
     // Creation de l'entite 1 : le perso principal
-    Entity entite1(50.0f, sf::Color::Green, 200.0f, 100.0f,0.5f);
+    Entity entite1(50.0f, sf::Color::Green, 200.0f, 100.0f,1.0f);
 
     std::vector<Entity> entites;
 
