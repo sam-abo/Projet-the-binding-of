@@ -1,6 +1,6 @@
 #include "carte.hh"
 #include "salle.hh"
-#include "entité.hh"
+#include "entite.hh"
 
 int main() {
     sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
