@@ -13,7 +13,7 @@ public:
 
     sf::FloatRect getGlobalBounds();
     void collision(const sf::FloatRect& otherBounds,sf::Vector2f prevPositionEntity1);
-    void déplacer(const sf::Vector2f& newPosition);
+    void deplacer(const sf::Vector2f& newPosition);
     const salle* getSalleAppartenance() const {return salleAppartenance;}
     sf::CircleShape getforme() {return forme;}
     int getx() {return x;}

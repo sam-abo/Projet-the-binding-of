@@ -47,7 +47,7 @@ void Entity::collision(const sf::FloatRect& otherBounds,sf::Vector2f prevPositio
     }
 }
 
-void Entity::déplacer(const sf::Vector2f& newPosition) {
+void Entity::deplacer(const sf::Vector2f& newPosition) {
     forme.setPosition(newPosition);
 }
 
