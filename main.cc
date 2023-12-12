@@ -54,7 +54,7 @@ int main() {
         else if (entite1.getGlobalBounds().left+entite1.getGlobalBounds().width > screenWidth-125 
                 && salleActive == &s2) {
             // Téléportez l'entité à la position spécifiée dans la deuxième salle
-            entite1.déplacer(sf::Vector2f(250,(screenHeight-100)/2));
+            entite1.déplacer(sf::Vector2f(150,(screenHeight-100)/2));
             // Changez la salle active
             salleActive = &s1;
         }
