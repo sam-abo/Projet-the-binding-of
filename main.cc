@@ -11,9 +11,9 @@ int main() {
     // Creation de la fenêtre SFML
     sf::RenderWindow window(sf::VideoMode(screenWidth-100, screenHeight-100), "SFML Deplacement d'Entite");
 
-    salle s1(screenWidth-100, screenHeight-100, sf::Color::Red);
+    salle s1(screenWidth-100, screenHeight-100, sf::Color::Red,1,0);
 
-    salle s2(screenWidth-100, screenHeight-100, sf::Color::Blue);
+    salle s2(screenWidth-100, screenHeight-100, sf::Color::Blue,0,0);
 
     // Declaration de la salle active (initialisee à la première salle)
     salle* salleActive = &s1;
