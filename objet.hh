@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "salle.hh"
+#include <iostream>
 
 class Objet {
 public:

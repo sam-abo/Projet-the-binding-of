@@ -49,15 +49,20 @@ void Hero::changersalle( salle* &salleActive, salle &newsalle, std::string direc
     }
 }
 
-//  void Hero::afficherHP(sf::RenderWindow& window){
-//     sf::Font font;
-//     if (!font.loadFromFile("arial.ttf")) {
-//     // Gestion de l'erreur si la police ne peut pas être chargée
-//     return;
-//     }
+ void Hero::afficherHP(sf::RenderWindow& window){
+    sf::Font font;
+    if (!font.loadFromFile("arial.ttf")) {
+    std::cout << "erreur d'accès à arial";
+    // Gestion de l'erreur si la police ne peut pas être chargée
     
-//     hpText.setFont(font);
-//     hpText.setCharacterSize(24);
-//     hpText.setFillColor(sf::Color::Green);
-//     hpText.setString("HP: " + std::to_string(getHP()));
-//  };
+    return ;
+    }
+    sf::Text hpText;
+    hpText.setFont(font);
+    hpText.setCharacterSize(24);
+    hpText.setFillColor(sf::Color::Green);
+    sf::Vector2f prevPositionEntity1 = this->getforme().getPosition();
+    hpText.setString("HP: " + std::to_string(this->getHP()));
+    hpText.setPosition(prevPositionEntity1.x, prevPositionEntity1.y - 30);
+    window.draw(hpText);
+ };
