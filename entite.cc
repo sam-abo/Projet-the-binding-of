@@ -60,4 +60,3 @@ void Entity::mouvement() {
 void Entity::deplacer(const sf::Vector2f& newPosition) {
     Objet::forme.setPosition(newPosition);
 }
-

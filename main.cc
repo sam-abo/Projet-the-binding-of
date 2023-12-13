@@ -1,6 +1,6 @@
 #include "carte.hh"
 #include "salle.hh"
-#include "entite.hh"
+//#include "entite.hh"
 #include "hero.hh"
 
 int main() {
@@ -11,9 +11,20 @@ int main() {
     // Creation de la fenêtre SFML
     sf::RenderWindow window(sf::VideoMode(screenWidth-100, screenHeight-100), "SFML Deplacement d'Entite");
 
-    salle s1(screenWidth-100, screenHeight-100, sf::Color::Red,1,0);
+    salle s1(screenWidth-100, screenHeight-100, sf::Color::Red,3,3);
 
-    salle s2(screenWidth-100, screenHeight-100, sf::Color::Blue,0,0);
+    salle s2(screenWidth-100, screenHeight-100, sf::Color::Blue,3,3);
+
+    //gestion des textes :
+    sf::Font font;
+    if (!font.loadFromFile("arial.ttf")) {
+    // Gestion de l'erreur si la police ne peut pas être chargée
+    return -1;
+    }
+    sf::Text hpText;
+    hpText.setFont(font);
+    hpText.setCharacterSize(24);
+    hpText.setFillColor(sf::Color::Green);
 
     // Declaration de la salle active (initialisee à la première salle)
     salle* salleActive = &s1;
@@ -40,6 +51,8 @@ int main() {
         // Enregistrement de la position precedente de l'entite 1
         sf::Vector2f prevPositionEntity1 = entite1.getforme().getPosition();
 
+        hpText.setString("HP: " + std::to_string(entite1.getHP()));
+
         entite1.mouvement();
         entite1.collision(s1.Getw1().getGlobalBounds(),prevPositionEntity1);
         entite1.collision(s1.Getw2().getGlobalBounds(),prevPositionEntity1);
@@ -48,24 +61,16 @@ int main() {
 
 
         // Verification de la frontière de la première salle
-        if (entite1.getGlobalBounds().left < 25 && salleActive == &s1) {
-            // Teleportez l'entite à la position specifiee dans la deuxième salle
-            entite1.deplacer(sf::Vector2f(screenWidth-250,(screenHeight-100)/2));
-            // Changez la salle active
-            salleActive = &s2;
-        }
-        else if (entite1.getGlobalBounds().left+entite1.getGlobalBounds().width > screenWidth-125 
-                && salleActive == &s2) {
-            // Teleportez l'entite à la position specifiee dans la deuxième salle
-            entite1.deplacer(sf::Vector2f(150,(screenHeight-100)/2));
-            // Changez la salle active
-            salleActive = &s1;
-        }
+        entite1.changersalle(salleActive,s2,"gauche");
+        entite1.changersalle(salleActive,s1,"droite");
+        
         window.clear();
         // Dessinez la salle active
         salleActive->dessiner(window);
         //s1.dessiner(window);
         entite1.dessiner(window);
+        window.draw(hpText);
+        //entite1.afficherHP(window);
         for (Objet& entite : entities) {
         if (entite.getSalleAppartenance() == salleActive) {
             entite.dessiner(window);

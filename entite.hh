@@ -12,6 +12,7 @@ public:
     void mouvement();
     //void dessiner(sf::RenderWindow& window);
 
+
     //sf::FloatRect getGlobalBounds();
     //void collision(const sf::FloatRect& otherBounds,sf::Vector2f prevPositionEntity1);
     void deplacer(const sf::Vector2f& newPosition);
