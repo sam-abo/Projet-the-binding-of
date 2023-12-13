@@ -1,6 +1,7 @@
 #include "carte.hh"
 #include "salle.hh"
 #include "entite.hh"
+#include "hero.hh"
 
 int main() {
     sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
@@ -18,12 +19,14 @@ int main() {
     salle* salleActive = &s1;
 
     // Creation de l'entite 1 : le perso principal
-    Entity entite1(50.0f, sf::Color::Green, 200.0f, 100.0f,1.0f);
+    Hero entite1(50.0f, sf::Color::Green, 200.0f, 100.0f,1.0f);
 
-    std::vector<Entity> entites;
+    std::vector<Objet> entities;
 
-    // Creation de l'entite 2
-    entites.push_back(Entity(30.0f, sf::Color::Blue, 800.0f, 500.0f,&s1));
+    // Creation du 2eme truc via Objet
+    entities.push_back(Entity(30.0f, sf::Color::Blue, 800.0f, 500.0f,&s1));
+    entities.push_back(Objet(30.0f, sf::Color::Yellow, 500.0f, 800.0f,&s1));
+
 
     // Boucle principale
     while (window.isOpen()) {
@@ -63,11 +66,12 @@ int main() {
         salleActive->dessiner(window);
         //s1.dessiner(window);
         entite1.dessiner(window);
-        for (Entity& entite : entites) {
+        for (Objet& entite : entities) {
         if (entite.getSalleAppartenance() == salleActive) {
             entite.dessiner(window);
             entite1.collision(entite.getGlobalBounds(),prevPositionEntity1);
         }
+        
     }
         window.display();
     }
