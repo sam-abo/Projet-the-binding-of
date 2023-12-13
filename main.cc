@@ -47,20 +47,7 @@ int main() {
         // Verification de la frontière de la première salle
         entite1.changersalle(salleActive,s2,"gauche");
         entite1.changersalle(salleActive,s1,"droite");
-        if (entite1.getGlobalBounds().left < 25 && salleActive == &s1) {
-            // Teleportez l'entite à la position specifiee dans la deuxième salle
-            //entite1.deplacer(sf::Vector2f(screenWidth-250,(screenHeight-100)/2));
-            // Changez la salle active
-            //salleActive = &s2;
-        }
         
-        else if (entite1.getGlobalBounds().left+entite1.getGlobalBounds().width > screenWidth-125 
-                && salleActive == &s2) {
-            // Teleportez l'entite à la position specifiee dans la deuxième salle
-            //entite1.deplacer(sf::Vector2f(150,(screenHeight-100)/2));
-            // Changez la salle active
-            //salleActive = &s1;
-        }
         window.clear();
         // Dessinez la salle active
         salleActive->dessiner(window);
