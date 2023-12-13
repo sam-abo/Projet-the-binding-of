@@ -26,6 +26,11 @@ $(EXEC): $(OBJ)
 
 test: testcase
 	./tests/testcase
+
+game : $(EXEC)
+	./$(EXEC)
+	
+
 clean:
 	rm -f $(OBJ) $(EXEC)
 cleantest:
