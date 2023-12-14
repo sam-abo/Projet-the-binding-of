@@ -1,6 +1,7 @@
 #include "carte.hh"
 #include "salle.hh"
 #include "entite.hh"
+#include <iostream>
 
 int main() {
     sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
@@ -10,12 +11,20 @@ int main() {
     // Creation de la fenêtre SFML
     sf::RenderWindow window(sf::VideoMode(screenWidth-100, screenHeight-100), "SFML Deplacement d'Entite");
 
+    std::vector<salle> salles;
+    int numsalle;
+
     salle s1(screenWidth-100, screenHeight-100, sf::Color::Red,3,3);
+    salles.push_back(s1);
 
     salle s2(screenWidth-100, screenHeight-100, sf::Color::Blue,3,3);
+    salles.push_back(s2);
+
+    salles.push_back(salle(screenWidth-100, screenHeight-100, sf::Color::Yellow,3,3));
 
     // Declaration de la salle active (initialisee à la première salle)
-    salle* salleActive = &s1;
+    numsalle = 0;
+    salle* salleActive = &salles[numsalle];
 
     // Creation de l'entite 1 : le perso principal
     Entity entite1(50.0f, sf::Color::Green, 200.0f, 100.0f,1.0f);
@@ -23,7 +32,7 @@ int main() {
     std::vector<Entity> entites;
 
     // Creation de l'entite 2
-    entites.push_back(Entity(30.0f, sf::Color::Blue, 800.0f, 500.0f,&s1));
+    entites.push_back(Entity(30.0f, sf::Color::Blue, 800.0f, 500.0f,&salles[0]));
 
     // Boucle principale
     while (window.isOpen()) {
@@ -45,8 +54,18 @@ int main() {
 
 
         // Verification de la frontière de la première salle
-        entite1.changersalle(salleActive,s2,"gauche");
-        entite1.changersalle(salleActive,s1,"droite");
+        if(entite1.getGlobalBounds().intersects(salles[numsalle].Getp1().getGlobalBounds())){
+            numsalle++;
+            if(salles.size()<numsalle+1){
+                std::cout << "oui\n" << std::endl;
+                salles.push_back(salle(screenWidth-100, screenHeight-100, sf::Color::Yellow,3,3));
+            }
+            entite1.changersalle(salleActive,salles[numsalle],"gauche");
+        }
+        if(entite1.getGlobalBounds().intersects(salles[numsalle].Getp2().getGlobalBounds()) && numsalle>0){
+            numsalle--;
+            entite1.changersalle(salleActive,salles[numsalle],"droite");
+        }
         
         window.clear();
         // Dessinez la salle active

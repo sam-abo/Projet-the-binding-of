@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "salle.hh"
+#include "carte.hh"
 
 class Entity {
 public:
