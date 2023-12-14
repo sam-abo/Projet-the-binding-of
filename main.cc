@@ -45,8 +45,8 @@ int main() {
     std::vector<Objet> entities;
 
     // Creation du 2eme truc via Objet
-    entities.push_back(Entity(30.0f, sf::Color::Blue, 800.0f, 500.0f,&s1));
-    entities.push_back(Objet(30.0f, sf::Color::Yellow, 500.0f, 800.0f,&s1));
+    entities.push_back(Entity(30.0f, sf::Color::Blue, 800.0f, 500.0f,&salles[0]));
+    entities.push_back(Objet(30.0f, sf::Color::Yellow, 500.0f, 800.0f,&salles[0]));
 
     // Creation de l'entite 2
     //entites.push_back(Entity(30.0f, sf::Color::Blue, 800.0f, 500.0f,&salles[0]));
