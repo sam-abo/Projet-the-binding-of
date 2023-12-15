@@ -1,23 +1,23 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "carte.hh"
+#include "typesalle.hh"
 
 
-class salle : public carte {
+class salle : public typesalle {
     public:
-        salle(int widht, int height, sf::Color color,int hautbas, int gauchedroite);
+        salle(int width, int height, sf::Color color,std::string hautbas, std::string gauchedroite);
         void dessiner(sf::RenderWindow& window);
         void creermur(sf::RectangleShape &wall, int startx,int starty, int width, int height, sf::Color color);
         
-        sf::RectangleShape Getw1 () const {return wall1;}
-        sf::RectangleShape Getw2 () const {return wall2;}
-        sf::RectangleShape Getw3 () const {return wall3;}
-        sf::RectangleShape Getw4 () const {return wall4;}
-        sf::RectangleShape Getp1 () const {return porte1;}
-        sf::RectangleShape Getp2 () const {return porte2;}
-        sf::RectangleShape Getp3 () const {return porte3;}
-        sf::RectangleShape Getp4 () const {return porte4;}
+        sf::RectangleShape Getmgauche () const {return murgauche;}
+        sf::RectangleShape Getmdroite () const {return murdroite;}
+        sf::RectangleShape Getmhaut () const {return murhaut;}
+        sf::RectangleShape Getmbas () const {return murbas;}
+        sf::RectangleShape Getpgauche () const {return portegauche;}
+        sf::RectangleShape Getpdroite () const {return portedroite;}
+        sf::RectangleShape Getphaut () const {return portehaut;}
+        sf::RectangleShape Getpbas () const {return portebas;}
 
         sf::Vector2f& getTeleportPosition() {return teleportPosition;}
         salle* getDestination() const {return destination;}
@@ -26,14 +26,14 @@ class salle : public carte {
     private:
         int height;
         int width;
-        sf::RectangleShape wall1;
-        sf::RectangleShape wall2;
-        sf::RectangleShape wall3;
-        sf::RectangleShape wall4;
-        sf::RectangleShape porte1;
-        sf::RectangleShape porte2;
-        sf::RectangleShape porte3;
-        sf::RectangleShape porte4;
+        sf::RectangleShape murgauche;
+        sf::RectangleShape murdroite;
+        sf::RectangleShape murhaut;
+        sf::RectangleShape murbas;
+        sf::RectangleShape portegauche;
+        sf::RectangleShape portedroite;
+        sf::RectangleShape portehaut;
+        sf::RectangleShape portebas;
         sf::Vector2f teleportPosition;
         salle* destination;
 };

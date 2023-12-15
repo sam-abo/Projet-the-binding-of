@@ -18,7 +18,7 @@ public:
     //forme de l'objet (toujours des cercles pour l'instant)
     sf::CircleShape getforme() {return forme;}
     int getx() {return x;}
-    int gety() {return x;}
+    int gety() {return y;}
 
 protected:
     const salle* salleAppartenance; //la salle où est l'objet

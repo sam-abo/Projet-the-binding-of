@@ -16,13 +16,13 @@ int main() {
     std::vector<salle> salles;
     int numsalle;
 
-    salle s1(screenWidth-100, screenHeight-100, sf::Color::Red,3,3);
+    salle s1(screenWidth-100, screenHeight-100, sf::Color::Red,"gauchedroite","hautbas");
     salles.push_back(s1);
 
-    salle s2(screenWidth-100, screenHeight-100, sf::Color::Blue,3,3);
+    salle s2(screenWidth-100, screenHeight-100, sf::Color::Blue,"gauchedroite","hautbas");
     salles.push_back(s2);
 
-    salles.push_back(salle(screenWidth-100, screenHeight-100, sf::Color::Yellow,3,3));
+    //salles.push_back(salle(screenWidth-100, screenHeight-100, sf::Color::Yellow,"gauchedroite","hautbas"));
 
     //gestion des textes :
     // sf::Font font;
@@ -40,7 +40,7 @@ int main() {
     salle* salleActive = &salles[numsalle];
 
     // Creation de l'entite 1 : le perso principal
-    Hero entite1(50.0f, sf::Color::Green, 200.0f, 100.0f,1.0f);
+    Hero hero(screenWidth/100.0f, sf::Color::Green, 200.0f, 100.0f,1.0f);
 
     std::vector<Objet> entities;
 
@@ -62,44 +62,46 @@ int main() {
             }
         }
         // Enregistrement de la position precedente de l'entite 1
-        sf::Vector2f prevPositionEntity1 = entite1.getforme().getPosition();
+        sf::Vector2f prevPositionEntity1 = hero.getforme().getPosition();
 
-        // hpText.setString("HP: " + std::to_string(entite1.getHP()));
+        // hpText.setString("HP: " + std::to_string(hero.getHP()));
         // hpText.setPosition(prevPositionEntity1.x, prevPositionEntity1.y - 30);
 
-        entite1.mouvement();
-        entite1.collision(s1.Getw1().getGlobalBounds(),prevPositionEntity1);
-        entite1.collision(s1.Getw2().getGlobalBounds(),prevPositionEntity1);
-        entite1.collision(s1.Getw3().getGlobalBounds(),prevPositionEntity1);
-        entite1.collision(s1.Getw4().getGlobalBounds(),prevPositionEntity1);
+        hero.mouvement();
+        hero.collision(salles[numsalle].Getmgauche().getGlobalBounds(),prevPositionEntity1);
+        hero.collision(salles[numsalle].Getmdroite().getGlobalBounds(),prevPositionEntity1);
+        hero.collision(salles[numsalle].Getmhaut().getGlobalBounds(),prevPositionEntity1);
+        hero.collision(salles[numsalle].Getmbas().getGlobalBounds(),prevPositionEntity1);
 
 
         // Verification de la frontière de la première salle
-        if(entite1.getGlobalBounds().intersects(salles[numsalle].Getp1().getGlobalBounds())){
+        if(hero.getGlobalBounds().intersects(salles[numsalle].Getpgauche().getGlobalBounds())){
             numsalle++;
-            if(salles.size()<numsalle+1){
-                std::cout << "oui\n" << std::endl;
-                salles.push_back(salle(screenWidth-100, screenHeight-100, sf::Color::Yellow,3,3));
+            bool isNewSalleRequired(salles.size()<numsalle+1);
+
+            if(isNewSalleRequired){
+                //std::cout << "oui\n" << std::endl;
+                salles.push_back(salle(screenWidth-100, screenHeight-100, sf::Color::Yellow,"gauchedroite","hautbas"));
             }
-            entite1.changersalle(salleActive,salles[numsalle],"gauche");
+            hero.changersalle(salleActive,salles[numsalle],"gauche");
         }
-        if(entite1.getGlobalBounds().intersects(salles[numsalle].Getp2().getGlobalBounds()) && numsalle>0){
+        if(hero.getGlobalBounds().intersects(salles[numsalle].Getpdroite().getGlobalBounds()) && numsalle>0){
             numsalle--;
-            entite1.changersalle(salleActive,salles[numsalle],"droite");
+            hero.changersalle(salleActive,salles[numsalle],"droite");
         }
         
         window.clear();
         // Dessinez la salle active
         salleActive->dessiner(window);
         //s1.dessiner(window);
-        entite1.dessiner(window);
-        entite1.afficherHP(window);
+        hero.dessiner(window);
+        hero.afficherHP(window);
         // window.draw(hpText);
-        //entite1.afficherHP(window);
+        //hero.afficherHP(window);
         for (Objet& entite : entities) {
         if (entite.getSalleAppartenance() == salleActive) {
             entite.dessiner(window);
-            entite1.collision(entite.getGlobalBounds(),prevPositionEntity1);
+            hero.collision(entite.getGlobalBounds(),prevPositionEntity1);
         }
         
     }
