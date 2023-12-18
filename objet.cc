@@ -12,10 +12,7 @@ Objet::Objet(float size, const sf::Color& color, float x, float y, const salle* 
     forme.setPosition(x, y);
     salleAppartenance = salle;
 };
-//afficheur
-void Objet::dessiner(sf::RenderWindow& window) {
-    window.draw(forme);
-}
+
 
 //collisions
 sf::FloatRect Objet::getGlobalBounds() {
