@@ -6,9 +6,11 @@
 
 class salle : public typesalle {
     public:
+        salle();
         salle(int width, int height, sf::Color color,std::string hautbas, std::string gauchedroite);
         void dessiner(sf::RenderWindow& window);
         void creermur(sf::RectangleShape &wall, int startx,int starty, int width, int height, sf::Color color);
+        void print();
         
         sf::RectangleShape Getmgauche () const {return murgauche;}
         sf::RectangleShape Getmdroite () const {return murdroite;}

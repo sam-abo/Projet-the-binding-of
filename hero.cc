@@ -1,4 +1,5 @@
 #include "hero.hh"
+#include <iostream>
 
 Hero::Hero(float size, sf::Color color, float x, float y, float vitesse){
     Objet::x = x;
@@ -43,6 +44,7 @@ void Hero::changersalle( salle* &salleActive, salle &newsalle, std::string direc
         if (getGlobalBounds().intersects(salleActive->Getpbas().getGlobalBounds()) && &newsalle!= salleActive) {
                 // Teleportez l'entite à la position specifiee dans la deuxième salle
                 deplacer(sf::Vector2f((newsalle.getwidth())/2,100));
+                std::cout<<"ah"<<std::endl;
                 // Changez la salle active
                 salleActive=&newsalle;
             }
