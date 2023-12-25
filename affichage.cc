@@ -22,14 +22,14 @@ void Afficher::dessiner_obj(Objet& obj){
 }; //à mettre dans une classe affchage (objet)
 
 void Afficher::dessiner_salle(salle* s) {
-    window.draw(s->Getw1());
-    window.draw(s->Getw2());
-    window.draw(s->Getw3());
-    window.draw(s->Getw4());
-    window.draw(s->Getp1());
-    window.draw(s->Getp2());
-    window.draw(s->Getp3());
-    window.draw(s->Getp4());
+    window.draw(s->Getmhaut());
+    window.draw(s->Getmbas());
+    window.draw(s->Getmgauche());
+    window.draw(s->Getmdroite());
+    window.draw(s->Getphaut());
+    window.draw(s->Getpbas());
+    window.draw(s->Getpgauche());
+    window.draw(s->Getpdroite());
 };
         
 //sf::RenderWindow window(sf::VideoMode(screenWidth-100, screenHeight-100), "The binding of chatelêt les halles"); //dans la classe affichage (la fenêtre deu jeu)
