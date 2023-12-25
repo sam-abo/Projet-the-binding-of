@@ -4,13 +4,14 @@
 salle::salle(){};
 
 salle::salle(int width, int height, sf::Color color,std::string gauchedroite, std::string hautbas ) {
+
     this->width = width;
     this->height = height;
     this->teleportPosition.x=width/2;
     this->teleportPosition.y=height/2;
     this->destination=this;
     // Création des murs
-    creermur(murgauche,0.0f,0.0f,20.0f,height,color);
+   creermur(murgauche,0.0f,0.0f,20.0f,height,color);
     creermur(murdroite,width-20.0f,0.0f,20.0f,height,color);
     creermur(murhaut,0.0f,0.0f,width, 20.0f,color);
     creermur(murbas,0.0f, height-20.0f,width, 20.0f,color);
@@ -35,17 +36,6 @@ salle::salle(int width, int height, sf::Color color,std::string gauchedroite, st
         creermur(portebas,width/2-20,height-40,40.0f,20.0f,sf::Color::White);
     }
     std::cout << hautbas << std::endl;
-}
-
-void salle::dessiner(sf::RenderWindow& window){
-    window.draw(murgauche);
-    window.draw(murdroite);
-    window.draw(murhaut);
-    window.draw(murbas);
-    window.draw(portegauche);
-    window.draw(portedroite);
-    window.draw(portehaut);
-    window.draw(portebas);
 }
 
 void salle::creermur(sf::RectangleShape &wall, int startx,int starty,int width, int height, sf::Color color){

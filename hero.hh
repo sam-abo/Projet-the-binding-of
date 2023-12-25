@@ -6,10 +6,9 @@
 class Hero : public Entity {
 public:
     Hero(float size, sf::Color color, float x, float y, float vitesse);
-    Hero();
     int getHP(){return hp;};
     //window.draw(hpText);
-    void afficherHP(sf::RenderWindow& window);
+    // void afficherHP(sf::RenderWindow& window); //à mettre dans une classe affchage
     void changersalle(salle* &salleActive, salle &newsalle, std::string direction);
     protected :
     int hp;
