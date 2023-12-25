@@ -39,3 +39,9 @@ void Afficher::Fenetre_jeu(std::string nom){
     unsigned int screenHeight = desktopMode.height;
     window.create(sf::VideoMode(screenWidth-100, screenHeight-100), nom);
 };
+
+void Afficher::fermeture (Touches touche){
+    if(touche.isKeyPressed(esc)){
+        window.close();
+    }
+};

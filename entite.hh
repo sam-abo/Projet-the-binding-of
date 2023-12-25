@@ -1,7 +1,8 @@
-#pragma once
+ #pragma once
 
 #include <SFML/Graphics.hpp>
 #include "objet.hh"
+#include "touches.hh"
 
 class Entity : public Objet {
 public:
@@ -9,7 +10,8 @@ public:
     Entity(float size, const sf::Color& color, float x, float y, const salle* salle); //pour les entités immobiles éventuellement.
     Entity();
 
-    void mouvement(); //à mettre dans une classe mouvement
+    void mouvement(Touches touche);
+    
     
     void deplacer(const sf::Vector2f& newPosition);
     sf::CircleShape getforme() {return forme;};
@@ -17,5 +19,7 @@ public:
     
 
     protected :
-    float vitesse; 
+    float vitesse;
+    // // Enregistrement de la position precedente de l'entite 1
+    // sf::Vector2f prevPositionEntity = this.getforme().getPosition();
 };

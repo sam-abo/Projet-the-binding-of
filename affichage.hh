@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "hero.hh"
+#include "touches.hh"
 
 class Afficher {
     public:
@@ -12,6 +13,7 @@ class Afficher {
         
         //sf::RenderWindow window(sf::VideoMode(screenWidth-100, screenHeight-100), "The binding of chatelêt les halles"); //dans la classe affichage (la fenêtre deu jeu)
         void Fenetre_jeu(std::string nom);
+        void fermeture (Touches touche);
         sf::RenderWindow& getWindow(){return window;};
     private:
     sf::RenderWindow window;

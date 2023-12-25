@@ -12,7 +12,7 @@ public:
 
     sf::FloatRect getGlobalBounds(); // intervient dans la collision
 
-    void collision(const sf::FloatRect& otherBounds,sf::Vector2f prevPositionEntity1); //à mettre dans la classe mouvement
+    void collision(const sf::FloatRect& otherBounds,sf::Vector2f prevPositionEntity1);
     const salle* getSalleAppartenance() const {return salleAppartenance;}
     //forme de l'objet (toujours des cercles pour l'instant)
     sf::CircleShape getforme() {return forme;}

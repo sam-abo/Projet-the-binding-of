@@ -10,10 +10,6 @@ Hero::Hero(float size, sf::Color color, float x, float y, float vitesse){
     hp = 100;
 };
 
-Hero::Hero(){
-
-};
-
 void Hero::changersalle( salle* &salleActive, salle &newsalle, std::string direction){
     if (direction=="gauche"){
         if (getGlobalBounds().intersects(salleActive->Getp1().getGlobalBounds()) && &newsalle!= salleActive) {
