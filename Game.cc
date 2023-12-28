@@ -1,6 +1,8 @@
 #include "Game.hh"
 
 void Game :: jouer(){
+
+    /*
     Afficher jeu;
     jeu.Fenetre_jeu("The binding of");
 
@@ -59,7 +61,7 @@ void Game :: jouer(){
         jeu.getWindow().display();
     }
 
-
+*/
 
 
 
