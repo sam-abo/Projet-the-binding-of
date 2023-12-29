@@ -1,6 +1,7 @@
 #include "Game.hh"
 
 Game::Game(int i){
+    debutJeu = 0;
     sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
     screenWidth = desktopMode.width;
     screenHeight = desktopMode.height;
@@ -92,6 +93,7 @@ void Game :: jouer(){
     jeu.Fenetre_jeu("The binding of");
     Touches key;
 
+    Menu menu(screenWidth-100,screenHeight-100);
 
     // Creation de l'entite 1 : le perso principal
     Hero hero(screenWidth/100.0f, sf::Color::Green, 200.0f, 100.0f,1.0f);
@@ -116,6 +118,20 @@ void Game :: jouer(){
                 jeu.getWindow().close();
             }
         }
+
+        if (debutJeu==0) {
+            jeu.getWindow().clear();
+            jeu.dessiner_menu(menu);
+            jeu.getWindow().display();
+            if (event.type == sf::Event::MouseButtonPressed) {
+                if (event.mouseButton.button == sf::Mouse::Left) {
+                    sf::Vector2i mousePosition = sf::Mouse::getPosition(jeu.getWindow());
+                    debutJeu = menu.handleMouseClick(mousePosition.x, mousePosition.y);
+                }
+            }
+        }
+        else if (debutJeu == 2){jeu.getWindow().close();}
+        else {
         
         sf::Vector2f prevPositionEntity1 = hero.getforme().getPosition();
         
@@ -149,12 +165,13 @@ void Game :: jouer(){
 
         //boucle for qui gère l'affichage de toutes les entités présentes dans la salle active
         for (Objet& entite : entities) {
-        if (entite.getSalleAppartenance() == carteActive->getsalleActive()) {
-            jeu.dessiner_obj(entite);
-            hero.collision(entite.getGlobalBounds(),prevPositionEntity1);
-        }
+            if (entite.getSalleAppartenance() == carteActive->getsalleActive()) {
+                jeu.dessiner_obj(entite);
+                hero.collision(entite.getGlobalBounds(),prevPositionEntity1);
+                } 
+            }
         
-    }
         jeu.getWindow().display();
+        }
     }
 };

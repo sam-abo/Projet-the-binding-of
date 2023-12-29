@@ -31,7 +31,19 @@ void Afficher::dessiner_salle(salle* s) {
     window.draw(s->Getpgauche());
     window.draw(s->Getpdroite());
     window.draw(s->Getsortie());
+    if(s->Getmarchand()){
+        window.draw(s->Getmarchand()->getforme());
+    };
+    
 };
+
+void Afficher::dessiner_menu(Menu& m){
+    window.draw(m.getstartGameButton());
+    window.draw(m.getexitButton());
+    window.draw(m.getstartGameText());
+    window.draw(m.getexitText());
+}
+
         
 //sf::RenderWindow window(sf::VideoMode(screenWidth-100, screenHeight-100), "The binding of chatelêt les halles"); //dans la classe affichage (la fenêtre deu jeu)
 void Afficher::Fenetre_jeu(std::string nom){

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "salle.hh"
+#include "salleMarchand.hh"
 #include "hero.hh"
 #include "objet.hh"
 

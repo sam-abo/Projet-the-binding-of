@@ -24,11 +24,14 @@ void carte::configurerCarte(const std::vector<std::vector<std::pair<std::string,
         for (int y = 0; y < height; y++) {
             //grille[x][y]=new salle;
             // Utilisez la valeur de la configuration pour déterminer les paramètres de la salle
+            if (x==0 && y==0){continue;};
             std::pair<std::string, std::string> valeur = configuration[x][y];
             grille[x][y] = salle(widthsalle, heightsalle, sf::Color::Blue, valeur.second, valeur.first);
             //ajouterSalle(x ,y ,widthsalle, heightsalle, sf::Color::Blue, valeur.first, valeur.second);
         }
     }
+    std::pair<std::string, std::string> valeur = configuration[0][0];
+    grille[0][0]=salleMarchand(widthsalle, heightsalle, sf::Color::Red, valeur.second, valeur.first);
     
 }
 void carte::print() {
