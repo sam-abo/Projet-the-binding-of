@@ -29,6 +29,7 @@ void carte::configurerCarte(const std::vector<std::vector<std::pair<std::string,
             //ajouterSalle(x ,y ,widthsalle, heightsalle, sf::Color::Blue, valeur.first, valeur.second);
         }
     }
+    
 }
 void carte::print() {
     for (int x = 0; x < width; x++) {
@@ -44,16 +45,16 @@ void carte::deplacementEntreSalle(Hero *hero){
             
             hero->changersalle(salleActive,grille[numsallewidth][numsalleheight],"gauche");
         }
-        if(hero->getGlobalBounds().intersects(salleActive->Getpdroite().getGlobalBounds())){
+    if(hero->getGlobalBounds().intersects(salleActive->Getpdroite().getGlobalBounds())){
             numsalleheight++;
             hero->changersalle(salleActive,grille[numsallewidth][numsalleheight],"droite");
         }
-        if(hero->getGlobalBounds().intersects(salleActive->Getpbas().getGlobalBounds())){
+    if(hero->getGlobalBounds().intersects(salleActive->Getpbas().getGlobalBounds())){
             numsallewidth++;
             hero->changersalle(salleActive,grille[numsallewidth][numsalleheight],"bas");
 
         }
-        if(hero->getGlobalBounds().intersects(salleActive->Getphaut().getGlobalBounds())){
+    if(hero->getGlobalBounds().intersects(salleActive->Getphaut().getGlobalBounds())){
             numsallewidth--;
             hero->changersalle(salleActive,grille[numsallewidth][numsalleheight],"haut");
         }

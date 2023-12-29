@@ -8,7 +8,15 @@
 
 class Game {
     public :
+    Game(int i);
     void jouer();
 
     void niveau();
+    
+    private :
+    carte* carteActive;
+    std::vector<carte> cartes;
+    int numCarteActive;
+    unsigned int screenWidth;
+    unsigned int screenHeight;
 };

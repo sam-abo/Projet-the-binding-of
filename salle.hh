@@ -10,6 +10,7 @@ class salle : public typesalle {
         void dessiner(sf::RenderWindow& window);
         void creermur(sf::RectangleShape &wall, int startx,int starty, int width, int height, sf::Color color);
         void print();
+        void creersortie();
 
         sf::RectangleShape Getmgauche () const {return murgauche;}
         sf::RectangleShape Getmdroite () const {return murdroite;}
@@ -19,6 +20,7 @@ class salle : public typesalle {
         sf::RectangleShape Getpdroite () const {return portedroite;}
         sf::RectangleShape Getphaut () const {return portehaut;}
         sf::RectangleShape Getpbas () const {return portebas;}
+        sf::RectangleShape Getsortie () const {return sortie;}
 
         sf::Vector2f& getTeleportPosition() {return teleportPosition;}
         salle* getDestination() const {return destination;}
@@ -35,6 +37,7 @@ class salle : public typesalle {
         sf::RectangleShape portedroite;
         sf::RectangleShape portehaut;
         sf::RectangleShape portebas;
+        sf::RectangleShape sortie;
         sf::Vector2f teleportPosition;
         salle* destination;
 };

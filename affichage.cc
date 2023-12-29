@@ -30,6 +30,7 @@ void Afficher::dessiner_salle(salle* s) {
     window.draw(s->Getpbas());
     window.draw(s->Getpgauche());
     window.draw(s->Getpdroite());
+    window.draw(s->Getsortie());
 };
         
 //sf::RenderWindow window(sf::VideoMode(screenWidth-100, screenHeight-100), "The binding of chatelêt les halles"); //dans la classe affichage (la fenêtre deu jeu)
