@@ -15,7 +15,7 @@ salleMarchand::salleMarchand(int width, int height, sf::Color color,std::string 
 
     
     texture = new sf::Texture;
-    if (!texture->loadFromFile("4u9uy9qrawr61.png")) {
+    if (!texture->loadFromFile("marchand.png")) {
         std::cout<<"probleme avec texture"<<std::endl;
     }
     salle::marchand.setTexture(*texture);
