@@ -24,5 +24,4 @@ void Objet::collision(const sf::FloatRect& otherBounds,sf::Vector2f prevPosition
     if (forme.getGlobalBounds().intersects(otherBounds)){
         forme.setPosition(prevPositionEntity1);
     }
-}
-
+};

@@ -12,6 +12,7 @@ salleMarchand::salleMarchand(int width, int height, sf::Color color,std::string 
     creermur(murhaut,0.0f,0.0f,width, 20.0f,color);
     creermur(murbas,0.0f, height-20.0f,width, 20.0f,color);
     creerPorte(gauchedroite,hautbas);
+
     
     texture = new sf::Texture;
     if (!texture->loadFromFile("4u9uy9qrawr61.png")) {
@@ -20,5 +21,6 @@ salleMarchand::salleMarchand(int width, int height, sf::Color color,std::string 
     salle::marchand.setTexture(*texture);
     salle::marchand.setScale(width*0.2 / static_cast<float>(texture->getSize().x), width*0.2 / static_cast<float>(texture->getSize().x));
     salle::marchand.setPosition((width-salle::marchand.getGlobalBounds().width)/2,20.0f);
+
 }
 

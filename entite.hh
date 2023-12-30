@@ -3,12 +3,15 @@
 #include <SFML/Graphics.hpp>
 #include "objet.hh"
 #include "touches.hh"
+#include "salle.hh"
 
 class Entity : public Objet {
 public:
     Entity(float size, sf::Color color, float x, float y, float vitesse); //pour les entités mobiles
     Entity(float size, const sf::Color& color, float x, float y, const salle* salle); //pour les entités immobiles éventuellement.
     Entity();
+
+    void bords(salle* room, sf::Vector2f prevPositionEntity1);
 
     void mouvement(Touches touche);
     

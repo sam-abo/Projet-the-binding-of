@@ -31,7 +31,7 @@ void carte::configurerCarte(const std::vector<std::vector<std::pair<std::string,
         }
     }
     std::pair<std::string, std::string> valeur = configuration[0][0];
-    grille[0][0]=salleMarchand(widthsalle, heightsalle, sf::Color::Red, valeur.second, valeur.first);
+    grille[0][0]=salleMarchand(widthsalle, heightsalle, sf::Color::Red, valeur.second, valeur.first); //la 1ere salle de chaque carte sera une salle marchande
     
 }
 void carte::print() {
