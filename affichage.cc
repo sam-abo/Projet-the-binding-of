@@ -17,7 +17,7 @@ void Afficher::afficherHP(Hero& hero){
     window.draw(hpText);
  }; //à mettre dans une classe affchage (hero)
 
- void Afficher::afficherHP(Enemy& foe){
+void Afficher::afficherHP(Enemy& foe){
     sf::Font font;
     if (!font.loadFromFile("arial.ttf")) {
     std::cout << "erreur d'accès à arial";
@@ -33,7 +33,6 @@ void Afficher::afficherHP(Hero& hero){
     hpText.setPosition(prevPositionEntity1.x, prevPositionEntity1.y - 30);
     window.draw(hpText);
  };
-
 
 void Afficher::dessiner_obj(Objet& obj){
     window.draw(obj.getforme());
@@ -51,8 +50,6 @@ void Afficher::dessiner_salle(salle* s) {
     window.draw(s->Getsortie());
     
     window.draw(s->Getmarchand());
-    
-    
 };
 
 void Afficher::dessiner_menu(Menu& m){
