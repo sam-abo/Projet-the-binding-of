@@ -14,9 +14,9 @@ salleMarchand::salleMarchand(int width, int height, sf::Color color,std::string 
     creerPorte(gauchedroite,hautbas);
     salle::marchand = new Entity(30.0,color,width/2,height/4,this);
     sf::Texture texture;
-    if (!texture.loadFromFile("/home/quentin/Bureau/Code_Info/S7/C++/Projet_C++/Projet-the-binding-of/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.png")) {
+    if (!texture.loadFromFile("marchand.jpg")) {
         std::cout<<"probleme avec texture"<<std::endl;
     }
-    salle::marchand->setTexture(texture);
+    //salle::marchand->setTexture(texture);
 }
 

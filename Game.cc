@@ -102,10 +102,12 @@ void Game :: jouer(){
     std::vector<Objet> entities;
     //on déclare des entités et on spécifie dans quelle salle de la matrice de la carte associée elles sont. 
     //Peut être que c'est déplacable pour faire un truc plus élégant
-    entities.push_back(Entity(30.0f, sf::Color::Blue, 800.0f, 500.0f,carteActive->getsalleActive()));
-    entities.push_back(Objet(30.0f, sf::Color::Yellow, 500.0f, 800.0f,carteActive->getsalleActive()));
-    entities.push_back(Objet(30.0f, sf::Color::Yellow, 500.0f, 800.0f,&cartes[1].getgrille()[1][1]));
+    entities.push_back(Entity(30.0f, sf::Color::Blue, 800.0f, 500.0f,carteActive->getsalleActive())); //une entitée bleue
+    entities.push_back(Objet(30.0f, sf::Color::Yellow, 500.0f, 800.0f,carteActive->getsalleActive())); //un objet jaune
+    entities.push_back(Objet(30.0f, sf::Color::Yellow, 500.0f, 800.0f,&cartes[0].getgrille()[1][1])); //un objet jaune
 
+    std::vector<Enemy> foes;
+    foes.push_back(Enemy(30.0f, 800.0f, 500.0f,&cartes[0].getgrille()[1][1]));
 
 
     // Boucle principale
@@ -137,17 +139,14 @@ void Game :: jouer(){
         
 
         hero.mouvement(key);
-        
-        //ça ira dans une fonction dédiée dans entité.
-        //Gestion des collisions avec les murs de la salle active.
-        hero.collision(carteActive->getsalleActive()->Getmgauche().getGlobalBounds(),prevPositionEntity1);
-        hero.collision(carteActive->getsalleActive()->Getmdroite().getGlobalBounds(),prevPositionEntity1);
-        hero.collision(carteActive->getsalleActive()->Getmhaut().getGlobalBounds(),prevPositionEntity1);
-        hero.collision(carteActive->getsalleActive()->Getmbas().getGlobalBounds(),prevPositionEntity1);
+
+        //fonction qui gère (pour chaque entitée d'ailleurs) la collision avec les murs de la salle active
+        hero.bords(carteActive->getsalleActive(), prevPositionEntity1);
 
         //la fonction qui dit "si le machin passé en paramètre touches telle ou telle porte, il change de salle"
         carteActive->deplacementEntreSalle(&hero);
 
+        //si le hero touche la sortie de la carte active alors numcCarteActive ++ et la carte active est updaté
         if (hero.getGlobalBounds().intersects(carteActive->getsalleActive()->Getsortie().getGlobalBounds())){
             numCarteActive++;
             carteActive=&cartes[numCarteActive];
@@ -170,6 +169,14 @@ void Game :: jouer(){
                 hero.collision(entite.getGlobalBounds(),prevPositionEntity1);
                 } 
             }
+        for (Enemy& mob : foes){
+            if (mob.getSalleAppartenance() == carteActive->getsalleActive()) {
+                jeu.dessiner_obj(mob);
+                jeu.afficherHP(mob);
+                //hero.collision(mob.getGlobalBounds(),prevPositionEntity1);
+                hero.coll_ennemi(mob,prevPositionEntity1);
+                } 
+        }
         
         jeu.getWindow().display();
         }

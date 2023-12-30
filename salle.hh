@@ -9,7 +9,7 @@ class salle {
     public:
         salle();
         salle(int width, int height, sf::Color color,std::string gauchedroite, std::string hautbas);
-        void dessiner(sf::RenderWindow& window);
+        //void dessiner(sf::RenderWindow& window);
         void creermur(sf::RectangleShape &wall, int startx,int starty, int width, int height, sf::Color color);
         void creerPorte(std::string gauchedroite, std::string hautbas);
         void print();

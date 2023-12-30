@@ -46,3 +46,35 @@ void Hero::changersalle( salle* &salleActive, salle &newsalle, std::string direc
             }
     }
 }
+
+void Hero::coll_ennemi(Enemy& foe, sf::Vector2f prevPositionEntity1){
+    
+        if (this->getforme().getGlobalBounds().intersects(foe.getGlobalBounds())){ //si le heros touche l'ennemi
+            forme.setPosition(prevPositionEntity1);
+            if (clock.getElapsedTime() > time) {
+            hp -= 1;
+            clock.restart(); //en fait c'est le temps écoulé depuis le dernier restart
+            }
+        }
+};
+
+//idéalement faudrait réussir à ne mettre les mouvements que ici
+
+// void Hero::mouvement(Touches touche) {
+//     if (touche.isKeyPressed(Left)) {
+//         this->getforme().move(-Entity::vitesse, 0.0f);
+//         Objet::x -= Entity::vitesse;
+//     }
+//     if (touche.isKeyPressed(Right)) {
+//         this->getforme().move(Entity::vitesse, 0.0f);
+//         Objet::x += Entity::vitesse;
+//     }
+//     if (touche.isKeyPressed(Up) ) {
+//         this->getforme().move(0.0f, -Entity::vitesse);
+//         Objet::y -=Entity::vitesse;
+//     }
+//     if (touche.isKeyPressed(Down)) {
+//         this->getforme().move(0.0f, Entity::vitesse);
+//         Objet::y += Entity::vitesse;
+//     }
+// };

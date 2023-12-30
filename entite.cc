@@ -49,4 +49,15 @@ void Entity::mouvement(Touches touche) {
 
 void Entity::deplacer(const sf::Vector2f& newPosition) {
     Objet::forme.setPosition(newPosition);
-}
+};
+
+void Entity::bords(salle* room, sf::Vector2f prevPositionEntity1){
+
+    collision(room->Getmgauche().getGlobalBounds(), prevPositionEntity1);
+    // Collision avec le bord droit
+    collision(room->Getmdroite().getGlobalBounds(), prevPositionEntity1);
+    // Collision avec le bord haut
+    collision(room->Getmhaut().getGlobalBounds(), prevPositionEntity1);
+    // Collision avec le bord bas
+    collision(room->Getmbas().getGlobalBounds(), prevPositionEntity1);
+};

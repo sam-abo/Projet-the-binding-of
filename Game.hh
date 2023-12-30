@@ -3,6 +3,7 @@
 #include "affichage.hh"
 #include "touches.hh"
 #include "hero.hh"
+#include "enemy.hh"
 #include "salle.hh"
 #include "carte.hh"
 #include "menu.hh"
