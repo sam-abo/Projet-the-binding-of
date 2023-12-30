@@ -31,9 +31,9 @@ void Afficher::dessiner_salle(salle* s) {
     window.draw(s->Getpgauche());
     window.draw(s->Getpdroite());
     window.draw(s->Getsortie());
-    if(s->Getmarchand()){
-        window.draw(s->Getmarchand()->getforme());
-    };
+    
+    window.draw(s->Getmarchand());
+    
     
 };
 

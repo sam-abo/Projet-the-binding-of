@@ -24,7 +24,7 @@ class salle {
         sf::RectangleShape Getphaut () const {return portehaut;}
         sf::RectangleShape Getpbas () const {return portebas;}
         sf::RectangleShape Getsortie () const {return sortie;}
-        Entity* Getmarchand() {return marchand;}
+        sf::Sprite Getmarchand() {return marchand;}
 
         sf::Vector2f& getTeleportPosition() {return teleportPosition;}
         
@@ -42,6 +42,8 @@ class salle {
         sf::RectangleShape portehaut;
         sf::RectangleShape portebas;
         sf::RectangleShape sortie;
-        Entity* marchand;
+        sf::Sprite marchand;
+        
+        //Entity* marchand;
         sf::Vector2f teleportPosition;
 };

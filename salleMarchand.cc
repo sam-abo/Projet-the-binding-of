@@ -12,11 +12,13 @@ salleMarchand::salleMarchand(int width, int height, sf::Color color,std::string 
     creermur(murhaut,0.0f,0.0f,width, 20.0f,color);
     creermur(murbas,0.0f, height-20.0f,width, 20.0f,color);
     creerPorte(gauchedroite,hautbas);
-    salle::marchand = new Entity(30.0,color,width/2,height/4,this);
-    sf::Texture texture;
-    if (!texture.loadFromFile("/home/quentin/Bureau/Code_Info/S7/C++/Projet_C++/Projet-the-binding-of/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.png")) {
+    
+    texture = new sf::Texture;
+    if (!texture->loadFromFile("4u9uy9qrawr61.png")) {
         std::cout<<"probleme avec texture"<<std::endl;
     }
-    salle::marchand->setTexture(texture);
+    salle::marchand.setTexture(*texture);
+    salle::marchand.setScale(width*0.2 / static_cast<float>(texture->getSize().x), width*0.2 / static_cast<float>(texture->getSize().x));
+    salle::marchand.setPosition((width-salle::marchand.getGlobalBounds().width)/2,20.0f);
 }
 

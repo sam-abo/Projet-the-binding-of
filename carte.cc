@@ -26,7 +26,7 @@ void carte::configurerCarte(const std::vector<std::vector<std::pair<std::string,
             // Utilisez la valeur de la configuration pour déterminer les paramètres de la salle
             if (x==0 && y==0){continue;};
             std::pair<std::string, std::string> valeur = configuration[x][y];
-            grille[x][y] = salle(widthsalle, heightsalle, sf::Color::Blue, valeur.second, valeur.first);
+            grille[x][y] = salleEnemi(widthsalle, heightsalle, sf::Color::Blue, valeur.second, valeur.first);
             //ajouterSalle(x ,y ,widthsalle, heightsalle, sf::Color::Blue, valeur.first, valeur.second);
         }
     }
