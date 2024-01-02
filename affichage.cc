@@ -17,6 +17,24 @@ void Afficher::afficherHP(Hero& hero){
     window.draw(hpText);
  }; //à mettre dans une classe affchage (hero)
 
+ void Afficher::afficherHP(Enemy& foe){
+    sf::Font font;
+    if (!font.loadFromFile("arial.ttf")) {
+    std::cout << "erreur d'accès à arial";
+    // Gestion de l'erreur si la police ne peut pas être chargée
+    return ;
+    }
+    sf::Text hpText;
+    hpText.setFont(font);
+    hpText.setCharacterSize(24);
+    hpText.setFillColor(sf::Color::Red);
+    sf::Vector2f prevPositionEntity1 = foe.getforme().getPosition();
+    hpText.setString("HP: " + std::to_string(foe.getHP()));
+    hpText.setPosition(prevPositionEntity1.x, prevPositionEntity1.y - 30);
+    window.draw(hpText);
+ };
+
+
 void Afficher::dessiner_obj(Objet& obj){
     window.draw(obj.getforme());
 }; //à mettre dans une classe affchage (objet)
@@ -30,7 +48,20 @@ void Afficher::dessiner_salle(salle* s) {
     window.draw(s->Getpbas());
     window.draw(s->Getpgauche());
     window.draw(s->Getpdroite());
+    window.draw(s->Getsortie());
+    if(s->Getmarchand()){
+        window.draw(s->Getmarchand()->getforme());
+    };
+    
 };
+
+void Afficher::dessiner_menu(Menu& m){
+    window.draw(m.getstartGameButton());
+    window.draw(m.getexitButton());
+    window.draw(m.getstartGameText());
+    window.draw(m.getexitText());
+}
+
         
 //sf::RenderWindow window(sf::VideoMode(screenWidth-100, screenHeight-100), "The binding of chatelêt les halles"); //dans la classe affichage (la fenêtre deu jeu)
 void Afficher::Fenetre_jeu(std::string nom){
