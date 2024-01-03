@@ -25,23 +25,6 @@ Game::Game(int i){
 void Game :: jouer(){
 
 
-/*
-// Inside the game loop
-for (auto& rock : rocks) {
-    rock.update(deltaTime);
-}
-// Check for collisions
-
-// Check collision between rocks and hero or sword
-for (auto& rock : rocks) {
-    if (hero.getGlobalBounds().intersects(rock.shape.getGlobalBounds())) {
-        // Hero hit by rock
-    } else if (hero.isSwingingSword && swordBounds.intersect(rock.shape.getGlobalBounds())) {
-        // Sword hits rock
-    }
-}
-*/
-
 
 
     // Creation de la fenêtre SFML
