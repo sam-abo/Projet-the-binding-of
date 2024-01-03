@@ -58,6 +58,7 @@ void Hero::coll_ennemi(Enemy& foe, sf::Vector2f prevPositionEntity1){
         }
 };
 
+
 //idéalement faudrait réussir à ne mettre les mouvements que ici
 
 // void Hero::mouvement(Touches touche) {
