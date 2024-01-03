@@ -24,67 +24,23 @@ Game::Game(int i){
 
 void Game :: jouer(){
 
-    /*
-    Afficher jeu;
-    jeu.Fenetre_jeu("The binding of");
 
-    // Load textures for the isometric tiles and characters
-    sf::Texture tileTexture;
-    if (!tileTexture.loadFromFile("path/to/tile_texture.png")) {
-        std::cerr << "Failed to load tile texture" << std::endl;
-        return;
+/*
+// Inside the game loop
+for (auto& rock : rocks) {
+    rock.update(deltaTime);
+}
+// Check for collisions
+
+// Check collision between rocks and hero or sword
+for (auto& rock : rocks) {
+    if (hero.getGlobalBounds().intersects(rock.shape.getGlobalBounds())) {
+        // Hero hit by rock
+    } else if (hero.isSwingingSword && swordBounds.intersect(rock.shape.getGlobalBounds())) {
+        // Sword hits rock
     }
-
-    sf::Texture heroTexture;
-    if (!heroTexture.loadFromFile("path/to/hero_texture.png")) {
-        std::cerr << "Failed to load hero texture" << std::endl;
-        return;
-    }
-
-    // Set up the tile sprite
-    sf::Sprite tileSprite(tileTexture);
-
-    // Set up the hero sprite
-    sf::Sprite heroSprite(heroTexture);
-    heroSprite.setPosition(400, 300); // Starting position for the hero
-
-    Touches key;
-    std::vector<std::vector<std::pair<std::string, std::string>>> matrix = {
-        // ... your existing matrix setup ...
-    };
-    carte carte(matrix, jeu.getWindow().getSize().x, jeu.getWindow().getSize().y);
-    Hero hero(30.0f, sf::Color::Green, 200.0f, 100.0f, 1.0f);
-
-    // Main game loop
-    while (jeu.getWindow().isOpen()) {
-        // Event handling
-        sf::Event event;
-        while (jeu.getWindow().pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                jeu.getWindow().close();
-            }
-        }
-
-        jeu.getWindow().clear(sf::Color::Black);
-
-        // Draw the isometric tiles
-        for (int y = 0; y < jeu.getWindow().getSize().y; y += tileTexture.getSize().y) {
-            for (int x = 0; x < jeu.getWindow().getSize().x; x += tileTexture.getSize().x) {
-                tileSprite.setPosition(x, y);
-                jeu.getWindow().draw(tileSprite);
-            }
-        }
-
-        // Draw the hero
-        jeu.getWindow().draw(heroSprite);
-
-        // ... your existing entity drawing logic ...
-
-        jeu.getWindow().display();
-    }
-
+}
 */
-
 
 
 
