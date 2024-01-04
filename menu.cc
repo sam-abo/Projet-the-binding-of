@@ -30,19 +30,18 @@ Menu::Menu(int width, int height) {
     }
 
 
-int Menu::handleMouseClick(int mouseX, int mouseY) {
-        // Ajoutez la logique pour gérer les clics de souris (par exemple, vérifier quel texte a été cliqué)
+std::string Menu::handleMouseClick(int mouseX, int mouseY) {
+        // Ajoutez la logique pour gérer les clics de souris 
         if (mouseX > width/2-100 && mouseX < width/2+100 && mouseY > height/2-75 && mouseY < height/2-25) {
             // Clic sur "Start Game"
-            return 1;
-            // Ajoutez ici le code pour démarrer le jeu
-            std::cout << "Start Game clicked!" << std::endl;
+            return "jeu";
+            
         } else if (mouseX > width/2-100 && mouseX < width/2+100 && mouseY > height/2+25 && mouseY < height/2+75) {
             // Clic sur "Exit"
-            return 2;
+            return "quitter";
             //window.close();
         }
         else {
-            return 0;
+            return "menu";
         }
     }

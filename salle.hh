@@ -2,8 +2,10 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "textureManager.hh"
+//#include "enemy.hh"
 
-class Entity;
+class Enemy;
 
 class salle {
     public:
@@ -25,6 +27,9 @@ class salle {
         sf::RectangleShape Getpbas () const {return portebas;}
         sf::RectangleShape Getsortie () const {return sortie;}
         sf::Sprite Getmarchand() {return marchand;}
+        sf::Sprite Getfond() {return fond;}
+        std::string Gettype(){return type;}
+        //Enemy* Getenemis() {return enemis;}
 
         sf::Vector2f& getTeleportPosition() {return teleportPosition;}
         
@@ -43,6 +48,9 @@ class salle {
         sf::RectangleShape portebas;
         sf::RectangleShape sortie;
         sf::Sprite marchand;
+        sf::Sprite fond;
+        std::string type;
+        //Enemy* enemis;
         
         //Entity* marchand;
         sf::Vector2f teleportPosition;

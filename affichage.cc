@@ -39,6 +39,7 @@ void Afficher::dessiner_obj(Objet& obj){
 }; //à mettre dans une classe affchage (objet)
 
 void Afficher::dessiner_salle(salle* s) {
+    window.draw(s->Getfond());
     window.draw(s->Getmhaut());
     window.draw(s->Getmbas());
     window.draw(s->Getmgauche());
@@ -50,13 +51,26 @@ void Afficher::dessiner_salle(salle* s) {
     window.draw(s->Getsortie());
     
     window.draw(s->Getmarchand());
+
+    // if(s->Getenemis()){
+    //     window.draw(s->Getenemis()->getforme());
+    // }
 };
 
-void Afficher::dessiner_menu(Menu& m){
+std::string Afficher::dessiner_menu(Menu& m, sf::Event& event){
+    window.clear();
     window.draw(m.getstartGameButton());
     window.draw(m.getexitButton());
     window.draw(m.getstartGameText());
     window.draw(m.getexitText());
+    window.display();
+    if (event.type == sf::Event::MouseButtonPressed) {
+                if (event.mouseButton.button == sf::Mouse::Left) {
+                    sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
+                    return m.handleMouseClick(mousePosition.x, mousePosition.y);
+                }
+            }
+    return "menu";
 }
 
         

@@ -1,7 +1,7 @@
 #include "Game.hh"
 
 Game::Game(int i){
-    debutJeu = 0;
+    debutJeu = "menu";
     sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
     screenWidth = desktopMode.width;
     screenHeight = desktopMode.height;
@@ -15,10 +15,12 @@ Game::Game(int i){
     };
 
     //créer une carte qui est associée à une matrice, ici la matrice est définie au dessus, les 2 derniers trucs en paramètres sont là pour la taille des salles
+    textures = new textureManager;
+    textures->chargerToutesTextures();
     numCarteActive=0;
-    cartes.push_back(carte(matrix,screenWidth-100, screenHeight-100));
+    cartes.push_back(carte(matrix,screenWidth-100, screenHeight-100,*textures));
     cartes[0].setSortie();
-    cartes.push_back(carte(matrix,screenWidth-100, screenHeight-100));
+    cartes.push_back(carte(matrix,screenWidth-100, screenHeight-100,*textures));
     carteActive = &cartes[0];
 }
 
@@ -121,18 +123,10 @@ void Game :: jouer(){
             }
         }
 
-        if (debutJeu==0) {
-            jeu.getWindow().clear();
-            jeu.dessiner_menu(menu);
-            jeu.getWindow().display();
-            if (event.type == sf::Event::MouseButtonPressed) {
-                if (event.mouseButton.button == sf::Mouse::Left) {
-                    sf::Vector2i mousePosition = sf::Mouse::getPosition(jeu.getWindow());
-                    debutJeu = menu.handleMouseClick(mousePosition.x, mousePosition.y);
-                }
-            }
+        if (debutJeu=="menu") {
+            debutJeu = jeu.dessiner_menu(menu,event);
         }
-        else if (debutJeu == 2){jeu.getWindow().close();}
+        else if (debutJeu == "quitter"){jeu.getWindow().close();}
         else {
         
         sf::Vector2f prevPositionEntity1 = hero.getforme().getPosition();

@@ -16,7 +16,7 @@ class Afficher {
 
         void dessiner_obj(Objet& objet); //à mettre dans une classe affchage (objet)
         void dessiner_salle(salle* s); //ne dessine que la salle active
-        void dessiner_menu(Menu& m);
+        std::string dessiner_menu(Menu& m, sf::Event& event);
         
         //sf::RenderWindow window(sf::VideoMode(screenWidth-100, screenHeight-100), "The binding of chatelêt les halles"); //dans la classe affichage (la fenêtre deu jeu)
         void Fenetre_jeu(std::string nom);
