@@ -59,6 +59,7 @@ void Afficher::dessiner_salle(salle* s) {
 
 std::string Afficher::dessiner_menu(Menu& m, sf::Event& event){
     window.clear();
+    window.draw(m.getfond());
     window.draw(m.getstartGameButton());
     window.draw(m.getexitButton());
     window.draw(m.getstartGameText());

@@ -8,6 +8,7 @@ void textureManager::loadTexture(const std::string& id, const std::string& filen
         // Vous pouvez personnaliser cela en fonction de vos besoins
         throw std::runtime_error("Failed to load texture: " + filename);
     }
+    texture.setSmooth(true);
 
     textures[id] = texture;
     if(id=="fond"){
@@ -18,6 +19,7 @@ void textureManager::loadTexture(const std::string& id, const std::string& filen
 void textureManager::chargerToutesTextures(){
     loadTexture("marchand","marchand.png");
     loadTexture("fond","fondgris.jpg");
+    loadTexture("menu", "fondmenu.png");
     
 }
 

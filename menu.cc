@@ -1,18 +1,18 @@
 #include "menu.hh"
 
-Menu::Menu(int width, int height) {
+Menu::Menu(int width, int height,textureManager& textures) {
         font.loadFromFile("arial.ttf"); // Assurez-vous de charger une police valide
 
         this->width = width;
         this->height = height;
         // Bouton "Start Game"
         startGameButton.setSize(sf::Vector2f(200.f, 50.f));
-        startGameButton.setPosition(width / 2 - 100, height / 2 - 75);
+        startGameButton.setPosition(width / 8 - 100, height / 1.1 - 75);
         startGameButton.setFillColor(sf::Color::Green);
 
         // Bouton "Exit"
         exitButton.setSize(sf::Vector2f(200.f, 50.f));
-        exitButton.setPosition(width / 2 - 100, height / 2 + 25);
+        exitButton.setPosition(width / 8 - 100, height / 1.1 + 25);
         exitButton.setFillColor(sf::Color::Red);
 
         // Textes des boutons
@@ -27,16 +27,20 @@ Menu::Menu(int width, int height) {
         exitText.setCharacterSize(20);
         exitText.setFillColor(sf::Color::White);
         exitText.setPosition(exitButton.getPosition().x + 80, exitButton.getPosition().y + 15);
+
+        fond.setTexture(textures.getTexture("menu"));
+        fond.setScale((width+100) / static_cast<float>(textures.getTexture("menu").getSize().x), (width+100) / static_cast<float>(textures.getTexture("menu").getSize().x));
+        fond.setPosition(0.0f,0.0f);
     }
 
 
 std::string Menu::handleMouseClick(int mouseX, int mouseY) {
         // Ajoutez la logique pour gérer les clics de souris 
-        if (mouseX > width/2-100 && mouseX < width/2+100 && mouseY > height/2-75 && mouseY < height/2-25) {
+        if (mouseX > width/8-100 && mouseX < width/8+100 && mouseY > height/1.1-75 && mouseY < height/1.1-25) {
             // Clic sur "Start Game"
             return "jeu";
             
-        } else if (mouseX > width/2-100 && mouseX < width/2+100 && mouseY > height/2+25 && mouseY < height/2+75) {
+        } else if (mouseX > width/8-100 && mouseX < width/8+100 && mouseY > height/1.1+25 && mouseY < height/1.1+75) {
             // Clic sur "Exit"
             return "quitter";
             //window.close();

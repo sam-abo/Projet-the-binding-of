@@ -1,6 +1,8 @@
 #include "Game.hh"
 
 Game::Game(int i){
+    textures = new textureManager;
+    textures->chargerToutesTextures();
     debutJeu = "menu";
     sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
     screenWidth = desktopMode.width;
@@ -15,8 +17,6 @@ Game::Game(int i){
     };
 
     //créer une carte qui est associée à une matrice, ici la matrice est définie au dessus, les 2 derniers trucs en paramètres sont là pour la taille des salles
-    textures = new textureManager;
-    textures->chargerToutesTextures();
     numCarteActive=0;
     cartes.push_back(carte(matrix,screenWidth-100, screenHeight-100,*textures));
     cartes[0].setSortie();
@@ -34,7 +34,7 @@ void Game :: jouer(){
     jeu.Fenetre_jeu("The binding of");
     Touches key;
 
-    Menu menu(screenWidth-100,screenHeight-100);
+    Menu menu(screenWidth-100,screenHeight-100, *textures);
 
     // Creation de l'entite 1 : le perso principal
     Hero hero(screenWidth/100.0f, sf::Color::Green, 200.0f, 100.0f,1.0f);
