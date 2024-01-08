@@ -1,33 +1,45 @@
-#ifndef POUVOIR_HH
-#define POUVOIR_HH
+#include "pouvoir.hh"
 
-#include <SFML/Graphics.hpp>
-#include <cmath> // For sqrt and other math functions
+Pouvoir::Pouvoir(Type type, sf::Vector2f position, sf::Vector2f target)
+    : type(type), isVisible(true) {
+    shape.setPosition(position);
+    if (type == Type::RockThrowing) {
+        shape.setRadius(5.0f);
+        shape.setFillColor(sf::Color::Black);
 
-class Pouvoir {
-public:
-    enum class Type {
-        RockThrowing,
-        Flames,
-        Invisibility
-    };
+        sf::Vector2f direction = target - position;
+        float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+        velocity = direction / length;
+    } else if (type == Type::Flames) {
+        shape.setRadius(10.0f);
+        shape.setFillColor(sf::Color::Red);
+    }
+    // Other types can be initialized similarly
+}
 
-    Pouvoir(Type type, sf::Vector2f position, sf::Vector2f target = sf::Vector2f());
+void Pouvoir::update(float deltaTime) {
+    switch (type) {
+        case Type::RockThrowing:
+            shape.move(velocity * deltaTime);
+            break;
+        case Type::Flames:
+            // Update flames (e.g., flickering effect)
+            break;
+        case Type::Invisibility:
+            // Update invisibility (e.g., toggle visibility)
+            break;
+        case Type::SwordStriking:
+            // Update sword striking (e.g., animation or effect)
+            break;
+    }
+}
 
-    void update(float deltaTime);
-    void draw(sf::RenderWindow& window) const;
-    Type getType() const;
+void Pouvoir::draw(sf::RenderWindow& window) const {
+    if (type != Type::Invisibility && isVisible) {
+        window.draw(shape);
+    }
+}
 
-private:
-    Type type;
-    sf::CircleShape shape; // Used for RockThrowing and Flames
-    sf::Vector2f velocity; // Used for RockThrowing
-    bool isVisible;        // Used for Invisibility
-
-    void updateRockThrowing(float deltaTime);
-    void updateFlames(float deltaTime);
-    void updateInvisibility(float deltaTime);
-};
-
-#endif // POUVOIR_HH
-
+Pouvoir::Type Pouvoir::getType() const {
+    return type;
+}
