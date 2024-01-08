@@ -13,6 +13,7 @@ public:
     // void mouvement(Touches touche);
     bool coll_ennemi(Enemy& foe, sf::Vector2f prevPositionEntity1);
     void mouv_ennemi(Enemy& entity, sf::Vector2f prevPositionEntity1);
+    void tir(std::vector<Enemy>& enemies);
 
     protected :
     int hp;

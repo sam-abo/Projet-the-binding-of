@@ -111,4 +111,46 @@ void Hero::mouv_ennemi(Enemy& entity, sf::Vector2f prevPositionEntity1) {
         sf::Vector2f nouvellePosition = sf::Vector2f(entity.getx(), entity.gety());
         entity.change_pos(nouvellePosition);
     }
-}
+};
+
+void Hero:: tir(std::vector<Enemy>& enemies) {
+        // Vérifier s'il y a des ennemis
+        if (enemies.empty()) {
+            return; // Aucun ennemi à tirer
+        }
+
+        // Initialiser des variables pour suivre l'ennemi le plus proche
+        Enemy* ennemiPlusProche = nullptr;
+        float distanceMin = std::numeric_limits<float>::max();
+
+        // Récupérer la position du héros
+        sf::Vector2f positionHero = this->getforme().getPosition();
+
+        // Parcourir tous les ennemis pour trouver le plus proche
+        for (Enemy& ennemi : enemies) {
+            // Récupérer la position de l'ennemi
+            sf::Vector2f positionEnnemi = ennemi.getforme().getPosition();
+
+            // Calculer la distance entre le héros et l'ennemi
+            float distance = std::sqrt(std::pow(positionEnnemi.x - positionHero.x, 2) +
+                                        std::pow(positionEnnemi.y - positionHero.y, 2));
+
+            // Mettre à jour l'ennemi le plus proche si nécessaire
+            if (distance < distanceMin) {
+                distanceMin = distance;
+                ennemiPlusProche = &ennemi;
+            }
+        }
+
+        // Si un ennemi a été trouvé, tirer un projectile
+        if (ennemiPlusProche != nullptr) {
+            // Ajoutez ici le code pour créer et tirer un projectile
+            // Vous pouvez, par exemple, créer une instance de la classe Projectile
+            // et l'ajouter à une liste de projectiles dans votre jeu.
+            // Assurez-vous que la classe Projectile est correctement définie.
+
+            // Exemple imaginaire :
+            // Projectile projectile(positionHero, ennemiPlusProche->getforme().getPosition());
+            // listeProjectiles.push_back(projectile);
+        }
+    }
