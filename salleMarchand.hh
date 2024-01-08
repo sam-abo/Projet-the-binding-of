@@ -5,9 +5,9 @@
 
 class salleMarchand : public salle{
     public :
-    salleMarchand(int width, int height, sf::Color color,std::string gauchedroite, std::string hautbas);
+    salleMarchand(int width, int height, sf::Color color,std::string gauchedroite, std::string hautbas, textureManager& textures);
     // Entity getMarchand(){return marchand;}
     private :
-    sf::Texture* texture;
+    
     // Entity marchand;
 };

@@ -5,7 +5,7 @@
 
 class salleEnemi : public salle{
     public :
-    salleEnemi(int width, int height, sf::Color color,std::string gauchedroite, std::string hautbas);
+    salleEnemi(int width, int height, sf::Color color,std::string gauchedroite, std::string hautbas, textureManager& textures);
     private :
     sf::Texture* texture;
 };

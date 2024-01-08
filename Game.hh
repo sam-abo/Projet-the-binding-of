@@ -7,6 +7,7 @@
 #include "salle.hh"
 #include "carte.hh"
 #include "menu.hh"
+#include "textureManager.hh"
 
 class Game {
     public :
@@ -21,5 +22,7 @@ class Game {
     int numCarteActive;
     unsigned int screenWidth;
     unsigned int screenHeight;
-    int debutJeu;
+    std::string debutJeu;
+    textureManager* textures;
+
 };

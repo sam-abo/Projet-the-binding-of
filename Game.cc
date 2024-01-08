@@ -1,7 +1,9 @@
 #include "Game.hh"
 
 Game::Game(int i){
-    debutJeu = 0;
+    textures = new textureManager;
+    textures->chargerToutesTextures();
+    debutJeu = "menu";
     sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
     screenWidth = desktopMode.width;
     screenHeight = desktopMode.height;
@@ -16,31 +18,14 @@ Game::Game(int i){
 
     //créer une carte qui est associée à une matrice, ici la matrice est définie au dessus, les 2 derniers trucs en paramètres sont là pour la taille des salles
     numCarteActive=0;
-    cartes.push_back(carte(matrix,screenWidth-100, screenHeight-100));
+    cartes.push_back(carte(matrix,screenWidth-100, screenHeight-100,*textures));
     cartes[0].setSortie();
-    cartes.push_back(carte(matrix,screenWidth-100, screenHeight-100));
+    cartes.push_back(carte(matrix,screenWidth-100, screenHeight-100,*textures));
     carteActive = &cartes[0];
 }
 
 void Game :: jouer(){
 
-
-/*
-// Inside the game loop
-for (auto& rock : rocks) {
-    rock.update(deltaTime);
-}
-// Check for collisions
-
-// Check collision between rocks and hero or sword
-for (auto& rock : rocks) {
-    if (hero.getGlobalBounds().intersects(rock.shape.getGlobalBounds())) {
-        // Hero hit by rock
-    } else if (hero.isSwingingSword && swordBounds.intersect(rock.shape.getGlobalBounds())) {
-        // Sword hits rock
-    }
-}
-*/
 
 
 
@@ -49,7 +34,7 @@ for (auto& rock : rocks) {
     jeu.Fenetre_jeu("The binding of");
     Touches key;
 
-    Menu menu(screenWidth-100,screenHeight-100);
+    Menu menu(screenWidth-100,screenHeight-100, *textures);
 
     // Creation de l'entite 1 : le perso principal
     Hero hero(screenWidth/100.0f, sf::Color::Green, 200.0f, 100.0f,1.0f);
@@ -77,18 +62,10 @@ for (auto& rock : rocks) {
             }
         }
 
-        if (debutJeu==0) {
-            jeu.getWindow().clear();
-            jeu.dessiner_menu(menu);
-            jeu.getWindow().display();
-            if (event.type == sf::Event::MouseButtonPressed) {
-                if (event.mouseButton.button == sf::Mouse::Left) {
-                    sf::Vector2i mousePosition = sf::Mouse::getPosition(jeu.getWindow());
-                    debutJeu = menu.handleMouseClick(mousePosition.x, mousePosition.y);
-                }
-            }
+        if (debutJeu=="menu") {
+            debutJeu = jeu.dessiner_menu(menu,event);
         }
-        else if (debutJeu == 2){jeu.getWindow().close();}
+        else if (debutJeu == "quitter"){jeu.getWindow().close();}
         else {
         
         sf::Vector2f prevPositionEntity1 = hero.getforme().getPosition();

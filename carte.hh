@@ -11,9 +11,9 @@
 class carte {
     
     public :
-        carte(const std::vector<std::vector<std::pair<std::string, std::string>>>& configuration,int widthsalle, int heightsalle);
+        carte(const std::vector<std::vector<std::pair<std::string, std::string>>>& configuration,int widthsalle, int heightsalle, textureManager& textures);
         void ajouterSalle(int x, int y, int widthsalle, int heightsalle, sf::Color color,std::string hautbas, std::string gauchedroite);
-        void configurerCarte(const std::vector<std::vector<std::pair<std::string, std::string>>>& configuration,int widthsalle, int heightsalle);
+        void configurerCarte(const std::vector<std::vector<std::pair<std::string, std::string>>>& configuration,int widthsalle, int heightsalle, textureManager& textures);
         void print();
         void deplacementEntreSalle(Hero *hero);
         void setSortie(int width, int height){grille[width-1][height-1].creersortie();}
