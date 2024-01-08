@@ -49,6 +49,7 @@ void Game :: jouer(){
 
     std::vector<Enemy> foes;
     foes.push_back(Enemy(30.0f, 800.0f, 500.0f,&cartes[0].getgrille()[1][1]));
+    foes.push_back(Enemy(30.0f, 800.0f, 500.0f,&cartes[0].getgrille()[0][1], 0.35f));
 
 
     // Boucle principale
@@ -107,7 +108,8 @@ void Game :: jouer(){
                 jeu.dessiner_obj(mob);
                 jeu.afficherHP(mob);
                 //hero.collision(mob.getGlobalBounds(),prevPositionEntity1);
-                hero.coll_ennemi(mob,prevPositionEntity1);
+                //hero.coll_ennemi(mob,prevPositionEntity1);
+                hero.mouv_ennemi(mob, prevPositionEntity1);
                 } 
         }
         

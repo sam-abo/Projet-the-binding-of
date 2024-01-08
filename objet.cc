@@ -25,3 +25,7 @@ void Objet::collision(const sf::FloatRect& otherBounds,sf::Vector2f prevPosition
         forme.setPosition(prevPositionEntity1);
     }
 };
+
+void Objet::change_pos(sf::Vector2f new_pos){
+    forme.setPosition(new_pos);
+}

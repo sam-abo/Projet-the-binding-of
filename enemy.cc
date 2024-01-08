@@ -30,28 +30,5 @@ Enemy::Enemy(float size,  float x, float y, const salle* salle) {
     Objet::forme.setPosition(x, y);
     salleAppartenance = salle;
     hp = 150;
+    Entity::vitesse = 0.0f;
 }
-
-// sf::FloatRect Enemy::getGlobalBounds() {
-//     return forme.getGlobalBounds();
-// }
-
-// void Enemy::mouvement(Touches touche) {
-//     if (touche.isKeyPressed(Left)) {
-//         forme.move(-vitesse, 0.0f);
-//         Objet::x -= vitesse;
-//     }
-//     if (touche.isKeyPressed(Right)) {
-//         forme.move(vitesse, 0.0f);
-//         Objet::x += vitesse;
-//     }
-//     if (touche.isKeyPressed(Up) ) {
-//         forme.move(0.0f, -vitesse);
-//         Objet::y -=vitesse;
-//     }
-//     if (touche.isKeyPressed(Down)) {
-//         forme.move(0.0f, vitesse);
-//         Objet::y += vitesse;
-//     }
-// };
-

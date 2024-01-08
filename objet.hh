@@ -18,6 +18,7 @@ public:
     sf::CircleShape getforme() {return forme;}
     float& getx() {return x;}
     float& gety() {return y;}
+    void change_pos(sf::Vector2f new_pos);
 
 protected:
     const salle* salleAppartenance; //la salle où est l'objet
