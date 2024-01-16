@@ -23,6 +23,6 @@ void Balles::deplacer() {
 
 void Balles::collision(salle* room, sf::Vector2f prevPositionBalle){
     if(this->bords(room, prevPositionBalle)){
-        //delete this;
+        delete this;
     }
 };
