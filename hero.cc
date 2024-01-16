@@ -140,7 +140,7 @@ sf::Vector2f normalize(sf::Vector2f vector) {
 };
 
 void Hero::tirer(Touches key, std::vector<Enemy>& ennemis) {
-    if (direction_mouvement == sf::Vector2f(0.0, 0.0)) {
+    //if (direction_mouvement == sf::Vector2f(0.0, 0.0)) {
         // Si la direction de mouvement est nulle, on trouves l'ennemi le plus proche
         // float distanceMin = 100;
         if (!ennemis.empty()) {
@@ -165,7 +165,7 @@ void Hero::tirer(Touches key, std::vector<Enemy>& ennemis) {
             // Aucun ennemi trouvé, ne rien faire
             return;
         }
-    }
+    //}
     if (key.isKeyPressed(key::x)) {
         if (Shootclock.getElapsedTime() > timeshoot) {
             // On crée une balle qui va se déplacer vers un ennemi
@@ -174,6 +174,7 @@ void Hero::tirer(Touches key, std::vector<Enemy>& ennemis) {
             Balles projectile(origin, direction_mouvement, salleAppartenance);
             balles.push_back(projectile);
             projectile.deplacer();
+            //projectile.collision_ennemi(ennemis);
             Shootclock.restart();
         }
     }

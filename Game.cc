@@ -118,6 +118,7 @@ void Game :: jouer(){
                 jeu.afficherHP(mob);
                 //hero.collision(mob.getGlobalBounds(),prevPositionEntity1);
                 //hero.coll_ennemi(mob,prevPositionEntity1);
+                mob.collision_balles(hero.getBalles());
                 hero.mouv_ennemi(mob, prevPositionEntity1);
                 jeu.dessiner_balles(hero.getBalles());
                 } 

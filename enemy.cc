@@ -32,3 +32,22 @@ Enemy::Enemy(float size,  float x, float y, const salle* salle) {
     hp = 150;
     Entity::vitesse = 0.0f;
 }
+
+void Enemy :: collision_balles(std::vector<Balles>& balles){
+    std::vector<size_t> indices_a_supprimer;
+    for (size_t i = 0; i < balles.size(); ++i) {
+        if (this->getforme().getGlobalBounds().intersects(balles[i].getGlobalBounds())) {
+            this->hp -= 1;
+            indices_a_supprimer.push_back(i);
+            // Si vous voulez arrêter après la première collision, vous pouvez décommenter la ligne suivante
+            // break;
+            //return true;
+        }
+    }
+
+    // Supprimer les balles après la boucle
+    for (auto it = indices_a_supprimer.rbegin(); it != indices_a_supprimer.rend(); ++it) {
+        balles.erase(balles.begin() + *it);
+    }
+    //return false;
+};

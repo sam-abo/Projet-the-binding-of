@@ -1,18 +1,20 @@
 
 #pragma once
-#include "enemy.hh"
+// #include "enemy.hh"
+#include "entite.hh"
 
 class Balles : public Entity {
 public:
     Balles ();
     Balles(sf::Vector2f origin, sf::Vector2f direction, const salle* room);
     void deplacer();
-    void collision(salle* room, sf::Vector2f prevPositionEntity1);
+    //void collision_ennemi(std::vector<Enemy>& foes);
 
     //void collision(const sf::FloatRect& otherBounds,sf::Vector2f prevPositionEntity1);
 
 protected:
-    sf::Color color = sf::Color::Black;
+    sf::Vector2f prevPositionBalle;
+    sf::Color color = sf::Color::Magenta;
     size_t size = 5.0f;
     sf::Vector2f dir;
 };
