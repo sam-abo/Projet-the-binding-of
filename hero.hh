@@ -4,6 +4,7 @@
 #include "entite.hh"
 #include "enemy.hh"
 #include "balles.hh"
+#include "soin.hh"
 
 class Hero : public Entity {
 public:
@@ -17,6 +18,7 @@ public:
     // void tir(std::vector<Enemy>& enemies, Touches key);
     // void balle(Enemy* enemi, Touches key, sf::Vector2f direction);
     void tirer(Touches key, std::vector<Enemy>& ennemis);
+    void collision_soin(std::vector<soin>& heal, salle* carteActive);
 
     std::vector<Balles>& getBalles(){return balles;};
 

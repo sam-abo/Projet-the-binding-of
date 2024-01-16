@@ -24,29 +24,6 @@ Entity::Entity(float size, const sf::Color& color, float x, float y, const salle
     salleAppartenance = salle;
 }
 
-// sf::FloatRect Entity::getGlobalBounds() {
-//     return forme.getGlobalBounds();
-// }
-
-// void Entity::mouvement(Touches touche) {
-//     if (touche.isKeyPressed(Left)) {
-//         forme.move(-vitesse, 0.0f);
-//         Objet::x -= vitesse;
-//     }
-//     if (touche.isKeyPressed(Right)) {
-//         forme.move(vitesse, 0.0f);
-//         Objet::x += vitesse;
-//     }
-//     if (touche.isKeyPressed(Up) ) {
-//         forme.move(0.0f, -vitesse);
-//         Objet::y -=vitesse;
-//     }
-//     if (touche.isKeyPressed(Down)) {
-//         forme.move(0.0f, vitesse);
-//         Objet::y += vitesse;
-//     }
-// };
-
 void Entity::deplacer(const sf::Vector2f& newPosition) {
     Objet::forme.setPosition(newPosition);
 };

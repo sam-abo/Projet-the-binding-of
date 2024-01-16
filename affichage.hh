@@ -6,6 +6,7 @@
 #include "enemy.hh"
 #include "salle.hh"
 #include "touches.hh"
+#include "soin.hh"
 #include "menu.hh"
 
 class Afficher {
@@ -14,6 +15,8 @@ class Afficher {
         void dessiner_balles(std::vector<Balles>& balles);
         
         void afficherHP(Enemy& foe); //à mettre dans une classe affchage (hero)
+
+        void afficher_heal(soin& pack);
 
         void dessiner_obj(Objet& objet); //à mettre dans une classe affchage (objet)
         void dessiner_salle(salle* s); //ne dessine que la salle active

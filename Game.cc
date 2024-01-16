@@ -9,7 +9,7 @@ Game::Game(int i){
     screenHeight = desktopMode.height;
 
     //"matrice des portes" on indique où seront les portes dans chaques salles, mais en soit ça décrit les propriétés de la salle,
-    //c'est une matrice des propriétés des salles
+    //c'est une matrice des portes de toutes les salles
     std::vector<std::vector<std::pair<std::string, std::string>>> matrix = {
         {{"bas", "droite"},{"bas", "gauchedroite"}, {"bas", "gauche"}},
         {{"hautbas", "droite"},{"hautbas", "gauchedroite"}, {"hautbas", "gauche"}},
@@ -29,7 +29,7 @@ void Game :: jouer(){
 
 
 
-    // Creation de la fenêtre SFML
+    // Creation de la fenêtre SFML avec son nom et de l'objet pour les touches du clavier
     Afficher jeu;
     jeu.Fenetre_jeu("The binding of");
     Touches key;
@@ -39,17 +39,22 @@ void Game :: jouer(){
     // Creation de l'entite 1 : le perso principal
     Hero hero(screenWidth/100.0f, sf::Color::Green, 200.0f, 100.0f,1.0f);
     
-    //vecteur des entités présentes dans la salle
-    std::vector<Objet> entities;
-    //on déclare des entités et on spécifie dans quelle salle de la matrice de la carte associée elles sont. 
     //Peut être que c'est déplacable pour faire un truc plus élégant
-    entities.push_back(Entity(30.0f, sf::Color::Blue, 800.0f, 500.0f,carteActive->getsalleActive())); //une entitée bleue
-    entities.push_back(Objet(30.0f, sf::Color::Yellow, 500.0f, 800.0f,carteActive->getsalleActive())); //un objet jaune
-    entities.push_back(Objet(30.0f, sf::Color::Yellow, 500.0f, 800.0f,&cartes[0].getgrille()[1][1])); //un objet jaune
 
+    //vecteur d'entite de la carte 0
+    std::vector<Entity> entities;
+    //on déclare des entités et on spécifie dans quelle salle de la matrice de la carte associée elles sont. 
+    entities.push_back(Entity(30.0f, sf::Color::Blue, 800.0f, 500.0f,carteActive->getsalleActive())); //une entitée bleue
+
+    //vecteur d'ennemi de la carte 0
     std::vector<Enemy> foes;
     foes.push_back(Enemy(30.0f, 800.0f, 500.0f,&cartes[0].getgrille()[1][1]));
     foes.push_back(Enemy(30.0f, 800.0f, 500.0f,&cartes[0].getgrille()[0][1], 0.35f));
+
+    //vecteur d'objets de soin de la carte 0 :
+    std::vector<soin> pack_soin;
+    pack_soin.push_back(soin(500.0f, 800.0f,&cartes[0].getgrille()[0][1], 20));
+    pack_soin.push_back(soin(500.0f, 800.0f,&cartes[0].getgrille()[1][0], 40));
     
 
     // Boucle principale
@@ -105,13 +110,14 @@ void Game :: jouer(){
         //     }
         // }
 
-        //boucle for qui gère l'affichage de toutes les entités présentes dans la salle active
-        for (Objet& entite : entities) {
+        //boucle for qui gère l'affichage de toutes les entités présentes dans la salle active //transformable en fonction
+        for (Entity& entite : entities) {
             if (entite.getSalleAppartenance() == carteActive->getsalleActive()) {
                 jeu.dessiner_obj(entite);
                 hero.collision(entite.getGlobalBounds(),prevPositionEntity1);
                 } 
             }
+        //même boucle pour les ennemis, transformable en fonction
         for (Enemy& mob : foes){
             if (mob.getSalleAppartenance() == carteActive->getsalleActive()) {
                 jeu.dessiner_obj(mob);
@@ -123,6 +129,14 @@ void Game :: jouer(){
                 jeu.dessiner_balles(hero.getBalles());
                 } 
         }
+
+        for (soin& pack : pack_soin){
+            if(pack.getSalleAppartenance() == carteActive->getsalleActive()){
+                jeu.dessiner_obj(pack);
+                jeu.afficher_heal(pack);
+            }
+        }
+        hero.collision_soin(pack_soin, carteActive->getsalleActive());
 
         // jeu.dessiner_balles(hero.getBalles());
         

@@ -57,6 +57,23 @@ void Afficher::dessiner_salle(salle* s) {
     // }
 };
 
+void Afficher::afficher_heal(soin& pack){
+    sf::Font font;
+    if (!font.loadFromFile("arial.ttf")) {
+    std::cout << "erreur d'accès à arial";
+    // Gestion de l'erreur si la police ne peut pas être chargée
+    return ;
+    }
+    sf::Text hpText;
+    hpText.setFont(font);
+    hpText.setCharacterSize(24);
+    hpText.setFillColor(sf::Color::Green);
+    sf::Vector2f prevPositionEntity1 = pack.getforme().getPosition();
+    hpText.setString("+ " + std::to_string(pack.getHeal()) + "HP");
+    hpText.setPosition(prevPositionEntity1.x, prevPositionEntity1.y - 30);
+    window.draw(hpText);
+ };
+
 std::string Afficher::dessiner_menu(Menu& m, sf::Event& event){
     window.clear();
     window.draw(m.getfond());

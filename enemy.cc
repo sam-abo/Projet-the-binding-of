@@ -39,9 +39,6 @@ void Enemy :: collision_balles(std::vector<Balles>& balles){
         if (this->getforme().getGlobalBounds().intersects(balles[i].getGlobalBounds())) {
             this->hp -= 1;
             indices_a_supprimer.push_back(i);
-            // Si vous voulez arrêter après la première collision, vous pouvez décommenter la ligne suivante
-            // break;
-            //return true;
         }
     }
 
@@ -49,5 +46,4 @@ void Enemy :: collision_balles(std::vector<Balles>& balles){
     for (auto it = indices_a_supprimer.rbegin(); it != indices_a_supprimer.rend(); ++it) {
         balles.erase(balles.begin() + *it);
     }
-    //return false;
 };

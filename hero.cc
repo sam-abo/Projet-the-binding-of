@@ -3,6 +3,7 @@
 #include <math.h>
 #include "balles.hh"
 #include "touches.hh"
+#include "soin.hh"
 
 Hero::Hero(float size, sf::Color color, float x, float y, float vitesse){
     Objet::x = x;
@@ -180,3 +181,20 @@ void Hero::tirer(Touches key, std::vector<Enemy>& ennemis) {
     }
     
 }
+
+void Hero :: collision_soin(std::vector<soin>& heal, salle* carteActive){
+    std::vector<size_t> indices_a_supprimer;
+
+    for (size_t i = 0; i < heal.size(); ++i) {
+        if (this->getforme().getGlobalBounds().intersects(heal[i].getGlobalBounds()) && ( carteActive == heal[i].getSalleAppartenance())) {
+             std::cout << "Collision détectée avec le soin à l'indice : " << i << std::endl;
+            this->hp += heal[i].getHeal();
+            indices_a_supprimer.push_back(i);
+        }
+    }
+
+    // Supprimer les packs après la boucle
+    for (auto it = indices_a_supprimer.rbegin(); it != indices_a_supprimer.rend(); ++it) {
+        heal.erase(heal.begin() + *it);
+    }
+};
