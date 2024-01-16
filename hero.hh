@@ -27,7 +27,7 @@ public:
     sf::Clock clock;
     sf::Time time = sf::seconds(1.0f);
     sf::Clock Shootclock;
-    sf::Time timeshoot = sf::seconds(0.1f);
+    sf::Time timeshoot = sf::seconds(0.3f);
 
     //évantuellement d'autres attributs propre au héros comme son nom, sa capacité spéciale s'il en aura etc... bref
 };
