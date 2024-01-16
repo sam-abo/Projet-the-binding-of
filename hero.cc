@@ -1,6 +1,8 @@
 #include "hero.hh"
 #include <iostream>
 #include <math.h>
+#include "balles.hh"
+#include "touches.hh"
 
 Hero::Hero(float size, sf::Color color, float x, float y, float vitesse){
     Objet::x = x;
@@ -60,27 +62,37 @@ bool Hero::coll_ennemi(Enemy& foe, sf::Vector2f prevPositionEntity1){
     return false;
 };
 
+void Hero::mouvement(Touches touche) {
+sf::Vector2f nouvelle_position = this->getforme().getPosition();
 
-//idéalement faudrait réussir à ne mettre les mouvements que ici
+    sf::Vector2f direction_mouvement_total(0.0f, 0.0f); // Initialiser le vecteur total à (0,0)
 
-// void Hero::mouvement(Touches touche) {
-//     if (touche.isKeyPressed(Left)) {
-//         this->getforme().move(-Entity::vitesse, 0.0f);
-//         Objet::x -= Entity::vitesse;
-//     }
-//     if (touche.isKeyPressed(Right)) {
-//         this->getforme().move(Entity::vitesse, 0.0f);
-//         Objet::x += Entity::vitesse;
-//     }
-//     if (touche.isKeyPressed(Up) ) {
-//         this->getforme().move(0.0f, -Entity::vitesse);
-//         Objet::y -=Entity::vitesse;
-//     }
-//     if (touche.isKeyPressed(Down)) {
-//         this->getforme().move(0.0f, Entity::vitesse);
-//         Objet::y += Entity::vitesse;
-//     }
-// };
+    if (touche.isKeyPressed(Left)) {
+        nouvelle_position.x -= Entity::vitesse;
+        direction_mouvement_total.x -= 1.0f;
+    }
+    if (touche.isKeyPressed(Right)) {
+        nouvelle_position.x += Entity::vitesse;
+        direction_mouvement_total.x += 1.0f;
+    }
+    if (touche.isKeyPressed(Up)) {
+        nouvelle_position.y -= Entity::vitesse;
+        direction_mouvement_total.y -= 1.0f;
+    }
+    if (touche.isKeyPressed(Down)) {
+        nouvelle_position.y += Entity::vitesse;
+        direction_mouvement_total.y += 1.0f;
+    }
+
+    // Normaliser le vecteur total si nécessaire
+    if (direction_mouvement_total != sf::Vector2f(0.0f, 0.0f)) {
+        direction_mouvement_total = direction_mouvement_total / sqrt(direction_mouvement_total.x * direction_mouvement_total.x + direction_mouvement_total.y * direction_mouvement_total.y);
+    }
+
+    direction_mouvement = direction_mouvement_total;
+
+    this->change_pos(nouvelle_position);
+};
 
 
 void Hero::mouv_ennemi(Enemy& entity, sf::Vector2f prevPositionEntity1) {
@@ -114,44 +126,56 @@ void Hero::mouv_ennemi(Enemy& entity, sf::Vector2f prevPositionEntity1) {
     }
 };
 
-void Hero:: tir(std::vector<Enemy>& enemies) {
-        // Vérifier s'il y a des ennemis
-        if (enemies.empty()) {
-            return; // Aucun ennemi à tirer
-        }
+float distance_entre_points(sf::Vector2f point1, sf::Vector2f point2) {
+    return std::sqrt(std::pow(point2.x - point1.x, 2) + std::pow(point2.y - point1.y, 2));
+};
 
-        // Initialiser des variables pour suivre l'ennemi le plus proche
-        Enemy* ennemiPlusProche = nullptr;
-        float distanceMin = std::numeric_limits<float>::max();
+sf::Vector2f normalize(sf::Vector2f vector) {
+    float length = std::sqrt(vector.x * vector.x + vector.y * vector.y);
+    if (length != 0.0f) {
+        return sf::Vector2f(vector.x / length, vector.y / length);
+    } else {
+        return vector;
+    }
+};
 
-        // Récupérer la position du héros
-        sf::Vector2f positionHero = this->getforme().getPosition();
-
-        // Parcourir tous les ennemis pour trouver le plus proche
-        for (Enemy& ennemi : enemies) {
-            // Récupérer la position de l'ennemi
-            sf::Vector2f positionEnnemi = ennemi.getforme().getPosition();
-
-            // Calculer la distance entre le héros et l'ennemi
-            float distance = std::sqrt(std::pow(positionEnnemi.x - positionHero.x, 2) +
-                                        std::pow(positionEnnemi.y - positionHero.y, 2));
-
-            // Mettre à jour l'ennemi le plus proche si nécessaire
-            if (distance < distanceMin) {
-                distanceMin = distance;
-                ennemiPlusProche = &ennemi;
+void Hero::tirer(Touches key, std::vector<Enemy>& ennemis) {
+    if (direction_mouvement == sf::Vector2f(0.0, 0.0)) {
+        // Si la direction de mouvement est nulle, on trouves l'ennemi le plus proche
+        // float distanceMin = 100;
+        if (!ennemis.empty()) {
+            // Trouver l'ennemi le plus proche
+            Enemy* ennemiPlusProche = &ennemis[0];
+            //if(ennemiPlusProche->getSalleAppartenance() == this->getSalleAppartenance()){
+            float distanceMin = distance_entre_points(this->getforme().getPosition(), ennemiPlusProche->getforme().getPosition());
+            //}
+            for (Enemy& ennemi : ennemis) {
+                //if(ennemi.getSalleAppartenance() == this->getSalleAppartenance()){
+                float distance = distance_entre_points(this->getforme().getPosition(), ennemi.getforme().getPosition());
+                if (distance < distanceMin) {
+                    ennemiPlusProche = &ennemi;
+                    distanceMin = distance;
+                //}
+                }
             }
-        }
 
-        // Si un ennemi a été trouvé, tirer un projectile
-        if (ennemiPlusProche != nullptr) {
-            // Ajoutez ici le code pour créer et tirer un projectile
-            // Vous pouvez, par exemple, créer une instance de la classe Projectile
-            // et l'ajouter à une liste de projectiles dans votre jeu.
-            // Assurez-vous que la classe Projectile est correctement définie.
-
-            // Exemple imaginaire :
-            // Projectile projectile(positionHero, ennemiPlusProche->getforme().getPosition());
-            // listeProjectiles.push_back(projectile);
+            // Définir la direction vers l'ennemi le plus proche
+            direction_mouvement = normalize(ennemiPlusProche->getforme().getPosition() - this->getforme().getPosition());
+        } else {
+            // Aucun ennemi trouvé, ne rien faire
+            return;
         }
     }
+    if (key.isKeyPressed(key::x)) {
+        if (Shootclock.getElapsedTime() > timeshoot) {
+            // On crée une balle qui va se déplacer vers un ennemi
+            //std::cout << "On tire" << std::endl;
+            sf::Vector2f origin = this->getforme().getPosition();
+            Balles projectile(origin, direction_mouvement, salleAppartenance);
+            balles.push_back(projectile);
+            projectile.deplacer();
+            Shootclock.restart();
+        }
+    }
+    
+}

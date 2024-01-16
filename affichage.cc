@@ -36,7 +36,7 @@ void Afficher::afficherHP(Enemy& foe){
 
 void Afficher::dessiner_obj(Objet& obj){
     window.draw(obj.getforme());
-}; //à mettre dans une classe affchage (objet)
+};
 
 void Afficher::dessiner_salle(salle* s) {
     window.draw(s->Getfond());
@@ -82,6 +82,15 @@ void Afficher::Fenetre_jeu(std::string nom){
     unsigned int screenHeight = desktopMode.height;
     window.create(sf::VideoMode(screenWidth-100, screenHeight-100), nom);
 };
+
+void Afficher::dessiner_balles(std::vector<Balles>& balles) {
+    //std::cout<<"on veut afficher une balle"<<std::endl;
+    for (size_t i = 0; i < balles.size(); ++i) {
+        //std::cout<<"on affiche une balle"<<std::endl;
+        balles[i].deplacer();
+        dessiner_obj(balles[i]); // Vous pouvez appeler dessiner_obj pour dessiner chaque balle
+    }
+}
 
 void Afficher::fermeture (Touches touche){
     if(touche.isKeyPressed(esc)){

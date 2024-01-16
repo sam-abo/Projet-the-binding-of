@@ -11,6 +11,7 @@
 class Afficher {
     public:
         void afficherHP(Hero& hero); //à mettre dans une classe affchage (hero)
+        void dessiner_balles(std::vector<Balles>& balles);
         
         void afficherHP(Enemy& foe); //à mettre dans une classe affchage (hero)
 

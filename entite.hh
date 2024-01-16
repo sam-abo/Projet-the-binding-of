@@ -11,9 +11,9 @@ public:
     Entity(float size, const sf::Color& color, float x, float y, const salle* salle); //pour les entités immobiles éventuellement.
     Entity();
 
-    void bords(salle* room, sf::Vector2f prevPositionEntity1);
+    bool bords(salle* room, sf::Vector2f prevPositionEntity1);
 
-    void mouvement(Touches touche);
+    //void mouvement(Touches touche);
     
     
     void deplacer(const sf::Vector2f& newPosition);

@@ -19,11 +19,13 @@ sf::FloatRect Objet::getGlobalBounds() {
     return forme.getGlobalBounds();
 }
 
-void Objet::collision(const sf::FloatRect& otherBounds,sf::Vector2f prevPositionEntity1 ) {
+bool Objet::collision(const sf::FloatRect& otherBounds,sf::Vector2f prevPositionEntity1 ) {
     
     if (forme.getGlobalBounds().intersects(otherBounds)){
         forme.setPosition(prevPositionEntity1);
+        return true;
     }
+    return false;
 };
 
 void Objet::change_pos(sf::Vector2f new_pos){

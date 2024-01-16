@@ -50,7 +50,7 @@ void Game :: jouer(){
     std::vector<Enemy> foes;
     foes.push_back(Enemy(30.0f, 800.0f, 500.0f,&cartes[0].getgrille()[1][1]));
     foes.push_back(Enemy(30.0f, 800.0f, 500.0f,&cartes[0].getgrille()[0][1], 0.35f));
-
+    
 
     // Boucle principale
     while (jeu.getWindow().isOpen()) {
@@ -73,6 +73,7 @@ void Game :: jouer(){
         
 
         hero.mouvement(key);
+        hero.tirer(key, foes); //va créer des balles
 
         //fonction qui gère (pour chaque entitée d'ailleurs) la collision avec les murs de la salle active
         hero.bords(carteActive->getsalleActive(), prevPositionEntity1);
@@ -95,6 +96,14 @@ void Game :: jouer(){
         jeu.dessiner_obj(hero);
         //afficher les hp du hero
         jeu.afficherHP(hero);
+        //afficher les balles que le hero tire :
+
+        // for(Balles& amo : hero.getBalles()){
+        //     if(amo.getSalleAppartenance() == carteActive->getsalleActive()){
+        //         std::cout<<"on veut dessiner une balle"<<std::endl;
+        //         jeu.dessiner_obj(amo);
+        //     }
+        // }
 
         //boucle for qui gère l'affichage de toutes les entités présentes dans la salle active
         for (Objet& entite : entities) {
@@ -110,8 +119,11 @@ void Game :: jouer(){
                 //hero.collision(mob.getGlobalBounds(),prevPositionEntity1);
                 //hero.coll_ennemi(mob,prevPositionEntity1);
                 hero.mouv_ennemi(mob, prevPositionEntity1);
+                jeu.dessiner_balles(hero.getBalles());
                 } 
         }
+
+        // jeu.dessiner_balles(hero.getBalles());
         
         jeu.getWindow().display();
         }
