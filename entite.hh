@@ -7,8 +7,8 @@
 
 class Entity : public Objet {
 public:
-    Entity(float size, sf::Color color, float x, float y, float vitesse); //pour les entités mobiles
-    Entity(float size, const sf::Color& color, float x, float y, const salle* salle); //pour les entités immobiles éventuellement.
+    Entity(float size, textureManager& textures, float x, float y, float vitesse); //pour les entités mobiles
+    Entity(float size, textureManager& textures, float x, float y, const salle* salle); //pour les entités immobiles éventuellement.
     Entity();
 
     bool bords(salle* room, sf::Vector2f prevPositionEntity1);
@@ -17,7 +17,7 @@ public:
     
     
     void deplacer(const sf::Vector2f& newPosition);
-    sf::CircleShape getforme() {return forme;};
+    sf::Sprite getforme() {return forme;};
     float& getSpeed(){return vitesse;};
     
 

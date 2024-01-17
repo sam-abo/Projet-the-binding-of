@@ -4,11 +4,11 @@
 Objet::Objet(){  
 };
 
-Objet::Objet(float size, const sf::Color& color, float x, float y, const salle* salle) {
+Objet::Objet(float size, textureManager& textures, float x, float y, const salle* salle) {
     x = x;
     y = y;
-    forme.setRadius(size);
-    forme.setFillColor(color);
+    forme.setScale(size / static_cast<float>(textures.getTexture("marchand").getSize().x), size / static_cast<float>(textures.getTexture("marchand").getSize().x));
+    forme.setTexture(textures.getTexture("marchand"));
     forme.setPosition(x, y);
     salleAppartenance = salle;
 };

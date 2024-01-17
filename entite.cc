@@ -6,20 +6,20 @@ Entity::Entity(){
     
 };
 
-Entity::Entity(float size, sf::Color color, float x, float y, float vitesse) {
+Entity::Entity(float size, textureManager& textures, float x, float y, float vitesse) {
     Objet::x = x;
     Objet::y = y;
     this -> vitesse = vitesse;
-    Objet::forme.setRadius(size);
-    Objet::forme.setFillColor(color);
+    Objet::forme.setScale(size / static_cast<float>(textures.getTexture("marchand").getSize().x), size / static_cast<float>(textures.getTexture("marchand").getSize().x));
+    Objet::forme.setTexture(textures.getTexture("marchand"));
     Objet::forme.setPosition(x, y);
 }
 
-Entity::Entity(float size, const sf::Color& color, float x, float y, const salle* salle) {
+Entity::Entity(float size, textureManager& textures, float x, float y, const salle* salle) {
     Objet::x = x;
     Objet::y = y;
-    Objet::forme.setRadius(size);
-    Objet::forme.setFillColor(color);
+    Objet::forme.setScale(size / static_cast<float>(textures.getTexture("marchand").getSize().x), size / static_cast<float>(textures.getTexture("marchand").getSize().x));
+    Objet::forme.setTexture(textures.getTexture("marchand"));
     Objet::forme.setPosition(x, y);
     salleAppartenance = salle;
 }

@@ -7,7 +7,7 @@
 
 class Hero : public Entity {
 public:
-    Hero(float size, sf::Color color, float x, float y, float vitesse);
+    Hero(float size, textureManager& textures, float x, float y, float vitesse);
 
     int getHP(){return hp;};
     void changersalle(salle* &salleActive, salle &newsalle, std::string direction);
@@ -16,7 +16,7 @@ public:
     void mouv_ennemi(Enemy& entity, sf::Vector2f prevPositionEntity1);
     // void tir(std::vector<Enemy>& enemies, Touches key);
     // void balle(Enemy* enemi, Touches key, sf::Vector2f direction);
-    void tirer(Touches key, std::vector<Enemy>& ennemis);
+    void tirer(Touches key, std::vector<Enemy>& ennemis, textureManager& textures);
 
     std::vector<Balles>& getBalles(){return balles;};
 

@@ -3,7 +3,7 @@
 
 //Constructeur par défaut :
 
-Enemy::Enemy(float size, float x, float y, const salle* salle, float vitesse) {
+Enemy::Enemy(float size, float x, float y, const salle* salle, float vitesse, textureManager& textures) {
     // Objet::x = x;
     // Objet::y = y;
     // Entity::vitesse = vitesse;
@@ -15,18 +15,18 @@ Enemy::Enemy(float size, float x, float y, const salle* salle, float vitesse) {
     Objet::x = x;
     Objet::y = y;
     Entity::vitesse = vitesse;
-    Objet::forme.setRadius(size);
-    Objet::forme.setFillColor(sf::Color::Red);
+    Objet::forme.setScale(size / static_cast<float>(textures.getTexture("crackhead").getSize().x), size / static_cast<float>(textures.getTexture("marchand").getSize().x));
+    Objet::forme.setTexture(textures.getTexture("crackhead"));
     Objet::forme.setPosition(x, y);
     salleAppartenance = salle;
     hp = 150;
 }
 
-Enemy::Enemy(float size,  float x, float y, const salle* salle) {
+Enemy::Enemy(float size,  float x, float y, const salle* salle, textureManager& textures) {
     Objet::x = x;
     Objet::y = y;
-    Objet::forme.setRadius(size);
-    Objet::forme.setFillColor(sf::Color::Cyan);
+    Objet::forme.setScale(size / static_cast<float>(textures.getTexture("crackhead").getSize().x), size / static_cast<float>(textures.getTexture("marchand").getSize().x));
+    Objet::forme.setTexture(textures.getTexture("crackhead"));
     Objet::forme.setPosition(x, y);
     salleAppartenance = salle;
     hp = 150;

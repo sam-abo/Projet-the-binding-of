@@ -37,19 +37,19 @@ void Game :: jouer(){
     Menu menu(screenWidth-100,screenHeight-100, *textures);
 
     // Creation de l'entite 1 : le perso principal
-    Hero hero(screenWidth/100.0f, sf::Color::Green, 200.0f, 100.0f,1.0f);
+    Hero hero(screenWidth/25.0f, *textures, 200.0f, 100.0f,1.0f);
     
     //vecteur des entités présentes dans la salle
     std::vector<Objet> entities;
     //on déclare des entités et on spécifie dans quelle salle de la matrice de la carte associée elles sont. 
     //Peut être que c'est déplacable pour faire un truc plus élégant
-    entities.push_back(Entity(30.0f, sf::Color::Blue, 800.0f, 500.0f,carteActive->getsalleActive())); //une entitée bleue
-    entities.push_back(Objet(30.0f, sf::Color::Yellow, 500.0f, 800.0f,carteActive->getsalleActive())); //un objet jaune
-    entities.push_back(Objet(30.0f, sf::Color::Yellow, 500.0f, 800.0f,&cartes[0].getgrille()[1][1])); //un objet jaune
+    entities.push_back(Entity(90.0f, *textures, 800.0f, 500.0f,carteActive->getsalleActive())); //une entitée bleue
+    entities.push_back(Objet(90.0f, *textures, 500.0f, 800.0f,carteActive->getsalleActive())); //un objet jaune
+    entities.push_back(Objet(90.0f, *textures, 500.0f, 800.0f,&cartes[0].getgrille()[1][1])); //un objet jaune
 
     std::vector<Enemy> foes;
-    foes.push_back(Enemy(30.0f, 800.0f, 500.0f,&cartes[0].getgrille()[1][1]));
-    foes.push_back(Enemy(30.0f, 800.0f, 500.0f,&cartes[0].getgrille()[0][1], 0.35f));
+    foes.push_back(Enemy(90.0f, 800.0f, 500.0f,&cartes[0].getgrille()[1][1], *textures));
+    foes.push_back(Enemy(90.0f, 800.0f, 500.0f,&cartes[0].getgrille()[0][1], 0.35f, *textures));
     
 
     // Boucle principale
@@ -73,7 +73,7 @@ void Game :: jouer(){
         
 
         hero.mouvement(key);
-        hero.tirer(key, foes); //va créer des balles
+        hero.tirer(key, foes, *textures); //va créer des balles
 
         //fonction qui gère (pour chaque entitée d'ailleurs) la collision avec les murs de la salle active
         hero.bords(carteActive->getsalleActive(), prevPositionEntity1);
