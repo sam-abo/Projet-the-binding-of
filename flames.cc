@@ -1,3 +1,4 @@
+
 #include "Flames.hh"
 
 Flames::Flames() : origin(sf::Vector2f(0, 0)), currentRoom(nullptr), intensity(0), spreadSpeed(0) {
@@ -7,10 +8,11 @@ Flames::Flames() : origin(sf::Vector2f(0, 0)), currentRoom(nullptr), intensity(0
 
 Flames::Flames(sf::Vector2f origin, const salle* room, float intensity, float spreadSpeed)
     : origin(origin), currentRoom(room), intensity(intensity), spreadSpeed(spreadSpeed) {
-    flameShape.setRadius(intensity);  // Initial size of the flame based on intensity
-    flameShape.setFillColor(sf::Color::Red);  // Flame color
+    flameShape.setRadius(intensity);  //
+    flameShape.setFillColor(sf::Color::Red);  // F
     flameShape.setPosition(origin);
 }
+
 
 void Flames::update(float deltaTime) {
     // Increase the size of the flame based on spreadSpeed
@@ -35,3 +37,19 @@ void Flames::throwFlames(sf::Vector2f direction, float throwSpeed) {
 
     // fix damage on character / ennemies
 }
+
+
+void Flames::throwFlamesNearby(const std::vector<Enemy>& enemies, float range) {
+    // Example: Throw flames at all enemies within range
+    for (const Enemy& enemy : enemies) {
+        // Calculate the distance between the flame and the enemy
+        float distance = sqrt(pow(flameShape.getPosition().x - enemy.getPosition().x, 2) +
+                              pow(flameShape.getPosition().y - enemy.getPosition().y, 2));
+
+        // If the enemy is within range, throw flames at it
+        if (distance <= range) {
+            throwFlames(enemy.getPosition() - flameShape.getPosition(), throwSpeed);
+        }
+    }
+}
+
