@@ -6,7 +6,7 @@
 class Balles : public Entity {
 public:
     Balles ();
-    Balles(sf::Vector2f origin, sf::Vector2f direction, const salle* room);
+    Balles(sf::Vector2f origin, sf::Vector2f direction, const salle* room, textureManager& textures);
     void deplacer();
     //void collision_ennemi(std::vector<Enemy>& foes);
 
@@ -15,6 +15,6 @@ public:
 protected:
     sf::Vector2f prevPositionBalle;
     sf::Color color = sf::Color::Magenta;
-    size_t size = 5.0f;
+    size_t size = 50.0f;
     sf::Vector2f dir;
 };

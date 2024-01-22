@@ -17,10 +17,12 @@ void textureManager::loadTexture(const std::string& id, const std::string& filen
 }
 
 void textureManager::chargerToutesTextures(){
-    loadTexture("marchand","marchand.png");
-    loadTexture("fond","fondgris.jpg");
-    loadTexture("menu", "fondmenu.png");
-    
+    loadTexture("marchand","textures/marchand2.png");
+    loadTexture("fond","textures/fondgris.jpg");
+    loadTexture("menu", "textures/fondmenu.png");
+    loadTexture("bullet","textures/bullet.png");
+    loadTexture("crackhead","textures/crackhead.png");
+    loadTexture("nezar","textures/nezar.png");
 }
 
 const sf::Texture& textureManager::getTexture(const std::string& id) const {

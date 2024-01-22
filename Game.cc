@@ -37,24 +37,24 @@ void Game :: jouer(){
     Menu menu(screenWidth-100,screenHeight-100, *textures);
 
     // Creation de l'entite 1 : le perso principal
-    Hero hero(screenWidth/100.0f, sf::Color::Green, 200.0f, 100.0f,1.0f);
+    Hero hero(screenWidth/25.0f, *textures, 200.0f, 100.0f,1.0f);
     
     //Peut être que c'est déplacable pour faire un truc plus élégant
-
     //vecteur d'entite de la carte 0
     std::vector<Entity> entities;
-    //on déclare des entités et on spécifie dans quelle salle de la matrice de la carte associée elles sont. 
-    entities.push_back(Entity(30.0f, sf::Color::Blue, 800.0f, 500.0f,carteActive->getsalleActive())); //une entitée bleue
+    entities.push_back(Entity(90.0f, *textures, 800.0f, 500.0f,carteActive->getsalleActive())); //une entitée bleue
+    entities.push_back(Entity(90.0f, *textures, 500.0f, 800.0f,carteActive->getsalleActive()));
+    entities.push_back(Entity(90.0f, *textures, 500.0f, 800.0f,&cartes[0].getgrille()[1][1]));
 
     //vecteur d'ennemi de la carte 0
     std::vector<Enemy> foes;
-    foes.push_back(Enemy(30.0f, 800.0f, 500.0f,&cartes[0].getgrille()[1][1]));
-    foes.push_back(Enemy(30.0f, 800.0f, 500.0f,&cartes[0].getgrille()[0][1], 0.35f));
+    foes.push_back(Enemy(90.0f, 800.0f, 500.0f,&cartes[0].getgrille()[1][1], *textures));
+    foes.push_back(Enemy(90.0f, 800.0f, 500.0f,&cartes[0].getgrille()[0][1], 0.35f, *textures));
 
     //vecteur d'objets de soin de la carte 0 :
     std::vector<soin> pack_soin;
-    pack_soin.push_back(soin(500.0f, 800.0f,&cartes[0].getgrille()[0][1], 20));
-    pack_soin.push_back(soin(500.0f, 800.0f,&cartes[0].getgrille()[1][0], 40));
+    pack_soin.push_back(soin(500.0f, 800.0f,&cartes[0].getgrille()[0][1], *textures, 20));
+    pack_soin.push_back(soin(500.0f, 800.0f,&cartes[0].getgrille()[1][0], *textures, 40));
     
 
     // Boucle principale
@@ -78,7 +78,7 @@ void Game :: jouer(){
         
 
         hero.mouvement(key);
-        hero.tirer(key, foes); //va créer des balles
+        hero.tirer(key, foes, *textures); //va créer des balles
 
         //fonction qui gère (pour chaque entitée d'ailleurs) la collision avec les murs de la salle active
         hero.bords(carteActive->getsalleActive(), prevPositionEntity1);

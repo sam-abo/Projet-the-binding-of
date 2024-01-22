@@ -5,7 +5,7 @@
 class soin : public Objet {
 public:
     soin();
-    soin(float x, float y, const salle* salle, size_t vie);
+    soin(float x, float y, const salle* salle, textureManager& textures, size_t vie);
     size_t getHeal(){return heal;};
 private :
     sf::Color color = sf::Color::Green;

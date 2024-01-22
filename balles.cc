@@ -3,12 +3,12 @@
 Balles::Balles(){
 };
 
-Balles::Balles(sf::Vector2f origin, sf::Vector2f direction, const salle* room){
+Balles::Balles(sf::Vector2f origin, sf::Vector2f direction, const salle* room, textureManager& textures){
     dir = direction;
     Objet::x = origin.x;
     Objet::y = origin.y;
-    Objet::forme.setRadius(size);
-    Objet::forme.setFillColor(color);
+    Objet::forme.setScale(size / static_cast<float>(textures.getTexture("bullet").getSize().x), size / static_cast<float>(textures.getTexture("bullet").getSize().x));
+    Objet::forme.setTexture(textures.getTexture("bullet"));
     Objet::forme.setPosition(origin.x, origin.y);
 };
 

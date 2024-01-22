@@ -6,8 +6,8 @@
 
 class Enemy : public Entity {
 public:
-    Enemy(float size, float x, float y, const salle* salle); //enemi immobile
-    Enemy(float size, float x, float y, const salle* salle, float vitesse); //ennemi mobile
+    Enemy(float size, float x, float y, const salle* salle, textureManager& textures); //enemi immobile
+    Enemy(float size, float x, float y, const salle* salle, float vitesse, textureManager& textures); //ennemi mobile
     void collision_balles(std::vector<Balles>& balles);
 
     int getHP(){return hp;};

@@ -8,7 +8,7 @@
 
 class Hero : public Entity {
 public:
-    Hero(float size, sf::Color color, float x, float y, float vitesse);
+    Hero(float size, textureManager& textures, float x, float y, float vitesse);
 
     int getHP(){return hp;};
     void changersalle(salle* &salleActive, salle &newsalle, std::string direction);
@@ -19,6 +19,7 @@ public:
     // void balle(Enemy* enemi, Touches key, sf::Vector2f direction);
     void tirer(Touches key, std::vector<Enemy>& ennemis);
     void collision_soin(std::vector<soin>& heal, salle* carteActive);
+    void tirer(Touches key, std::vector<Enemy>& ennemis, textureManager& textures);
 
     std::vector<Balles>& getBalles(){return balles;};
 

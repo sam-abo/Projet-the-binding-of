@@ -5,12 +5,12 @@
 #include "touches.hh"
 #include "soin.hh"
 
-Hero::Hero(float size, sf::Color color, float x, float y, float vitesse){
+Hero::Hero(float size, textureManager& textures, float x, float y, float vitesse){
     Objet::x = x;
     Objet::y = y;
     Entity::vitesse = vitesse;
-    Objet::forme.setRadius(size);
-    Objet::forme.setFillColor(color);
+    Objet::forme.setScale(size / static_cast<float>(textures.getTexture("nezar").getSize().x), size / static_cast<float>(textures.getTexture("marchand").getSize().x));
+    Objet::forme.setTexture(textures.getTexture("nezar"));
     Objet::forme.setPosition(x, y);
     hp = 100;
 };
@@ -140,7 +140,7 @@ sf::Vector2f normalize(sf::Vector2f vector) {
     }
 };
 
-void Hero::tirer(Touches key, std::vector<Enemy>& ennemis) {
+void Hero::tirer(Touches key, std::vector<Enemy>& ennemis, textureManager& textures) {
     //if (direction_mouvement == sf::Vector2f(0.0, 0.0)) {
         // Si la direction de mouvement est nulle, on trouves l'ennemi le plus proche
         // float distanceMin = 100;
@@ -172,7 +172,7 @@ void Hero::tirer(Touches key, std::vector<Enemy>& ennemis) {
             // On crée une balle qui va se déplacer vers un ennemi
             //std::cout << "On tire" << std::endl;
             sf::Vector2f origin = this->getforme().getPosition();
-            Balles projectile(origin, direction_mouvement, salleAppartenance);
+            Balles projectile(origin, direction_mouvement, salleAppartenance, textures);
             balles.push_back(projectile);
             projectile.deplacer();
             //projectile.collision_ennemi(ennemis);
