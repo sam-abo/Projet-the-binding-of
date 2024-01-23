@@ -2,7 +2,7 @@
 
 void Afficher::afficherHP(Hero& hero){
     sf::Font font;
-    if (!font.loadFromFile("arial.ttf")) {
+    if (!font.loadFromFile("textures/arial.ttf")) {
     std::cout << "erreur d'accès à arial";
     // Gestion de l'erreur si la police ne peut pas être chargée
     return ;
@@ -19,9 +19,8 @@ void Afficher::afficherHP(Hero& hero){
 
 void Afficher::afficherHP(Enemy& foe){
     sf::Font font;
-    if (!font.loadFromFile("arial.ttf")) {
+    if (!font.loadFromFile("textures/arial.ttf")) {
     std::cout << "erreur d'accès à arial";
-    // Gestion de l'erreur si la police ne peut pas être chargée
     return ;
     }
     sf::Text hpText;
@@ -51,15 +50,11 @@ void Afficher::dessiner_salle(salle* s) {
     window.draw(s->Getsortie());
     
     window.draw(s->Getmarchand());
-
-    // if(s->Getenemis()){
-    //     window.draw(s->Getenemis()->getforme());
-    // }
 };
 
 void Afficher::afficher_heal(soin& pack){
     sf::Font font;
-    if (!font.loadFromFile("arial.ttf")) {
+    if (!font.loadFromFile("textures/arial.ttf")) {
     std::cout << "erreur d'accès à arial";
     // Gestion de l'erreur si la police ne peut pas être chargée
     return ;
@@ -103,14 +98,14 @@ void Afficher::Fenetre_jeu(std::string nom){
 void Afficher::dessiner_balles(std::vector<Balles>& balles) {
     //std::cout<<"on veut afficher une balle"<<std::endl;
     for (size_t i = 0; i < balles.size(); ++i) {
-        //std::cout<<"on affiche une balle"<<std::endl;
         balles[i].deplacer();
-        dessiner_obj(balles[i]); // Vous pouvez appeler dessiner_obj pour dessiner chaque balle
+        dessiner_obj(balles[i]);
     }
 }
 
 void Afficher::fermeture (Touches touche){
     if(touche.isKeyPressed(esc)){
         window.close();
+        //déclenncher un free de tout pour évider les invalid ?
     }
 };

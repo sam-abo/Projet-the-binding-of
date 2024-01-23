@@ -56,7 +56,7 @@ bool Hero::coll_ennemi(Enemy& foe, sf::Vector2f prevPositionEntity1){
             forme.setPosition(prevPositionEntity1);
             if (clock.getElapsedTime() > time) {
             hp -= 1;
-            clock.restart(); //en fait c'est le temps écoulé depuis le dernier restart
+            clock.restart();
             }
         return true;
         }
@@ -140,10 +140,19 @@ sf::Vector2f normalize(sf::Vector2f vector) {
     }
 };
 
-void Hero::tirer(Touches key, std::vector<Enemy>& ennemis, textureManager& textures) {
-    //if (direction_mouvement == sf::Vector2f(0.0, 0.0)) {
-        // Si la direction de mouvement est nulle, on trouves l'ennemi le plus proche
-        // float distanceMin = 100;
+bool Hero :: EnnemisDansSalle(std::vector<Enemy>& tousLesEnnemis, salle* room) {
+        std::vector<Enemy*> ennemisDansSalle;
+        for (Enemy& ennemi : tousLesEnnemis) {
+            if (ennemi.getSalleAppartenance() == room) {
+                //std::cout<<"il y a un ennemi dans la salle où on est"<<std::endl;
+                return true;
+            }
+        }
+        return false;
+    }
+
+void Hero::tirer(Touches key, std::vector<Enemy>& ennemis, textureManager& textures, salle* room) {
+        sf::Vector2f direction;
         if (!ennemis.empty()) {
             // Trouver l'ennemi le plus proche
             Enemy* ennemiPlusProche = &ennemis[0];
@@ -159,20 +168,19 @@ void Hero::tirer(Touches key, std::vector<Enemy>& ennemis, textureManager& textu
                 //}
                 }
             }
-
+            
             // Définir la direction vers l'ennemi le plus proche
-            direction_mouvement = normalize(ennemiPlusProche->getforme().getPosition() - this->getforme().getPosition());
+            direction = normalize(ennemiPlusProche->getforme().getPosition() - this->getforme().getPosition());
         } else {
             // Aucun ennemi trouvé, ne rien faire
             return;
         }
-    //}
-    if (key.isKeyPressed(key::x)) {
+
+    if (key.isKeyPressed(key::x) && EnnemisDansSalle(ennemis, room) ) {
         if (Shootclock.getElapsedTime() > timeshoot) {
             // On crée une balle qui va se déplacer vers un ennemi
-            //std::cout << "On tire" << std::endl;
-            sf::Vector2f origin = this->getforme().getPosition();
-            Balles projectile(origin, direction_mouvement, salleAppartenance, textures);
+            sf::Vector2f origin = this->getforme().getPosition(); //elle pars de là ou on est
+            Balles projectile(origin, direction, textures);
             balles.push_back(projectile);
             projectile.deplacer();
             //projectile.collision_ennemi(ennemis);
@@ -182,12 +190,12 @@ void Hero::tirer(Touches key, std::vector<Enemy>& ennemis, textureManager& textu
     
 }
 
-void Hero :: collision_soin(std::vector<soin>& heal, salle* carteActive){
+void Hero :: collision_soin(std::vector<soin>& heal, salle* salleActive){
     std::vector<size_t> indices_a_supprimer;
 
     for (size_t i = 0; i < heal.size(); ++i) {
-        if (this->getforme().getGlobalBounds().intersects(heal[i].getGlobalBounds()) && ( carteActive == heal[i].getSalleAppartenance())) {
-             std::cout << "Collision détectée avec le soin à l'indice : " << i << std::endl;
+        if (this->getforme().getGlobalBounds().intersects(heal[i].getGlobalBounds()) && ( salleActive == heal[i].getSalleAppartenance())) {
+            //std::cout << "Collision détectée avec le soin à l'indice : " << i << std::endl;
             this->hp += heal[i].getHeal();
             indices_a_supprimer.push_back(i);
         }

@@ -3,7 +3,7 @@
 Balles::Balles(){
 };
 
-Balles::Balles(sf::Vector2f origin, sf::Vector2f direction, const salle* room, textureManager& textures){
+Balles::Balles(sf::Vector2f origin, sf::Vector2f direction, textureManager& textures){
     dir = direction;
     Objet::x = origin.x;
     Objet::y = origin.y;

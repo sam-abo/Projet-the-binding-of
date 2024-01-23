@@ -3,8 +3,6 @@
 salleMarchand::salleMarchand(int width, int height, sf::Color color,std::string gauchedroite, std::string hautbas, textureManager& textures){
     salle::width = width;
     salle::height = height;
-    salle::teleportPosition.x=width/2;
-    salle::teleportPosition.y=height/2;
     
     // Création des murs
     creermur(murgauche,0.0f,0.0f,20.0f,height,color);

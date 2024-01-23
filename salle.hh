@@ -8,14 +8,18 @@ class Enemy;
 
 class salle {
     public:
-        salle();
+        //constructeurs de salle
+        salle();//constructeur par défaut pour assurer l'existence des classes filles.
         salle(int width, int height, sf::Color color,std::string gauchedroite, std::string hautbas);
-        //void dessiner(sf::RenderWindow& window);
+        
         void creermur(sf::RectangleShape &wall, int startx,int starty, int width, int height, sf::Color color);
         void creerPorte(std::string gauchedroite, std::string hautbas);
         void print();
+        
+        //créer une sortie, permet d'avoir une sortie conditionnée
         void creersortie();
 
+        //getters nécessaires, murs portes et sorties
         sf::RectangleShape Getmgauche () const {return murgauche;}
         sf::RectangleShape Getmdroite () const {return murdroite;}
         sf::RectangleShape Getmhaut () const {return murhaut;}
@@ -28,29 +32,30 @@ class salle {
         sf::Sprite Getmarchand() {return marchand;}
         sf::Sprite Getfond() {return fond;}
         std::string Gettype(){return type;}
-        //Enemy* Getenemis() {return enemis;}
 
-        sf::Vector2f& getTeleportPosition() {return teleportPosition;}
+        
         
         int getheight() {return height;}
         int getwidth() {return width;}
     protected:
         int height;
         int width;
+        //tous les murs de la salle
         sf::RectangleShape murgauche;
         sf::RectangleShape murdroite;
         sf::RectangleShape murhaut;
         sf::RectangleShape murbas;
+        //toutes les portes qu'elle peut avoir
         sf::RectangleShape portegauche;
         sf::RectangleShape portedroite;
         sf::RectangleShape portehaut;
         sf::RectangleShape portebas;
+        //la sortie si elle en a une
         sf::RectangleShape sortie;
-        sf::Sprite marchand;
+
+        sf::Sprite marchand; //konpranpas, ça devrait partir
+
+        //attributs pour l'affichage
         sf::Sprite fond;
-        std::string type;
-        //Enemy* enemis;
-        
-        //Entity* marchand;
-        sf::Vector2f teleportPosition;
+        std::string type; //pourquoi faire finalement ?
 };

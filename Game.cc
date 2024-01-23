@@ -1,31 +1,58 @@
 #include "Game.hh"
 
+void Game::game_design(Afficher& jeu, Hero& hero, sf::Vector2f prevPositionEntity1, Touches key){
+        std::vector<Entity>& entities = carteActive->getEntities();
+        std::vector<Enemy>& foes = carteActive->getFoes();
+        std::vector<soin>& pack_soin = carteActive->getPackSoin();
+
+        for ( Entity& entite : entities) {
+            if (entite.getSalleAppartenance() == carteActive->getsalleActive()) {
+                jeu.dessiner_obj(entite);
+                hero.collision(entite.getGlobalBounds(), prevPositionEntity1);
+            }
+        }
+
+        for ( Enemy& mob : foes) {
+            if (mob.getSalleAppartenance() == carteActive->getsalleActive()) {
+                jeu.dessiner_obj(mob);
+                jeu.afficherHP(mob);
+                mob.collision_balles(hero.getBalles());
+                hero.mouv_ennemi(mob, prevPositionEntity1);
+            }
+        }
+
+        for ( soin& pack : pack_soin) {
+            if (pack.getSalleAppartenance() == carteActive->getsalleActive()) {
+                jeu.dessiner_obj(pack);
+                jeu.afficher_heal(pack);
+            }
+        }
+        hero.tirer(key, foes, *textures, carteActive->getsalleActive()); //va créer des balles
+        hero.collision_soin(pack_soin, carteActive->getsalleActive());
+}
+
 Game::Game(int i){
+    //charger l'objet de toutes les textures
     textures = new textureManager;
     textures->chargerToutesTextures();
     debutJeu = "menu";
+    //mettre en place les paramètres qui permettent d'afficher le jeu aux bonnes proportions sur l'écran
     sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
     screenWidth = desktopMode.width;
     screenHeight = desktopMode.height;
 
-    //"matrice des portes" on indique où seront les portes dans chaques salles, mais en soit ça décrit les propriétés de la salle,
-    //c'est une matrice des portes de toutes les salles
-    std::vector<std::vector<std::pair<std::string, std::string>>> matrix = {
-        {{"bas", "droite"},{"bas", "gauchedroite"}, {"bas", "gauche"}},
-        {{"hautbas", "droite"},{"hautbas", "gauchedroite"}, {"hautbas", "gauche"}},
-        {{"haut", "droite"},{"haut", "gauchedroite"}, {"haut", "gauche"}}
-    };
-
-    //créer une carte qui est associée à une matrice, ici la matrice est définie au dessus, les 2 derniers trucs en paramètres sont là pour la taille des salles
-    numCarteActive=0;
-    cartes.push_back(carte(matrix,screenWidth-100, screenHeight-100,*textures));
-    cartes[0].setSortie();
-    cartes.push_back(carte(matrix,screenWidth-100, screenHeight-100,*textures));
-    carteActive = &cartes[0];
+    numCarteActive=0; //numCarteActive sers à dire à lobjet game quelle est la carte sur laquelle on évolue actuellement. il servira pour les changements de carte
+    //game a un attribut vecteur de cartes
+    cartes.push_back(carte(screenWidth-100, screenHeight-100,*textures));    
+    cartes[0].setSortie(); //set sortie dit que l'objet numréro 0 du vecteur de cartes a une sortie et qu'on l'a mise à la fin de la map.
+    cartes[0].Init(0, *textures);
+    cartes.push_back(carte(screenWidth-100, screenHeight-100,*textures)); //on ajoute une deuxième carte. On ne lui donne pas de sortie.
+    carteActive = &cartes[0]; //on définit la carte active comme la 1ère du vecteur de cartes.
 }
 
 void Game :: jouer(){
-
+    //idéalement, jouer devient juste une fonction avec niveau1 2 3 jusqu'à disons 5.
+    //avec une fonction qui fait passer de niveau en niveau quand on atteint la sortie avec si possible une cinématique dedans.
 
 
 
@@ -38,23 +65,6 @@ void Game :: jouer(){
 
     // Creation de l'entite 1 : le perso principal
     Hero hero(screenWidth/25.0f, *textures, 200.0f, 100.0f,1.0f);
-    
-    //Peut être que c'est déplacable pour faire un truc plus élégant
-    //vecteur d'entite de la carte 0
-    std::vector<Entity> entities;
-    entities.push_back(Entity(90.0f, *textures, 800.0f, 500.0f,carteActive->getsalleActive())); //une entitée bleue
-    entities.push_back(Entity(90.0f, *textures, 500.0f, 800.0f,carteActive->getsalleActive()));
-    entities.push_back(Entity(90.0f, *textures, 500.0f, 800.0f,&cartes[0].getgrille()[1][1]));
-
-    //vecteur d'ennemi de la carte 0
-    std::vector<Enemy> foes;
-    foes.push_back(Enemy(90.0f, 800.0f, 500.0f,&cartes[0].getgrille()[1][1], *textures));
-    foes.push_back(Enemy(90.0f, 800.0f, 500.0f,&cartes[0].getgrille()[0][1], 0.35f, *textures));
-
-    //vecteur d'objets de soin de la carte 0 :
-    std::vector<soin> pack_soin;
-    pack_soin.push_back(soin(500.0f, 800.0f,&cartes[0].getgrille()[0][1], *textures, 20));
-    pack_soin.push_back(soin(500.0f, 800.0f,&cartes[0].getgrille()[1][0], *textures, 40));
     
 
     // Boucle principale
@@ -78,13 +88,12 @@ void Game :: jouer(){
         
 
         hero.mouvement(key);
-        hero.tirer(key, foes, *textures); //va créer des balles
 
         //fonction qui gère (pour chaque entitée d'ailleurs) la collision avec les murs de la salle active
         hero.bords(carteActive->getsalleActive(), prevPositionEntity1);
 
         //la fonction qui dit "si le machin passé en paramètre touches telle ou telle porte, il change de salle"
-        carteActive->deplacementEntreSalle(&hero);
+        carteActive->deplacementEntreSalle(hero);
 
         //si le hero touche la sortie de la carte active alors numcCarteActive ++ et la carte active est updaté
         if (hero.getGlobalBounds().intersects(carteActive->getsalleActive()->Getsortie().getGlobalBounds())){
@@ -101,44 +110,10 @@ void Game :: jouer(){
         jeu.dessiner_obj(hero);
         //afficher les hp du hero
         jeu.afficherHP(hero);
-        //afficher les balles que le hero tire :
+        //afficher les balles du hero
+        jeu.dessiner_balles(hero.getBalles());
 
-        // for(Balles& amo : hero.getBalles()){
-        //     if(amo.getSalleAppartenance() == carteActive->getsalleActive()){
-        //         std::cout<<"on veut dessiner une balle"<<std::endl;
-        //         jeu.dessiner_obj(amo);
-        //     }
-        // }
-
-        //boucle for qui gère l'affichage de toutes les entités présentes dans la salle active //transformable en fonction
-        for (Entity& entite : entities) {
-            if (entite.getSalleAppartenance() == carteActive->getsalleActive()) {
-                jeu.dessiner_obj(entite);
-                hero.collision(entite.getGlobalBounds(),prevPositionEntity1);
-                } 
-            }
-        //même boucle pour les ennemis, transformable en fonction
-        for (Enemy& mob : foes){
-            if (mob.getSalleAppartenance() == carteActive->getsalleActive()) {
-                jeu.dessiner_obj(mob);
-                jeu.afficherHP(mob);
-                //hero.collision(mob.getGlobalBounds(),prevPositionEntity1);
-                //hero.coll_ennemi(mob,prevPositionEntity1);
-                mob.collision_balles(hero.getBalles());
-                hero.mouv_ennemi(mob, prevPositionEntity1);
-                jeu.dessiner_balles(hero.getBalles());
-                } 
-        }
-
-        for (soin& pack : pack_soin){
-            if(pack.getSalleAppartenance() == carteActive->getsalleActive()){
-                jeu.dessiner_obj(pack);
-                jeu.afficher_heal(pack);
-            }
-        }
-        hero.collision_soin(pack_soin, carteActive->getsalleActive());
-
-        // jeu.dessiner_balles(hero.getBalles());
+        this->game_design(jeu,hero,prevPositionEntity1, key);
         
         jeu.getWindow().display();
         }

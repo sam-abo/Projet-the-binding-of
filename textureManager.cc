@@ -23,6 +23,7 @@ void textureManager::chargerToutesTextures(){
     loadTexture("bullet","textures/bullet.png");
     loadTexture("crackhead","textures/crackhead.png");
     loadTexture("nezar","textures/nezar.png");
+    loadTexture("soin", "textures/soin.png");
 }
 
 const sf::Texture& textureManager::getTexture(const std::string& id) const {
@@ -32,6 +33,5 @@ const sf::Texture& textureManager::getTexture(const std::string& id) const {
     }
 
     // Gestion de l'erreur si l'identifiant de la texture n'est pas trouvé
-    // Vous pouvez personnaliser cela en fonction de vos besoins
     throw std::runtime_error("Texture not found: " + id);
 }

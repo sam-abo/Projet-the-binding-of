@@ -8,20 +8,27 @@
 
 class Hero : public Entity {
 public:
+    //contstructeur du héros
     Hero(float size, textureManager& textures, float x, float y, float vitesse);
 
+    //getters
     int getHP(){return hp;};
-    void changersalle(salle* &salleActive, salle &newsalle, std::string direction);
-    void mouvement(Touches touche);
-    bool coll_ennemi(Enemy& foe, sf::Vector2f prevPositionEntity1);
-    void mouv_ennemi(Enemy& entity, sf::Vector2f prevPositionEntity1);
-    // void tir(std::vector<Enemy>& enemies, Touches key);
-    // void balle(Enemy* enemi, Touches key, sf::Vector2f direction);
-    void tirer(Touches key, std::vector<Enemy>& ennemis);
-    void collision_soin(std::vector<soin>& heal, salle* carteActive);
-    void tirer(Touches key, std::vector<Enemy>& ennemis, textureManager& textures);
-
     std::vector<Balles>& getBalles(){return balles;};
+    bool EnnemisDansSalle(std::vector<Enemy>& tousLesEnnemis, salle* room);
+
+    //fonction pour qu'il changes de salle
+    void changersalle(salle* &salleActive, salle &newsalle, std::string direction);
+    //mouvement du héros et mouvements des ennemis relativement au héros
+    void mouvement(Touches touche);
+    void mouv_ennemi(Enemy& entity, sf::Vector2f prevPositionEntity1);
+    //collisions
+    bool coll_ennemi(Enemy& foe, sf::Vector2f prevPositionEntity1);
+    void collision_soin(std::vector<soin>& heal, salle* salleActive);
+
+    
+    void tirer(Touches key, std::vector<Enemy>& ennemis, textureManager& textures, salle* room);
+
+    
 
     protected :
     int hp;
@@ -31,6 +38,4 @@ public:
     sf::Time time = sf::seconds(1.0f);
     sf::Clock Shootclock;
     sf::Time timeshoot = sf::seconds(0.3f);
-
-    //évantuellement d'autres attributs propre au héros comme son nom, sa capacité spéciale s'il en aura etc... bref
 };

@@ -6,7 +6,7 @@
 class Balles : public Entity {
 public:
     Balles ();
-    Balles(sf::Vector2f origin, sf::Vector2f direction, const salle* room, textureManager& textures);
+    Balles(sf::Vector2f origin, sf::Vector2f direction, textureManager& textures);
     void deplacer();
     //void collision_ennemi(std::vector<Enemy>& foes);
 

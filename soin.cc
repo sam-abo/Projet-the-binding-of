@@ -8,8 +8,8 @@ soin:: soin (float x, float y, const salle* salle, textureManager& textures, siz
     Objet::y = y;
     // Objet::forme.setRadius(size);
     // Objet::forme.setFillColor(color);
-    Objet::forme.setScale(size / static_cast<float>(textures.getTexture("bullet").getSize().x), size / static_cast<float>(textures.getTexture("bullet").getSize().x));
-    Objet::forme.setTexture(textures.getTexture("bullet"));
+    Objet::forme.setScale(5* size / static_cast<float>(textures.getTexture("soin").getSize().x), 5 * size / static_cast<float>(textures.getTexture("soin").getSize().x));
+    Objet::forme.setTexture(textures.getTexture("soin"));
     Objet::forme.setPosition(x, y);
     salleAppartenance = salle;
 

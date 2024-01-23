@@ -8,6 +8,6 @@ class salleMarchand : public salle{
     salleMarchand(int width, int height, sf::Color color,std::string gauchedroite, std::string hautbas, textureManager& textures);
     // Entity getMarchand(){return marchand;}
     private :
-    
+    // sf::Sprite marchand;
     // Entity marchand;
 };

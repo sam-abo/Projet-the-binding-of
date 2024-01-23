@@ -13,13 +13,20 @@ class Game {
     public :
     Game(int i);
     void jouer();
+    void game_design(Afficher& jeu, Hero& hero, sf::Vector2f prevPositionEntity1, Touches key);
 
-    void niveau();
+    // void niveau2();
+    //...
     
     private :
-    carte* carteActive;
+    //vecteur de cartes qui contient donc toutes les cartes du jeu qu'on va traverser.
     std::vector<carte> cartes;
-    int numCarteActive;
+    //un pointeur vers la carte active pour savoir sur quelle carte on est
+    carte* carteActive;
+    //cette valeur nous sers avec le pointeur de carteActive, lorsqu'on change de carte, aller cherche la nouvelle dans le vecteur des cartes
+    size_t numCarteActive;
+
+    //tout ce qui concerne la mise en place du jeu de façon graphique
     unsigned int screenWidth;
     unsigned int screenHeight;
     std::string debutJeu;

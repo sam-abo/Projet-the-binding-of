@@ -1,7 +1,7 @@
 #include "menu.hh"
 
 Menu::Menu(int width, int height,textureManager& textures) {
-        font.loadFromFile("arial.ttf"); // Assurez-vous de charger une police valide
+        font.loadFromFile("textures/arial.ttf"); // Assurez-vous de charger une police valide
 
         this->width = width;
         this->height = height;
