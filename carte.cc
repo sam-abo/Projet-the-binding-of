@@ -89,9 +89,11 @@ void carte::Init(size_t i, textureManager& textures){
 void carte::Init0(textureManager& textures){
     //niveau un peu de découverte des quelques fonctionnalités de base quoi
     //vecteur d'entité de la carte 0
-    entities.push_back(Entity(90.0f, textures, 800.0f, 500.0f,&grille[0][0])); //une entitée bleue
+    entities.push_back(Entity(90.0f, textures, 800.0f, 500.0f,&grille[0][0]));
     entities.push_back(Entity(90.0f, textures, 500.0f, 800.0f,&grille[0][0]));
     entities.push_back(Entity(90.0f, textures, 500.0f, 800.0f,&grille[1][1]));
+    //une entité qui possède un objet qu'elle va nous donner :
+    entities.push_back(Entity(90.0f, textures, 730.0f, 600.0f,&grille[2][0]));
 
     //vecteur d'ennemi de la carte 0
     foes.push_back(Enemy(90.0f, 800.0f, 500.0f,&grille[1][1], textures));
@@ -101,23 +103,24 @@ void carte::Init0(textureManager& textures){
     pack_soin.push_back(soin(500.0f, 800.0f,&grille[0][1], textures, 20));
     pack_soin.push_back(soin(500.0f, 800.0f,&grille[1][0], textures, 40));   
 
-    items.push_back(matos(362.0f,684.0f, &grille[2][2], textures,"carte étudiante"));     
+    items.push_back(matos(362.0f,684.0f, &grille[2][2], textures,"carte étudiante"));    
+    // items.push_back(entities.back().getItem()); 
     };
 
 
 void carte::Init1(textureManager& textures){
     //premier vrai niveau
-    //quelques ennemis ======================================================= il en faut beaucoup plus, faire des ennemis qui bougent, des ennemis qui bougent pas etc
+    //quelques ennemis ======================================================= il en faut beaucoup plus, faire des ennemis qui bougent (vite !), des ennemis qui bougent pas etc
     foes.push_back(Enemy(90.0f, 800.0f, 500.0f,&grille[1][1], textures));
-    foes.push_back(Enemy(90.0f, 600.0f, 300.0f,&grille[1][1], textures));
+    foes.push_back(Enemy(90.0f, 600.0f, 300.0f,&grille[1][1], 0.20f, textures));
 
-    foes.push_back(Enemy(90.0f, 800.0f, 500.0f,&grille[0][2], 0.35f, textures));
+    foes.push_back(Enemy(90.0f, 800.0f, 500.0f,&grille[0][2], textures));
     foes.push_back(Enemy(90.0f, 700.0f, 700.0f,&grille[0][2], 0.45f, textures));
 
     foes.push_back(Enemy(90.0f, 800.0f, 710.0f,&grille[0][1], 0.25f, textures));
-    foes.push_back(Enemy(90.0f, 300.0f, 500.0f,&grille[2][1], textures));
+    foes.push_back(Enemy(90.0f, 300.0f, 500.0f,&grille[2][1], 0.10f, textures));
     foes.push_back(Enemy(90.0f, 550.0f, 500.0f,&grille[2][2], 0.55f, textures));
-    foes.push_back(Enemy(90.0f, 800.0f, 460.0f,&grille[1][0], textures));
+    foes.push_back(Enemy(90.0f, 800.0f, 460.0f,&grille[1][0], 0.85f, textures));
     
 
     //vecteur d'objets de soin de la carte 0 : ===================================== on verra
@@ -128,7 +131,9 @@ void carte::Init1(textureManager& textures){
     pack_soin.push_back(soin(500.0f, 800.0f,&grille[0][0], textures, 3));
     pack_soin.push_back(soin(500.0f, 800.0f,&grille[1][1], textures, 12));   
     pack_soin.push_back(soin(500.0f, 800.0f,&grille[2][1], textures, 20));
-    pack_soin.push_back(soin(500.0f, 800.0f,&grille[1][2], textures, 4));    
+    pack_soin.push_back(soin(500.0f, 800.0f,&grille[1][2], textures, 4));   
+
+    items.push_back(matos(456.0f,802.0f, &grille[1][2], textures,"pass navigo")); 
 
     //peut être une ou 2 entités au début du niveau ou dans d'autres salles pour parler avec elles et ettayer l'histoire. 
 };

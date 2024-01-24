@@ -4,14 +4,7 @@
 //Constructeur par défaut :
 
 Enemy::Enemy(float size, float x, float y, const salle* salle, float vitesse, textureManager& textures) {
-    // Objet::x = x;
-    // Objet::y = y;
-    // Entity::vitesse = vitesse;
-    // Objet::forme.setRadius(size);
-    // Objet::forme.setFillColor(sf::Color::Red);
-    // Objet::forme.setPosition(x, y);
-    // salleAppartenance = salle;
-    // this->hp = 150;
+
     Objet::x = x;
     Objet::y = y;
     Entity::vitesse = vitesse;

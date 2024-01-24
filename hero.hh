@@ -9,6 +9,9 @@
 
 class Hero : public Entity {
 public:
+    /*=====================================================================================
+    Faire une fonction qui fait que si le héro n'a plus d'hp, il meurt et le jeu recommence ou un truc comme ça
+    =======================================================================================*/
     //contstructeur du héros
     Hero(float size, textureManager& textures, float x, float y, float vitesse);
 

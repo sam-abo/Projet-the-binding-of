@@ -15,6 +15,12 @@ class Game {
     void jouer();
     void game_design(Afficher& jeu, Hero& hero, sf::Vector2f prevPositionEntity1, Touches key);
 
+
+    /*=====================================================================
+    le chargement des cartes se faisant tout seul, les autres options dans la classe game sont assez importantes à explorer pour ce qui va être cinématique etc...
+    menu peut servir aussi peut être
+    - un truc bien peut être l'implémentation d'un système de sauvegarde 
+    ======================================================================*/
     // void niveau2();
     //...
     

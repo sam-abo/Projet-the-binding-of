@@ -21,11 +21,18 @@ class carte {
         //intervient dans la création de carte
         void configurerCarte(const std::vector<std::vector<std::pair<std::string, std::string>>>& configuration,int widthsalle, int heightsalle, textureManager& textures);
         //foncions d'initialisation pour les cartes
+        
+        //================================================= lire attentivement ce groupe de fonctions. essayer de l'automatiser peut être ?
         void Init(size_t i, textureManager& textures);
         void Init0(textureManager& textures);
         void Init1(textureManager& textures);
         // void Init2(textureManager& textures);
         // void Init3(textureManager& textures);
+        /*================================================
+        ce serait bien que pour un des niveaux on ait un ennemi qui va vite et qui est gros et qui peut traverser les salles comme nous (on a la fonctoin pour
+        avec déplacer dans entité normalement) qui nous poursuives et le but serait de survivre sans qu'il nous touches pendant un certain temps. 
+        idée comme ça mais relou au niveau de la gestion pour le déplacement des ennemis et le timer.
+        ==================================================*/
         // void Init4(textureManager& textures);
         // void Init5(textureManager& textures);
         // void Init6(textureManager& textures);
@@ -68,10 +75,9 @@ class carte {
         {{"haut", "droite"},{"haut", "gauchedroite"}, {"haut", "gauche"}}
         };
 
-        //vecteurs de tout ce qu'il y a dans la map, à savoir ennemis, entités et soins.
+        //vecteurs de tout ce qu'il y a dans la map, à savoir ennemis, entités, items et soins.
         std::vector<soin> pack_soin;
         std::vector<Enemy> foes;
         std::vector<Entity> entities;
         std::vector<matos> items;
-        //potentiellement important, un vecteur d'objets qui seront donc des bonus et autres trucs à collecter.
 };

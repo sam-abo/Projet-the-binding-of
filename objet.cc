@@ -19,6 +19,7 @@ sf::FloatRect Objet::getGlobalBounds() {
     return forme.getGlobalBounds();
 }
 
+//============================================================================================= méthode à transformer en méthode virtuelle ?
 bool Objet::collision(const sf::FloatRect& otherBounds,sf::Vector2f prevPositionEntity1 ) {
     
     if (forme.getGlobalBounds().intersects(otherBounds)){

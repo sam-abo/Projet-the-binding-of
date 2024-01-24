@@ -11,18 +11,17 @@
 
 class Afficher {
     public:
-        void afficherHP(Hero& hero); //à mettre dans une classe affchage (hero)
+        void afficherHP(Hero& hero);
         void dessiner_balles(std::vector<Balles>& balles);
-        
-        void afficherHP(Enemy& foe); //à mettre dans une classe affchage (hero)
-
+        void afficherHP(Enemy& foe);
         void afficher_heal(soin& pack);
 
-        void dessiner_obj(Objet& objet); //à mettre dans une classe affchage (objet)
+        void afficher_quete(Entity& pnj);
+
+        void dessiner_obj(Objet& objet);
         void dessiner_salle(salle* s); //ne dessine que la salle active
         std::string dessiner_menu(Menu& m, sf::Event& event);
         
-        //sf::RenderWindow window(sf::VideoMode(screenWidth-100, screenHeight-100), "The binding of chatelêt les halles"); //dans la classe affichage (la fenêtre deu jeu)
         void Fenetre_jeu(std::string nom);
         void fermeture (Touches touche);
         sf::RenderWindow& getWindow(){return window;};

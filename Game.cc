@@ -5,10 +5,12 @@ void Game::game_design(Afficher& jeu, Hero& hero, sf::Vector2f prevPositionEntit
         std::vector<Enemy>& foes = carteActive->getFoes();
         std::vector<soin>& pack_soin = carteActive->getPackSoin();
         std::vector<matos>& items = carteActive->getmatos();
+    //==================================================================================== chaque boucle est transformable en méthode.
     //une boucle qui gère l'affichage et l'intéraction avec toutes les entités de la map
         for ( Entity& entite : entities) {
             if (entite.getSalleAppartenance() == carteActive->getsalleActive()) {
                 jeu.dessiner_obj(entite);
+                //jeu.afficher_quete(entite);
                 hero.collision(entite.getGlobalBounds(), prevPositionEntity1);
             }
         }
@@ -28,20 +30,26 @@ void Game::game_design(Afficher& jeu, Hero& hero, sf::Vector2f prevPositionEntit
                 jeu.afficher_heal(pack);
             }
         }
-
+    //===========================================================================================
         for ( matos& trucs : items) {
             if (trucs.getSalleAppartenance() == carteActive->getsalleActive()) {
                 jeu.dessiner_obj(trucs);
             }
         }
+    //============================================================================================
 
-        //les interractions spécifiques au héro. Les noms s'expliquent d'eux mêmes.
+        //================================================================================= méthodisables ?
+        //les interractions spécifiques au héro. Les noms s'expliquent d'eux mêmes. 
         hero.tirer(key, foes, *textures, carteActive->getsalleActive());
         hero.collision_soin(pack_soin, carteActive->getsalleActive());
-        hero.collision_items(items, carteActive->getsalleActive());
+        hero.collision_items(items, carteActive->getsalleActive()); //
+
+        //===================================================================== transformable en méthode. 
+        //faire attention que la sortie ne se trouves pas toujours au même endroit, un générateur de onmbres aléatoires peut être bien
         if (items.empty()){ //si on a récupéré tous les items de la carte :
-            cartes[numCarteActive].setSortie();
+            cartes[numCarteActive].setSortie(); //la sortie apparait
         }
+        //=====================================================================
 
 }
 

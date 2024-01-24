@@ -25,6 +25,7 @@ void textureManager::chargerToutesTextures(){
     loadTexture("nezar","textures/nezar.png");
     loadTexture("soin", "textures/soin.png");
     loadTexture("carte étudiante", "textures/carte_etu.png");
+    loadTexture("pass navigo", "textures/pass_navigo.png");
 }
 
 const sf::Texture& textureManager::getTexture(const std::string& id) const {

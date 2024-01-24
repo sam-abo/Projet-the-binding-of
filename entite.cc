@@ -6,14 +6,14 @@ Entity::Entity(){
     
 };
 
-Entity::Entity(float size, textureManager& textures, float x, float y, float vitesse) {
-    Objet::x = x;
-    Objet::y = y;
-    this -> vitesse = vitesse;
-    Objet::forme.setScale(size / static_cast<float>(textures.getTexture("marchand").getSize().x), size / static_cast<float>(textures.getTexture("marchand").getSize().x));
-    Objet::forme.setTexture(textures.getTexture("marchand"));
-    Objet::forme.setPosition(x, y);
-}
+// void Entity::pnj(float size, textureManager& textures, float x, float y, const salle* salle) { //constructeur un peu inutile, on l'utilise jamais.
+//     Objet::x = x;
+//     Objet::y = y;
+//     Objet::forme.setScale(size / static_cast<float>(textures.getTexture("marchand").getSize().x), size / static_cast<float>(textures.getTexture("marchand").getSize().x));
+//     Objet::forme.setTexture(textures.getTexture("marchand"));
+//     Objet::forme.setPosition(x, y);
+//     salleAppartenance = salle;
+// }
 
 Entity::Entity(float size, textureManager& textures, float x, float y, const salle* salle) {
     Objet::x = x;
