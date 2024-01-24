@@ -4,6 +4,7 @@ void Game::game_design(Afficher& jeu, Hero& hero, sf::Vector2f prevPositionEntit
         std::vector<Entity>& entities = carteActive->getEntities();
         std::vector<Enemy>& foes = carteActive->getFoes();
         std::vector<soin>& pack_soin = carteActive->getPackSoin();
+        std::vector<matos>& items = carteActive->getmatos();
     //une boucle qui gère l'affichage et l'intéraction avec toutes les entités de la map
         for ( Entity& entite : entities) {
             if (entite.getSalleAppartenance() == carteActive->getsalleActive()) {
@@ -28,9 +29,20 @@ void Game::game_design(Afficher& jeu, Hero& hero, sf::Vector2f prevPositionEntit
             }
         }
 
+        for ( matos& trucs : items) {
+            if (trucs.getSalleAppartenance() == carteActive->getsalleActive()) {
+                jeu.dessiner_obj(trucs);
+            }
+        }
+
         //les interractions spécifiques au héro. Les noms s'expliquent d'eux mêmes.
         hero.tirer(key, foes, *textures, carteActive->getsalleActive());
         hero.collision_soin(pack_soin, carteActive->getsalleActive());
+        hero.collision_items(items, carteActive->getsalleActive());
+        if (items.empty()){ //si on a récupéré tous les items de la carte :
+            cartes[numCarteActive].setSortie();
+        }
+
 }
 
 Game::Game(int i){
@@ -50,7 +62,7 @@ Game::Game(int i){
     //============================================================================================
     //le setsortie est potentiellement à virer pour faire un level design plus intéressant
     //il s'agira juste de mettre un set sortie à d'autres endroits et sous conditions
-    cartes[0].setSortie(); //set sortie dit que l'objet numréro 0 du vecteur de cartes a une sortie et qu'on l'a mise à la fin de la map.
+    //cartes[0].setSortie(); //set sortie dit que l'objet numréro 0 du vecteur de cartes a une sortie et qu'on l'a mise à la fin de la map.
     //============================================================================================
     
     /*

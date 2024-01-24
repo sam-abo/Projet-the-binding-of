@@ -5,6 +5,7 @@
 #include "enemy.hh"
 #include "balles.hh"
 #include "soin.hh"
+#include "matos.hh"
 
 class Hero : public Entity {
 public:
@@ -25,6 +26,7 @@ public:
     //collisions
     bool coll_ennemi(Enemy& foe, sf::Vector2f prevPositionEntity1);
     void collision_soin(std::vector<soin>& heal, salle* salleActive);
+    void collision_items(std::vector<matos>& quete, salle* salleActive);
 
     
     void tirer(Touches key, std::vector<Enemy>& ennemis, textureManager& textures, salle* room);

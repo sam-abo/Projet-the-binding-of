@@ -97,6 +97,8 @@ sf::Vector2f nouvelle_position = this->getforme().getPosition();
 
 
 void Hero::mouv_ennemi(Enemy& entity, sf::Vector2f prevPositionEntity1) {
+    //si et seulement si l'ennemi bouge, il va essayer de pourchasser le héro    
+    if(entity.getSpeed() != 0.0f){
     // Récupérer la position actuelle de l'entité et du héros
     sf::Vector2f positionEntity = entity.getforme().getPosition();
 
@@ -112,7 +114,7 @@ void Hero::mouv_ennemi(Enemy& entity, sf::Vector2f prevPositionEntity1) {
     float vitesse = entity.getSpeed();
 
 
-    // Déplacer l'entité vers le héros en fonction de la direction et de la vitesse
+    // Déplacer l'ennemi vers le héros en fonction de la direction et de la vitesse
 
     coll_ennemi(entity, prevPositionEntity1);
 
@@ -124,6 +126,10 @@ void Hero::mouv_ennemi(Enemy& entity, sf::Vector2f prevPositionEntity1) {
         entity.gety() += direction.y * vitesse;
         sf::Vector2f nouvellePosition = sf::Vector2f(entity.getx(), entity.gety());
         entity.change_pos(nouvellePosition);
+    }
+    }
+    else{
+        return; //si l'ennemi n'est pas conçu pour bouger, rien à faire.
     }
 };
 
@@ -202,5 +208,22 @@ void Hero :: collision_soin(std::vector<soin>& heal, salle* salleActive){
     // Supprimer les packs après la boucle
     for (auto it = indices_a_supprimer.rbegin(); it != indices_a_supprimer.rend(); ++it) {
         heal.erase(heal.begin() + *it);
+    }
+};
+
+
+void Hero :: collision_items(std::vector<matos>& quete, salle* salleActive){
+    std::vector<size_t> indices_a_supprimer;
+
+    for (size_t i = 0; i < quete.size(); ++i) {
+        if (this->getforme().getGlobalBounds().intersects(quete[i].getGlobalBounds()) && ( salleActive == quete[i].getSalleAppartenance())) {
+            indices_a_supprimer.push_back(i);
+            std::cout<< quete[i].getName() << " récupéré !" <<std::endl;
+        }
+    }
+
+    // Supprimer les packs après la boucle
+    for (auto it = indices_a_supprimer.rbegin(); it != indices_a_supprimer.rend(); ++it) {
+        quete.erase(quete.begin() + *it);
     }
 };

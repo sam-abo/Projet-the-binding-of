@@ -87,6 +87,7 @@ void carte::Init(size_t i, textureManager& textures){
 };
 
 void carte::Init0(textureManager& textures){
+    //niveau un peu de découverte des quelques fonctionnalités de base quoi
     //vecteur d'entité de la carte 0
     entities.push_back(Entity(90.0f, textures, 800.0f, 500.0f,&grille[0][0])); //une entitée bleue
     entities.push_back(Entity(90.0f, textures, 500.0f, 800.0f,&grille[0][0]));
@@ -98,12 +99,15 @@ void carte::Init0(textureManager& textures){
 
     //vecteur d'objets de soin de la carte 0 :
     pack_soin.push_back(soin(500.0f, 800.0f,&grille[0][1], textures, 20));
-    pack_soin.push_back(soin(500.0f, 800.0f,&grille[1][0], textures, 40));        
+    pack_soin.push_back(soin(500.0f, 800.0f,&grille[1][0], textures, 40));   
+
+    items.push_back(matos(362.0f,684.0f, &grille[2][2], textures,"carte étudiante"));     
     };
 
 
 void carte::Init1(textureManager& textures){
-    //quelques ennemis
+    //premier vrai niveau
+    //quelques ennemis ======================================================= il en faut beaucoup plus, faire des ennemis qui bougent, des ennemis qui bougent pas etc
     foes.push_back(Enemy(90.0f, 800.0f, 500.0f,&grille[1][1], textures));
     foes.push_back(Enemy(90.0f, 600.0f, 300.0f,&grille[1][1], textures));
 
@@ -116,7 +120,7 @@ void carte::Init1(textureManager& textures){
     foes.push_back(Enemy(90.0f, 800.0f, 460.0f,&grille[1][0], textures));
     
 
-    //vecteur d'objets de soin de la carte 0 :
+    //vecteur d'objets de soin de la carte 0 : ===================================== on verra
     pack_soin.push_back(soin(500.0f, 800.0f,&grille[0][1], textures, 20));
     pack_soin.push_back(soin(500.0f, 800.0f,&grille[1][0], textures, 40));      
     pack_soin.push_back(soin(500.0f, 800.0f,&grille[0][2], textures, 10));
@@ -124,10 +128,10 @@ void carte::Init1(textureManager& textures){
     pack_soin.push_back(soin(500.0f, 800.0f,&grille[0][0], textures, 3));
     pack_soin.push_back(soin(500.0f, 800.0f,&grille[1][1], textures, 12));   
     pack_soin.push_back(soin(500.0f, 800.0f,&grille[2][1], textures, 20));
-    pack_soin.push_back(soin(500.0f, 800.0f,&grille[1][2], textures, 4));     
-};
+    pack_soin.push_back(soin(500.0f, 800.0f,&grille[1][2], textures, 4));    
 
-//modifer ça pour rajouter la déclaration de chaque niveau en moins de 30 lignes avec i allant de 1 à 5
+    //peut être une ou 2 entités au début du niveau ou dans d'autres salles pour parler avec elles et ettayer l'histoire. 
+};
 
 //=================================================== à transformer en overload operator ??
 // void carte::print() {

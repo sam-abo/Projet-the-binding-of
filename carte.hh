@@ -4,8 +4,8 @@
 #include "salleMarchand.hh"
 #include "salleEnemi.hh"
 #include "hero.hh"
-#include "objet.hh"
 #include "soin.hh"
+#include "matos.hh"
 
 #include <SFML/Graphics.hpp>
 
@@ -50,6 +50,7 @@ class carte {
         std::vector<Entity>& getEntities() { return entities; }
         std::vector<Enemy>& getFoes() { return foes; }
         std::vector<soin>& getPackSoin() { return pack_soin; }
+        std::vector<matos>& getmatos() { return items; }
         
 
     private:
@@ -71,5 +72,6 @@ class carte {
         std::vector<soin> pack_soin;
         std::vector<Enemy> foes;
         std::vector<Entity> entities;
+        std::vector<matos> items;
         //potentiellement important, un vecteur d'objets qui seront donc des bonus et autres trucs à collecter.
 };
