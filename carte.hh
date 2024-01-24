@@ -12,12 +12,23 @@
 class carte {
     
     public :
+        //désalloueur de mémoire de carte pour gérer la mémoire plus facilement :
+        void libererMemoire();
+
         //constructeur de carte
         carte(int widthsalle, int heightsalle, textureManager& textures);
         //const std::vector<std::vector<std::pair<std::string, std::string>>>& configuration
         //intervient dans la création de carte
         void configurerCarte(const std::vector<std::vector<std::pair<std::string, std::string>>>& configuration,int widthsalle, int heightsalle, textureManager& textures);
+        //foncions d'initialisation pour les cartes
         void Init(size_t i, textureManager& textures);
+        void Init0(textureManager& textures);
+        void Init1(textureManager& textures);
+        // void Init2(textureManager& textures);
+        // void Init3(textureManager& textures);
+        // void Init4(textureManager& textures);
+        // void Init5(textureManager& textures);
+        // void Init6(textureManager& textures);
         
         //ajout de salle (a priori pas besoin)
         // void ajouterSalle(int x, int y, int widthsalle, int heightsalle, sf::Color color,std::string hautbas, std::string gauchedroite);
@@ -60,4 +71,5 @@ class carte {
         std::vector<soin> pack_soin;
         std::vector<Enemy> foes;
         std::vector<Entity> entities;
+        //potentiellement important, un vecteur d'objets qui seront donc des bonus et autres trucs à collecter.
 };

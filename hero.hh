@@ -14,7 +14,8 @@ public:
     //getters
     int getHP(){return hp;};
     std::vector<Balles>& getBalles(){return balles;};
-    bool EnnemisDansSalle(std::vector<Enemy>& tousLesEnnemis, salle* room);
+    std::vector<Enemy*> EnnemisDansSalle(const std::vector<Enemy>& tousLesEnnemis, salle* room);
+    
 
     //fonction pour qu'il changes de salle
     void changersalle(salle* &salleActive, salle &newsalle, std::string direction);

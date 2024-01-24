@@ -19,6 +19,12 @@ class Game {
     //...
     
     private :
+    // void libererMemoireCartePrecedente() {
+    //     if (numCarteActive > 0) {
+    //         cartes[numCarteActive - 1].libererMemoire();
+    //     }
+    // }
+
     //vecteur de cartes qui contient donc toutes les cartes du jeu qu'on va traverser.
     std::vector<carte> cartes;
     //un pointeur vers la carte active pour savoir sur quelle carte on est

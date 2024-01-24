@@ -1,5 +1,6 @@
 #include "salle.hh"
 
+// salle::~salle(){};
 salle::salle(){};
 
 salle::salle(int width, int height, sf::Color color,std::string gauchedroite, std::string hautbas) {

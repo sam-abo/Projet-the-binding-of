@@ -5,6 +5,20 @@
 #include <ctime>
 //#include "salle.hh"
 
+void carte::libererMemoire() {
+        // Libérer la mémoire occupée par les vecteurs
+        pack_soin.clear();
+        foes.clear();
+        entities.clear();
+
+        // Supprimer les salles
+        for (size_t i = 0; i < width; ++i) {
+            delete[] grille[i];
+        }
+        delete[] grille;
+    };
+
+
 carte::carte(int widthsalle, int heightsalle, textureManager& textures) {
     // Initialisez la grille de salles
     width = configuration.size();
@@ -43,8 +57,36 @@ void carte::configurerCarte(const std::vector<std::vector<std::pair<std::string,
 }
 
 void carte::Init(size_t i, textureManager& textures){
-    if (i == 0){ //on initialise les 3 vecteurs du niveau 0 
+    //switch case sur i pour appeler les fonction init1 à 5 et créer ! toutes ! les cartes donc le game design commences maintenant.
+    switch(i) {
+    case 0 :
+        Init0(textures);
+        break;
+    case 1 :
+        Init1(textures);
+        break;
+    // case 2 :
+    //     Init2(textures);
+    //     break;
+    // case 3 :
+    //     Init3(textures);
+    //     break;
+    // case 4 :
+    //     Init4(textures);
+    //     break;
+    // case 5 :
+    //     Init5(textures);
+    //     break;
+    // case 6 :
+    //     Init6(textures);
+    //     break;
+
     //entièrement déterministe, on aurait pu essayer de faire des choses qui mettent des ennemis au hasard, mais pas vraimet le temps de s'y pencher pour ce game_design
+    
+    }
+};
+
+void carte::Init0(textureManager& textures){
     //vecteur d'entité de la carte 0
     entities.push_back(Entity(90.0f, textures, 800.0f, 500.0f,&grille[0][0])); //une entitée bleue
     entities.push_back(Entity(90.0f, textures, 500.0f, 800.0f,&grille[0][0]));
@@ -57,8 +99,35 @@ void carte::Init(size_t i, textureManager& textures){
     //vecteur d'objets de soin de la carte 0 :
     pack_soin.push_back(soin(500.0f, 800.0f,&grille[0][1], textures, 20));
     pack_soin.push_back(soin(500.0f, 800.0f,&grille[1][0], textures, 40));        
-    }
+    };
+
+
+void carte::Init1(textureManager& textures){
+    //quelques ennemis
+    foes.push_back(Enemy(90.0f, 800.0f, 500.0f,&grille[1][1], textures));
+    foes.push_back(Enemy(90.0f, 600.0f, 300.0f,&grille[1][1], textures));
+
+    foes.push_back(Enemy(90.0f, 800.0f, 500.0f,&grille[0][2], 0.35f, textures));
+    foes.push_back(Enemy(90.0f, 700.0f, 700.0f,&grille[0][2], 0.45f, textures));
+
+    foes.push_back(Enemy(90.0f, 800.0f, 710.0f,&grille[0][1], 0.25f, textures));
+    foes.push_back(Enemy(90.0f, 300.0f, 500.0f,&grille[2][1], textures));
+    foes.push_back(Enemy(90.0f, 550.0f, 500.0f,&grille[2][2], 0.55f, textures));
+    foes.push_back(Enemy(90.0f, 800.0f, 460.0f,&grille[1][0], textures));
+    
+
+    //vecteur d'objets de soin de la carte 0 :
+    pack_soin.push_back(soin(500.0f, 800.0f,&grille[0][1], textures, 20));
+    pack_soin.push_back(soin(500.0f, 800.0f,&grille[1][0], textures, 40));      
+    pack_soin.push_back(soin(500.0f, 800.0f,&grille[0][2], textures, 10));
+    pack_soin.push_back(soin(500.0f, 800.0f,&grille[2][2], textures, 20));   
+    pack_soin.push_back(soin(500.0f, 800.0f,&grille[0][0], textures, 3));
+    pack_soin.push_back(soin(500.0f, 800.0f,&grille[1][1], textures, 12));   
+    pack_soin.push_back(soin(500.0f, 800.0f,&grille[2][1], textures, 20));
+    pack_soin.push_back(soin(500.0f, 800.0f,&grille[1][2], textures, 4));     
 };
+
+//modifer ça pour rajouter la déclaration de chaque niveau en moins de 30 lignes avec i allant de 1 à 5
 
 //=================================================== à transformer en overload operator ??
 // void carte::print() {
