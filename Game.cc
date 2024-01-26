@@ -19,8 +19,9 @@ void Game::game_design(Afficher& jeu, Hero& hero, sf::Vector2f prevPositionEntit
             if (mob.getSalleAppartenance() == carteActive->getsalleActive()) {
                 jeu.dessiner_obj(mob);
                 jeu.afficherHP(mob);
+                jeu.dessiner_balles(mob.getBalles());
                 mob.collision_balles(hero.getBalles());
-                hero.mouv_ennemi(mob, prevPositionEntity1);
+                hero.mouv_ennemi(mob, prevPositionEntity1, *textures);
             }
         }
     //une boucle qui gère l'affichage de tous les objets de soin de la map

@@ -18,10 +18,15 @@ public:
     void collision_balles(std::vector<Balles>& balles); //modifier cette fonction pour que les ennemis soient par exemple ralentis pendant un certain temps.
 
     //==================================== il faut ajouter un tir d'ennemi pour les ennemis qui bougent pas, tirs qui ralentissent le héros
+    void tir_ennemi(textureManager& textures, sf::Vector2f direction);
 
     int getHP(){return hp;};
+    std::vector<Balles>& getBalles(){return balles;};
 
     protected :
     int hp;
+    std::vector<Balles> balles;
+    sf::Clock Shootclock;
+    sf::Time timeshoot = sf::seconds(0.7f);
     //prévoir un sf::clock pour le ralentissement et les tirs, exemple dans hero.hh et .cc
 };

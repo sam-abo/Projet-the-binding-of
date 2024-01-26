@@ -17,9 +17,7 @@ public:
 
     bool bords(salle* room, sf::Vector2f prevPositionEntity1);
 
-    //void mouvement(Touches touche);
-    
-    // bool getQuest(){return HasQuest;};
+    //std::vector<Balles>& getBalles(){return balles;};
     
     void deplacer(const sf::Vector2f& newPosition); //mettable dans objet en méthode virtuelle ?
     sf::Sprite getforme() {return forme;}; //pareil ?
@@ -28,4 +26,5 @@ public:
 
     protected :
     float vitesse;
+    //std::vector<Balles> balles;
 };

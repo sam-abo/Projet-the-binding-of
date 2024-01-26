@@ -8,9 +8,6 @@ public:
     Balles ();
     Balles(sf::Vector2f origin, sf::Vector2f direction, textureManager& textures);
     void deplacer();
-    //void collision_ennemi(std::vector<Enemy>& foes);
-
-    //void collision(const sf::FloatRect& otherBounds,sf::Vector2f prevPositionEntity1);
 
 protected:
     sf::Vector2f prevPositionBalle;

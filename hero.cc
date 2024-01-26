@@ -5,6 +5,19 @@
 #include "touches.hh"
 #include "soin.hh"
 
+float distance_entre_points(sf::Vector2f point1, sf::Vector2f point2) {
+    return std::sqrt(std::pow(point2.x - point1.x, 2) + std::pow(point2.y - point1.y, 2));
+};
+
+sf::Vector2f normalize(sf::Vector2f vector) {
+    float length = std::sqrt(vector.x * vector.x + vector.y * vector.y);
+    if (length != 0.0f) {
+        return sf::Vector2f(vector.x / length, vector.y / length);
+    } else {
+        return vector;
+    }
+};
+
 Hero::Hero(float size, textureManager& textures, float x, float y, float vitesse){
     Objet::x = x;
     Objet::y = y;
@@ -87,7 +100,8 @@ sf::Vector2f nouvelle_position = this->getforme().getPosition();
 
     // Normaliser le vecteur total si nécessaire
     if (direction_mouvement_total != sf::Vector2f(0.0f, 0.0f)) {
-        direction_mouvement_total = direction_mouvement_total / sqrt(direction_mouvement_total.x * direction_mouvement_total.x + direction_mouvement_total.y * direction_mouvement_total.y);
+        //direction_mouvement_total = direction_mouvement_total / sqrt(direction_mouvement_total.x * direction_mouvement_total.x + direction_mouvement_total.y * direction_mouvement_total.y);
+        direction_mouvement_total = normalize(direction_mouvement_total);
     }
 
     direction_mouvement = direction_mouvement_total;
@@ -96,9 +110,9 @@ sf::Vector2f nouvelle_position = this->getforme().getPosition();
 };
 
 
-void Hero::mouv_ennemi(Enemy& entity, sf::Vector2f prevPositionEntity1) {
+void Hero::mouv_ennemi(Enemy& entity, sf::Vector2f prevPositionEntity1, textureManager& textures) {
     //si et seulement si l'ennemi bouge, il va essayer de pourchasser le héro    
-    if(entity.getSpeed() != 0.0f){
+    // if(entity.getSpeed() != 0.0f){
     // Récupérer la position actuelle de l'entité et du héros
     sf::Vector2f positionEntity = entity.getforme().getPosition();
 
@@ -106,10 +120,11 @@ void Hero::mouv_ennemi(Enemy& entity, sf::Vector2f prevPositionEntity1) {
     sf::Vector2f direction = prevPositionEntity1 - positionEntity;
 
     // Normaliser le vecteur de direction (le rendre unitaire)
-    float magnitude = std::sqrt(direction.x * direction.x + direction.y * direction.y);
-    if (magnitude != 0) {
-        direction /= magnitude;
-    }
+    direction = normalize(direction);
+    // float magnitude = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+    // if (magnitude != 0) {
+    //     direction /= magnitude;
+    // }
 
     float vitesse = entity.getSpeed();
 
@@ -127,24 +142,14 @@ void Hero::mouv_ennemi(Enemy& entity, sf::Vector2f prevPositionEntity1) {
         sf::Vector2f nouvellePosition = sf::Vector2f(entity.getx(), entity.gety());
         entity.change_pos(nouvellePosition);
     }
-    }
-    else{
+    //}
+    //else{
+        if(entity.getSpeed() == 0.0f){
+        entity.tir_ennemi(textures, direction);
         return; //si l'ennemi n'est pas conçu pour bouger, rien à faire.
     }
 };
 
-float distance_entre_points(sf::Vector2f point1, sf::Vector2f point2) {
-    return std::sqrt(std::pow(point2.x - point1.x, 2) + std::pow(point2.y - point1.y, 2));
-};
-
-sf::Vector2f normalize(sf::Vector2f vector) {
-    float length = std::sqrt(vector.x * vector.x + vector.y * vector.y);
-    if (length != 0.0f) {
-        return sf::Vector2f(vector.x / length, vector.y / length);
-    } else {
-        return vector;
-    }
-};
 
 std::vector<Enemy*> Hero::EnnemisDansSalle(const std::vector<Enemy>& tousLesEnnemis, salle* room) {
     std::vector<Enemy*> ennemisDansSalle;

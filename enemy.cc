@@ -40,3 +40,14 @@ void Enemy :: collision_balles(std::vector<Balles>& balles){
         balles.erase(balles.begin() + *it);
     }
 };
+
+void Enemy :: tir_ennemi(textureManager& textures, sf::Vector2f direction){
+    if(Shootclock.getElapsedTime() > timeshoot){
+    sf::Vector2f origin = this->getforme().getPosition(); //elle part de là où on est
+    Balles projectile(origin, direction, textures);
+    balles.push_back(projectile);
+    projectile.deplacer();
+    //projectile.collision_ennemi(ennemis);
+    Shootclock.restart();
+    }
+};

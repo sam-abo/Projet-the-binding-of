@@ -25,7 +25,7 @@ public:
     void changersalle(salle* &salleActive, salle &newsalle, std::string direction);
     //mouvement du héros et mouvements des ennemis relativement au héros
     void mouvement(Touches touche);
-    void mouv_ennemi(Enemy& entity, sf::Vector2f prevPositionEntity1);
+    void mouv_ennemi(Enemy& entity, sf::Vector2f prevPositionEntity1, textureManager& textures);
     //collisions
     bool coll_ennemi(Enemy& foe, sf::Vector2f prevPositionEntity1);
     void collision_soin(std::vector<soin>& heal, salle* salleActive);

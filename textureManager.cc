@@ -21,6 +21,7 @@ void textureManager::chargerToutesTextures(){
     loadTexture("fond","textures/fondgris.jpg");
     loadTexture("menu", "textures/fondmenu.png");
     loadTexture("bullet","textures/bullet.png");
+    //loadTexture("bullet_foe","textures/bullet_foe.png");
     loadTexture("crackhead","textures/crackhead.png");
     loadTexture("nezar","textures/nezar.png");
     loadTexture("soin", "textures/soin.png");
