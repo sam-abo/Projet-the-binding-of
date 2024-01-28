@@ -23,7 +23,7 @@ void textureManager::chargerToutesTextures(){
     loadTexture("bullet","textures/bullet.png");
     //loadTexture("bullet_foe","textures/bullet_foe.png");
     loadTexture("crackhead","textures/crackhead.png");
-    loadTexture("nezar","textures/nezar.png");
+    loadTexture("nezar","textures/character.png");
     loadTexture("soin", "textures/soin.png");
     loadTexture("carte étudiante", "textures/carte_etu.png");
     loadTexture("pass navigo", "textures/pass_navigo.png");

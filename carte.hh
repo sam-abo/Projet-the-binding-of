@@ -47,12 +47,15 @@ class carte {
 
         //SETTERS
         //gère les sorties
-        void setSortie(int w, int h){grille[w-1][h-1].creersortie();} //avec cette version de la méthode, on créé une sortie à l'endroit spécifié
-        void setSortie(){grille[width-1][height-1].creersortie();} // avec cette version de la méthode, on créé une sortie à la dernière salle, celle en bas à droite
+        void setSortie(int w, int h){grille[w-1][h-1]->creersortie();} //avec cette version de la méthode, on créé une sortie à l'endroit spécifié
+        void setSortie(){grille[width-1][height-1]->creersortie();} // avec cette version de la méthode, on créé une sortie à la dernière salle, celle en bas à droite
         //gère la salle active
-        void setsalleActive(salle salle){salleActive=&salle;} //initialise la salle active comme étant la sale passée en paramètre
+        void setsalleActive(salle* salle) {
+            salleActive = salle;
+        } //initialise la salle active comme étant la sale passée en paramètre
         //GETTERS
-        salle** getgrille() {return grille;}
+        
+        salle*** getgrille() { return grille; }
         salle* getsalleActive() {return salleActive;}
         std::vector<Entity>& getEntities() { return entities; }
         std::vector<Enemy>& getFoes() { return foes; }
@@ -64,8 +67,12 @@ class carte {
         //dimensions de la carte, elles feront toutes 3x3
         size_t width; //= 3;
         size_t height; //=3;
-        salle** grille; //une grille de salle pour la carte courante qui aura donc les dimensions width et height
-        salle* salleActive;
+
+        salle* salleActive;  // Pointer to salle, not a direct object
+
+
+        salle*** grille; //une grille de salle pour la carte courante qui aura donc les dimensions width et height
+       
         int numsalleheight;
         int numsallewidth;
         //fameuse matrice des portes, plus rapide de la déclarer là. configuration

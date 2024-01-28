@@ -1,4 +1,5 @@
 #include "Game.hh"
+#include <cmath> 
 
 void Game::game_design(Afficher& jeu, Hero& hero, sf::Vector2f prevPositionEntity1, Touches key){
         std::vector<Entity>& entities = carteActive->getEntities();
@@ -104,6 +105,7 @@ void Game :: jouer(){
 
     // Boucle principale
     while (jeu.getWindow().isOpen()) {
+      //  sf::Vector2f merchantPosition = salleMarchandInstance.getMerchantPosition();
         // Gestion des evenements
         jeu.fermeture(key);
         sf::Event event;
@@ -142,6 +144,19 @@ void Game :: jouer(){
             //si ça reste comme ça, mettre un if numCarteActive = genre 6 -> fin du jeu, passer à un écran de fin
         }
         
+        //const float interactionThreshold = 50.0f; // Define the interaction threshold
+
+    // Assuming salleMarchandInstance is correctly instantiated and accessible here
+     //   sf::Vector2f merchantPosition = salleMarchandInstance.getMerchantPosition();
+
+       // sf::Vector2f heroPosition = hero.getforme().getPosition();
+        // You need to implement getMerchantPosition() in salleMarchand
+
+      //  float distance = sqrt(pow(heroPosition.x - merchantPosition.x, 2) + pow(heroPosition.y - merchantPosition.y, 2));
+      //  if (distance < interactionThreshold) { // interactionThreshold is the max distance to interact
+            // Trigger interaction, like opening a dialogue box
+       //     salleMarchandInstance.interact();
+       // }
         
         jeu.getWindow().clear(); //? utile là ?
         

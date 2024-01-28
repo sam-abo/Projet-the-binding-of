@@ -25,3 +25,27 @@ salleMarchand::salleMarchand(int width, int height, sf::Color color,std::string 
 
 }
 
+
+
+sf::Vector2f salleMarchand::getMerchantPosition() {
+    return salle::marchand.getPosition();
+}
+
+
+
+void salleMarchand::talkToMerchant() {
+    // Implementation of talking to the merchant
+    hastalkedtomerchant = true;
+
+    // Placeholder for additional logic
+    // e.g., dialogue with the merchant, transactions, etc.
+}
+
+void salleMarchand::interact() {
+    // Show dialogue
+    std::cout << "Merchant: Hey, would you like some croissant?" << std::endl;
+
+
+
+    std::cout << "Merchant: Good luck!" << std::endl;
+}

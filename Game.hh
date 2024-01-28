@@ -9,6 +9,8 @@
 #include "menu.hh"
 #include "textureManager.hh"
 
+
+
 class Game {
     public :
     Game(int i);
@@ -25,6 +27,7 @@ class Game {
     //...
     
     private :
+    
     // void libererMemoireCartePrecedente() {
     //     if (numCarteActive > 0) {
     //         cartes[numCarteActive - 1].libererMemoire();

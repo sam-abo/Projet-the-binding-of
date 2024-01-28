@@ -33,7 +33,11 @@ class salle {
         sf::Sprite Getfond() {return fond;}
         std::string Gettype(){return type;}
 
-        
+        virtual void interact() =0;
+
+        virtual ~salle() {};
+
+
         
         int getheight() {return height;}
         int getwidth() {return width;}
@@ -58,4 +62,5 @@ class salle {
         //attributs pour l'affichage
         sf::Sprite fond;
         std::string type; //pourquoi faire finalement ?
+        bool isWon = false;
 };

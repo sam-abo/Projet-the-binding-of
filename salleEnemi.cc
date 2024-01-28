@@ -17,3 +17,9 @@ salleEnemi::salleEnemi(int width, int height, sf::Color color,std::string gauche
     salle::fond.setScale(width / static_cast<float>(textures.getTexture("fond").getSize().x), height / static_cast<float>(textures.getTexture("fond").getSize().y));
     salle::fond.setPosition(0.0f,0.0f);
 }
+
+void salleEnemi::interact() {
+    // Implementation of interaction in an enemy room
+    // For instance, triggering a battle
+    std::cout << "Preparing for battle with enemies" << std::endl;
+}
