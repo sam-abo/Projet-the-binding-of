@@ -146,8 +146,19 @@ void Game :: jouer(){
         
         //const float interactionThreshold = 50.0f; // Define the interaction threshold
 
-    
-        
+        // Assuming salleMarchandInstance is correctly instantiated and accessible here
+     //   sf::Vector2f merchantPosition = salleMarchandInstance.getMerchantPosition();
+
+       // sf::Vector2f heroPosition = hero.getforme().getPosition();
+        // You need to implement getMerchantPosition() in salleMarchand
+
+      //  float distance = sqrt(pow(heroPosition.x - merchantPosition.x, 2) + pow(heroPosition.y - merchantPosition.y, 2));
+      //  if (distance < interactionThreshold) { // interactionThreshold is the max distance to interact
+            // Trigger interaction, like opening a dialogue box
+       //     salleMarchandInstance.interact();
+       // }
+       
+              
         jeu.getWindow().clear(); //? utile là ?
         
         //tous ces affichages sont potentiellement mettables dans une méthode de game ?
