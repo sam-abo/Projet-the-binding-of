@@ -12,7 +12,7 @@ Enemy::Enemy(float size, float x, float y, const salle* salle, float vitesse, te
     Objet::forme.setTexture(textures.getTexture("crackhead"));
     Objet::forme.setPosition(x, y);
     salleAppartenance = salle;
-    hp = 150;
+    hp = 15;
 }
 
 Enemy::Enemy(float size,  float x, float y, const salle* salle, textureManager& textures) {
@@ -22,7 +22,7 @@ Enemy::Enemy(float size,  float x, float y, const salle* salle, textureManager& 
     Objet::forme.setTexture(textures.getTexture("crackhead"));
     Objet::forme.setPosition(x, y);
     salleAppartenance = salle;
-    hp = 150;
+    hp = 15;
     Entity::vitesse = 0.0f;
 }
 

@@ -170,4 +170,19 @@ void carte::deplacementEntreSalle(Hero &hero) {
     }
 };
 
+void carte:: destruct_enemi(){
+    std::vector<size_t> indices_a_supprimer;
+    for (size_t i = 0; i < foes.size(); ++i) {
+        if (foes[i].getHP() == 0) {
+            
+            indices_a_supprimer.push_back(i);
+        }
+    }
+
+    // Supprimer les balles après la boucle
+    for (auto it = indices_a_supprimer.rbegin(); it != indices_a_supprimer.rend(); ++it) {
+        foes.erase(foes.begin() + *it);
+    }
+};
+
 

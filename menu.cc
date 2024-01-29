@@ -33,12 +33,21 @@ Menu::Menu(int width, int height,textureManager& textures) {
         fond.setPosition(0.0f,0.0f);
     }
 
+Menu::Menu(int width, int height){
+    font.loadFromFile("textures/arial.ttf");
+    startGameText.setFont(font);
+    startGameText.setString("Bienvenue a Chatelet les Halles jeune aventurier \n\n Appuyer sur espace pour commencer");
+    startGameText.setCharacterSize(40);
+    startGameText.setFillColor(sf::Color::White);
+    startGameText.setPosition(30,30);
+}
+
 
 std::string Menu::handleMouseClick(int mouseX, int mouseY) {
         // Ajoutez la logique pour gérer les clics de souris 
         if (mouseX > width/8-100 && mouseX < width/8+100 && mouseY > height/1.1-75 && mouseY < height/1.1-25) {
             // Clic sur "Start Game"
-            return "jeu";
+            return "transi1";
             
         } else if (mouseX > width/8-100 && mouseX < width/8+100 && mouseY > height/1.1+25 && mouseY < height/1.1+75) {
             // Clic sur "Exit"

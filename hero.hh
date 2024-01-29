@@ -30,6 +30,7 @@ public:
     bool coll_ennemi(Enemy& foe, sf::Vector2f prevPositionEntity1);
     void collision_soin(std::vector<soin>& heal, salle* salleActive);
     void collision_items(std::vector<matos>& quete, salle* salleActive);
+    void collision_balles(std::vector<Balles>& balles);
 
     
     void tirer(Touches key, std::vector<Enemy>& ennemis, textureManager& textures, salle* room);

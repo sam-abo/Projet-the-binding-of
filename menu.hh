@@ -6,6 +6,7 @@
 class Menu {
 public:
     Menu(int width, int height,textureManager& textures);
+    Menu(int width, int height);
     std::string handleMouseClick(int mouseX, int mouseY);
     // Ajoutez d'autres méthodes pour gérer les événements de bouton si nécessaire
     sf::RectangleShape getstartGameButton(){return startGameButton;}

@@ -6,6 +6,7 @@ void Game::game_design(Afficher& jeu, Hero& hero, sf::Vector2f prevPositionEntit
         std::vector<Enemy>& foes = carteActive->getFoes();
         std::vector<soin>& pack_soin = carteActive->getPackSoin();
         std::vector<matos>& items = carteActive->getmatos();
+        carteActive->destruct_enemi();
     //==================================================================================== chaque boucle est transformable en méthode.
     //une boucle qui gère l'affichage et l'intéraction avec toutes les entités de la map
         for ( Entity& entite : entities) {
@@ -22,6 +23,7 @@ void Game::game_design(Afficher& jeu, Hero& hero, sf::Vector2f prevPositionEntit
                 jeu.afficherHP(mob);
                 jeu.dessiner_balles(mob.getBalles());
                 mob.collision_balles(hero.getBalles());
+                hero.collision_balles(mob.getBalles());
                 hero.mouv_ennemi(mob, prevPositionEntity1, *textures);
             }
         }
@@ -98,9 +100,10 @@ void Game :: jouer(){
     jeu.Fenetre_jeu("The binding of");
     Touches key;
     Menu menu(screenWidth-100,screenHeight-100, *textures);
+    Menu transi1(screenWidth-100,screenHeight-100);
 
     // Creation du héro: le perso principal
-    Hero hero(screenWidth/25.0f, *textures, 200.0f, 100.0f,1.0f);
+    Hero hero(screenWidth/40.0f, *textures, 200.0f, 100.0f,1.0f);
     
 
     // Boucle principale
@@ -119,6 +122,10 @@ void Game :: jouer(){
             debutJeu = jeu.dessiner_menu(menu,event);
         }
         else if (debutJeu == "quitter"){jeu.getWindow().close();}
+        else if (debutJeu == "transi1"){
+            jeu.dessiner_menu(transi1,event);
+            if (key.isKeyPressed(Space)){debutJeu = "jeu";}
+            }
         else {
         
         //quelque chose qui sauvegarde en permanence l'ancienne position du héro

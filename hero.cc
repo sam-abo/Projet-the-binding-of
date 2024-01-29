@@ -232,3 +232,18 @@ void Hero :: collision_items(std::vector<matos>& quete, salle* salleActive){
         quete.erase(quete.begin() + *it);
     }
 };
+
+void Hero :: collision_balles(std::vector<Balles>& balles){
+    std::vector<size_t> indices_a_supprimer;
+    for (size_t i = 0; i < balles.size(); ++i) {
+        if (this->getforme().getGlobalBounds().intersects(balles[i].getGlobalBounds())) {
+            this->hp -= 1;
+            indices_a_supprimer.push_back(i);
+        }
+    }
+
+    // Supprimer les balles après la boucle
+    for (auto it = indices_a_supprimer.rbegin(); it != indices_a_supprimer.rend(); ++it) {
+        balles.erase(balles.begin() + *it);
+    }
+};

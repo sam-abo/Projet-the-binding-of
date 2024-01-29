@@ -26,6 +26,7 @@ class carte {
         void Init(size_t i, textureManager& textures);
         void Init0(textureManager& textures);
         void Init1(textureManager& textures);
+        void destruct_enemi();
         // void Init2(textureManager& textures);
         // void Init3(textureManager& textures);
         /*================================================
