@@ -4,15 +4,16 @@
 Objet::Objet() {}
 
 // Parameterized constructor
-Objet::Objet(float size, textureManager& textures, float x, float y, const salle* salle) {
-    x = x;
-    y = y;
-    forme.setScale(size / static_cast<float>(textures.getTexture("marchand").getSize().x),
-                   size / static_cast<float>(textures.getTexture("marchand").getSize().x));
-    forme.setTexture(textures.getTexture("marchand"));
-    forme.setPosition(x, y);
+Objet::Objet(float size, textureManager& textures, float x, float y, const salle* salle,std::string nom) {
+    this->x = x;
+    this->y = y;
+    forme.setScale(size / static_cast<float>(textures.getTexture(nom).getSize().x),
+                   size / static_cast<float>(textures.getTexture(nom).getSize().x));
+    forme.setTexture(textures.getTexture(nom));
+    forme.setPosition(this->x, this->y);
     salleAppartenance = salle;
 }
+
 
 // Get the global bounds of the object
 sf::FloatRect Objet::getGlobalBounds() {

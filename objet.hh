@@ -7,7 +7,7 @@
 class Objet {
 public:
     Objet();
-    Objet(float size, textureManager& textures, float x, float y, const salle* salle);
+    Objet(float size, textureManager& textures, float x, float y, const salle* salle, std::string nom);
 
     virtual sf::FloatRect getGlobalBounds(); // Intervenes in collision
 
