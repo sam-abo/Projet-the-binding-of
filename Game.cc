@@ -1,5 +1,7 @@
 #include "Game.hh"
 #include <cmath> 
+#include <cstdlib>
+#include <ctime>
 
 void Game::game_design(Afficher& jeu, Hero& hero, sf::Vector2f prevPositionEntity1, Touches key){
         std::vector<Entity>& entities = carteActive->getEntities();
@@ -51,7 +53,17 @@ void Game::game_design(Afficher& jeu, Hero& hero, sf::Vector2f prevPositionEntit
         //===================================================================== transformable en méthode. 
         //faire attention que la sortie ne se trouves pas toujours au même endroit, un générateur de onmbres aléatoires peut être bien
         if (items.empty()){ //si on a récupéré tous les items de la carte :
+            // if(numCarteActive == 0){
             cartes[numCarteActive].setSortie(); //la sortie apparait
+            // }
+        //     else{
+        //         std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
+        // // Générer deux nombres aléatoires entre 0 et 3 inclus
+        //         int w = std::rand() % 4 +1;  // % 4 donne un reste entre 0 et 3
+        //         int h = std::rand() % 4 +1;
+        //         cartes[numCarteActive].setSortie(w,h);
+        //     }
         }
         //=====================================================================
 
@@ -77,15 +89,14 @@ Game::Game(int i){
     //cartes[0].setSortie(); //set sortie dit que l'objet numréro 0 du vecteur de cartes a une sortie et qu'on l'a mise à la fin de la map.
     //============================================================================================
     
-    /*
-    for(size_t k ; k < 6 ? ; i++){
-        cartes[k].Init(i, *textures)
-    }
-    */
+    
     cartes[0].Init(0, *textures); //init, donc j'ai accès à la  taille des salles
 
-    cartes.push_back(carte(screenWidth-100, screenHeight-100,*textures)); //on ajoute une deuxième carte. On ne lui donne pas de sortie.
-    cartes[1].Init(1,*textures);
+    // cartes.push_back(carte(screenWidth-100, screenHeight-100,*textures)); //on ajoute une deuxième carte. On ne lui donne pas de sortie.
+    // cartes[1].Init(1,*textures);
+    // cartes.push_back(carte(screenWidth-100, screenHeight-100,*textures)); //on ajoute une deuxième carte. On ne lui donne pas de sortie.
+    // cartes[2].Init(2,*textures);
+
     carteActive = &cartes[0]; //on définit la carte active comme la 1ère du vecteur de cartes.
 }
 
@@ -146,6 +157,8 @@ void Game :: jouer(){
             //le jeu ne devrait pas tout charger en même temps.
             //corps de fonction à changer pour faire l'appel potentiellement à d'autres niveaux ? ou a priori ça peut rester comme ça
             numCarteActive++;
+            cartes.push_back(carte(screenWidth-100, screenHeight-100,*textures));
+            cartes[numCarteActive].Init(numCarteActive, *textures);
             //libererMemoireCartePrecedente();
             carteActive=&cartes[numCarteActive];
             //si ça reste comme ça, mettre un if numCarteActive = genre 6 -> fin du jeu, passer à un écran de fin
