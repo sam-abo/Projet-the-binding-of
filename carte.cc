@@ -6,21 +6,21 @@
 //#include "salle.hh"
 
 
-void carte::libererMemoire() {
-    // ... existing code for clearing vectors ...
-    // Libérer la mémoire occupée par les vecteurs
-        pack_soin.clear();
-        foes.clear();
-        entities.clear();
+// void carte::libererMemoire() {
+//     // ... existing code for clearing vectors ...
+//     // Libérer la mémoire occupée par les vecteurs
+//         pack_soin.clear();
+//         foes.clear();
+//         entities.clear();
 
-    for (size_t i = 0; i < width; ++i) {
-        for (size_t j = 0; j < height; ++j) {
-            delete grille[i][j]; // Correctly using delete on pointers
-        }
-        delete[] grille[i];
-    }
-    delete[] grille;
-}
+//     for (size_t i = 0; i < width; ++i) {
+//         for (size_t j = 0; j < height; ++j) {
+//             delete grille[i][j]; // Correctly using delete on pointers
+//         }
+//         delete[] grille[i];
+//     }
+//     delete[] grille;
+// }
 
 
 carte::carte(int widthsalle, int heightsalle, textureManager& textures) {
@@ -74,15 +74,15 @@ void carte::Init(size_t i, textureManager& textures){
     case 3 :
         Init3(textures);
         break;
-    case 4 :
-        Init4(textures);
-        break;
-    case 5 :
-        Init5(textures);
-        break;
-    case 6 :
-        Init6(textures);
-        break;
+    // case 4 :
+    //     Init4(textures);
+    //     break;
+    // case 5 :
+    //     Init5(textures);
+    //     break;
+    // case 6 :
+    //     Init6(textures);
+    //     break;
 
     //entièrement déterministe, on aurait pu essayer de faire des choses qui mettent des ennemis au hasard, mais pas vraimet le temps de s'y pencher pour ce game_design
     
@@ -100,11 +100,11 @@ void carte::Init0(textureManager& textures){
     foes.push_back(Enemy(90.0f, 300.0f, 410.0f,grille[1][1], textures));
     foes.push_back(Enemy(90.0f, 300.0f, 410.0f,grille[0][1], 0.65f, textures));
 
-    foes.push_back(Enemy(90.0f, 830.0f, 100.0f,grille[1][0], textures));
+    foes.push_back(Enemy(90.0f, 430.0f, 100.0f,grille[1][0], textures));
     foes.push_back(Enemy(90.0f, 710.0f, 210.0f,grille[1][0], textures));
     foes.push_back(Enemy(90.0f, 114.0f, 623.0f,grille[1][0], 0.55, textures));
     
-    foes.push_back(Enemy(90.0f, 800.0f, 500.0f,grille[0][1], textures));
+    foes.push_back(Enemy(90.0f, 200.0f, 700.0f,grille[0][1], textures));
     foes.push_back(Enemy(90.0f, 300.0f, 410.0f,grille[0][1], 0.65f, textures));
 
     foes.push_back(Enemy(90.0f, 207.0f, 580.0f,grille[2][1], textures));
@@ -172,12 +172,43 @@ void carte::Init2(textureManager& textures){
     pack_soin.push_back(soin(600.0f, 700.0f, grille[0][2], textures, 2));
     pack_soin.push_back(soin(400.0f, 400.0f, grille[2][2], textures, 6));
     pack_soin.push_back(soin(200.0f, 100.0f, grille[0][0], textures, 1));
-    pack_soin.push_back(soin(700.0f, 400.0f, grille[1][1], textures, 4));
+    pack_soin.push_back(soin(3450.0f, 302.0f, grille[1][1], textures, 4));
     pack_soin.push_back(soin(500.0f, 700.0f, grille[2][1], textures, 7));
     pack_soin.push_back(soin(600.0f, 500.0f, grille[1][2], textures, 5));
  
     
     items.push_back(matos(456.0f,802.0f, grille[2][1], textures,"keys")); 
+
+    //peut être une ou 2 entités au début du niveau ou dans d'autres salles pour parler avec elles et ettayer l'histoire. 
+};
+
+void carte::Init3(textureManager& textures){
+    foes.push_back(Enemy(90.0f, 700.0f, 300.0f, grille[1][1], textures));
+foes.push_back(Enemy(90.0f, 400.0f, 200.0f, grille[1][1], 0.50f, textures));
+
+foes.push_back(Enemy(90.0f, 500.0f, 700.0f, grille[0][2], textures));
+foes.push_back(Enemy(90.0f, 600.0f, 400.0f, grille[0][2], 0.45f, textures));
+
+foes.push_back(Enemy(90.0f, 800.0f, 710.0f, grille[0][1], 0.65f, textures));
+foes.push_back(Enemy(90.0f, 300.0f, 500.0f, grille[2][1], 0.40f, textures));
+foes.push_back(Enemy(90.0f, 550.0f, 500.0f, grille[2][2], 0.55f, textures));
+foes.push_back(Enemy(90.0f, 800.0f, 460.0f, grille[1][0], 0.85f, textures));
+
+// Vecteur d'objets de soin de la carte :
+
+pack_soin.push_back(soin(300.0f, 500.0f, grille[0][1], textures, 3));
+pack_soin.push_back(soin(700.0f, 200.0f, grille[1][0], textures, 8));
+pack_soin.push_back(soin(600.0f, 700.0f, grille[0][2], textures, 2));
+pack_soin.push_back(soin(400.0f, 400.0f, grille[2][2], textures, 6));
+pack_soin.push_back(soin(200.0f, 100.0f, grille[0][0], textures, 1));
+pack_soin.push_back(soin(3450.0f, 302.0f, grille[1][1], textures, 4));
+pack_soin.push_back(soin(500.0f, 700.0f, grille[2][1], textures, 7));
+pack_soin.push_back(soin(600.0f, 500.0f, grille[1][2], textures, 5));
+
+items.push_back(matos(200.0f, 500.0f, grille[0][2], textures, "carte etudiante"));
+
+// Peut-être d'autres ennemis ou objets ici...
+
 
     //peut être une ou 2 entités au début du niveau ou dans d'autres salles pour parler avec elles et ettayer l'histoire. 
 };
