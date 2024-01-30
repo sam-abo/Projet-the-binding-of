@@ -25,7 +25,7 @@ void textureManager::chargerToutesTextures(){
     loadTexture("crackhead","textures/crackhead.png");
     loadTexture("nezar","textures/character.png");
     loadTexture("soin", "textures/soin.png");
-    loadTexture("carte étudiante", "textures/carte_etu.png");
+    loadTexture("carte etudiante", "textures/carte_etu.png");
     loadTexture("pass navigo", "textures/pass_navigo.png");
 }
 

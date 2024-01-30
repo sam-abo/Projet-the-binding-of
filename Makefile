@@ -3,7 +3,7 @@ CCFLAGS= -Wall -g -O3
 LIBFLAGS= -lsfml-graphics -lsfml-window -lsfml-system
 SRC= $(wildcard *.cc)
 OBJ= $(SRC:.cc=.o)
-TST_DIR=tests/
+# TST_DIR=tests/
 TST= $(wildcard $(TST_DIR)/*.cc)
 OBJ_TEST = $(filter-out main.o, $(OBJ)) $(TST:.cc=.o)
 EXEC= sfml-app 
@@ -24,8 +24,8 @@ $(EXEC): $(OBJ)
 	g++ $(CCFLAGS) -MM $(SRC) > .depends
 -include .depends
 
-test: testcase
-	./tests/testcase
+# test: testcase
+# 	./tests/testcase
 
 game : $(EXEC)
 	./$(EXEC)

@@ -94,20 +94,25 @@ void carte::Init0(textureManager& textures){
     //vecteur d'entité de la carte 0
     entities.push_back(Entity(90.0f, textures, 800.0f, 500.0f,grille[0][0]));
     entities.push_back(Entity(90.0f, textures, 500.0f, 800.0f,grille[0][0]));
-    entities.push_back(Entity(90.0f, textures, 500.0f, 800.0f,grille[1][1]));
-    //une entité qui possède un objet qu'elle va nous donner :
-    entities.push_back(Entity(90.0f, textures, 730.0f, 600.0f,grille[2][0]));
 
     //vecteur d'ennemi de la carte 0
     foes.push_back(Enemy(90.0f, 800.0f, 500.0f,grille[1][1], textures));
-    foes.push_back(Enemy(90.0f, 800.0f, 500.0f,grille[0][1], 0.35f, textures));
+    foes.push_back(Enemy(90.0f, 300.0f, 410.0f,grille[1][1], textures));
+    foes.push_back(Enemy(90.0f, 300.0f, 410.0f,grille[0][1], 0.65f, textures));
+    
+    foes.push_back(Enemy(90.0f, 800.0f, 500.0f,grille[0][1], textures));
+    foes.push_back(Enemy(90.0f, 300.0f, 410.0f,grille[0][1], 0.65f, textures));
+
+    foes.push_back(Enemy(90.0f, 207.0f, 580.0f,grille[2][1], textures));
+    foes.push_back(Enemy(90.0f, 550.0f, 500.0f,grille[2][2], 0.55f, textures));
+    foes.push_back(Enemy(90.0f, 810.0f, 453.0f,grille[2][0], 0.85f, textures));
+    
 
     //vecteur d'objets de soin de la carte 0 :
     pack_soin.push_back(soin(500.0f, 800.0f,grille[0][1], textures, 20));
     pack_soin.push_back(soin(500.0f, 800.0f,grille[1][0], textures, 40));   
 
-    items.push_back(matos(362.0f,684.0f, grille[2][2], textures,"carte étudiante"));    
-    // items.push_back(entities.back().getItem()); 
+    items.push_back(matos(362.0f,684.0f, grille[2][2], textures,"carte etudiante"));
     };
 
 
@@ -115,13 +120,13 @@ void carte::Init1(textureManager& textures){
     //premier vrai niveau
     //quelques ennemis ======================================================= il en faut beaucoup plus, faire des ennemis qui bougent (vite !), des ennemis qui bougent pas etc
     foes.push_back(Enemy(90.0f, 800.0f, 500.0f,grille[1][1], textures));
-    foes.push_back(Enemy(90.0f, 600.0f, 300.0f,grille[1][1], 0.20f, textures));
+    foes.push_back(Enemy(90.0f, 600.0f, 300.0f,grille[1][1], 0.50f, textures));
 
     foes.push_back(Enemy(90.0f, 800.0f, 500.0f,grille[0][2], textures));
     foes.push_back(Enemy(90.0f, 700.0f, 700.0f,grille[0][2], 0.45f, textures));
 
-    foes.push_back(Enemy(90.0f, 800.0f, 710.0f,grille[0][1], 0.25f, textures));
-    foes.push_back(Enemy(90.0f, 300.0f, 500.0f,grille[2][1], 0.10f, textures));
+    foes.push_back(Enemy(90.0f, 800.0f, 710.0f,grille[0][1], 0.65f, textures));
+    foes.push_back(Enemy(90.0f, 300.0f, 500.0f,grille[2][1], 0.40f, textures));
     foes.push_back(Enemy(90.0f, 550.0f, 500.0f,grille[2][2], 0.55f, textures));
     foes.push_back(Enemy(90.0f, 800.0f, 460.0f,grille[1][0], 0.85f, textures));
     
@@ -140,16 +145,6 @@ void carte::Init1(textureManager& textures){
 
     //peut être une ou 2 entités au début du niveau ou dans d'autres salles pour parler avec elles et ettayer l'histoire. 
 };
-
-//=================================================== à transformer en overload operator ??
-// void carte::print() {
-//     for (int x = 0; x < width; x++) {
-//         for (int y = 0; y < height; y++) {
-//             //grille[x][y].print(widthsalle, heightsalle, valeur.second, valeur.first)
-//         }
-//     }
-// }
-//===================================================
 
 void carte::deplacementEntreSalle(Hero &hero) {
     if(hero.getGlobalBounds().intersects(salleActive->Getpgauche().getGlobalBounds())) {

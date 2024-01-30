@@ -27,22 +27,17 @@ class carte {
         void Init0(textureManager& textures);
         void Init1(textureManager& textures);
         void destruct_enemi();
-        // void Init2(textureManager& textures);
-        // void Init3(textureManager& textures);
+        void Init2(textureManager& textures);
+        void Init3(textureManager& textures);
         /*================================================
         ce serait bien que pour un des niveaux on ait un ennemi qui va vite et qui est gros et qui peut traverser les salles comme nous (on a la fonctoin pour
         avec déplacer dans entité normalement) qui nous poursuives et le but serait de survivre sans qu'il nous touches pendant un certain temps. 
         idée comme ça mais relou au niveau de la gestion pour le déplacement des ennemis et le timer.
         ==================================================*/
-        // void Init4(textureManager& textures);
-        // void Init5(textureManager& textures);
-        // void Init6(textureManager& textures);
+        void Init4(textureManager& textures);
+        void Init5(textureManager& textures);
+        void Init6(textureManager& textures);
         
-        //ajout de salle (a priori pas besoin)
-        // void ajouterSalle(int x, int y, int widthsalle, int heightsalle, sf::Color color,std::string hautbas, std::string gauchedroite);
-        
-        //void print(); //a changer en opérateur pour tests unitaires ? à la base devait simplement servir à afficher la dimension des salles d'une carte.
-
         //gère le déplacement du héros
         void deplacementEntreSalle(Hero &hero);
 
