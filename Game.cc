@@ -169,19 +169,17 @@ void Game :: jouer(){
             //le jeu ne devrait pas tout charger en même temps.
             //corps de fonction à changer pour faire l'appel potentiellement à d'autres niveaux ? ou a priori ça peut rester comme ça
             numCarteActive++;
-
-            printf("%d\n",cartes.size());
-            printf("%d\n",numCarteActive);
             
-
-            cartes.push_back(carte(screenWidth-100, screenHeight-100,*textures));
-            cartes[numCarteActive].Init(numCarteActive, *textures);
-            //cartes[cartes.size()-1].setSortie();
-
-            if(numCarteActive == cartes.size()) {debutJeu = "fin";}
-            //libererMemoireCartePrecedente();
-            else
+            if(numCarteActive < 6){
+                cartes.push_back(carte(screenWidth-100, screenHeight-100,*textures));
+                cartes[numCarteActive].Init(numCarteActive, *textures);
                 carteActive=&cartes[numCarteActive];
+            }
+            //libererMemoireCartePrecedente();
+            else    {
+                numCarteActive--;
+                debutJeu = "fin";
+            }
             //si ça reste comme ça, mettre un if numCarteActive = genre 6 -> fin du jeu, passer à un écran de fin
         }
         
