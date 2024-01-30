@@ -1,18 +1,21 @@
 #pragma once
+
 #include "objet.hh"
 
 class matos : public Objet {
 public:
-    //constructeur des différents matos qu'on va chercher.
+    // Constructors
     matos();
-    matos(float x, float y, const salle* salle, textureManager& textures, std::string nom); //du matos qui est dnas une salle prédéfinie
-    //du matos qui est associé uniquement à une salle, dans cette salle il devra y aboir un pnj ; dans cette salle il devra y avoir un pnj pour nous le donner.
+    matos(float x, float y, const salle* salle, textureManager& textures, std::string nom);
     matos(const salle* salle, textureManager& textures, std::string nom);
 
-    std::string getName(){return name;};
+    // Getter
+    std::string getName() const { return name; }
 
-private :
-    //éventuellement un truc style un bool pour dire si il a été récupéré ou pas.
+private:
+    // Attributes
     std::string name;
-    size_t size = 10.0f; //aussi grand que les soins.
+    static constexpr size_t size = 10.0f; // Adjust as needed
 };
+
+#include "matos.cc"  // Include the corresponding implementation file
