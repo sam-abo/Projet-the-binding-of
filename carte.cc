@@ -205,7 +205,7 @@ pack_soin.push_back(soin(3450.0f, 302.0f, grille[1][1], textures, 4));
 pack_soin.push_back(soin(500.0f, 700.0f, grille[2][1], textures, 7));
 pack_soin.push_back(soin(600.0f, 500.0f, grille[1][2], textures, 5));
 
-items.push_back(matos(200.0f, 500.0f, grille[0][2], textures, "carte etudiante"));
+items.push_back(matos(200.0f, 500.0f, grille[0][2], textures, "piece_id"));
 };
 
 void carte::Init4(textureManager& textures){
@@ -231,7 +231,7 @@ pack_soin.push_back(soin(400.0f, 600.0f, grille[1][1], textures, 6));
 pack_soin.push_back(soin(650.0f, 550.0f, grille[2][1], textures, 4));
 pack_soin.push_back(soin(750.0f, 500.0f, grille[1][2], textures, 8));
 
-items.push_back(matos(500.0f, 700.0f, grille[0][0], textures, "piece_id"));
+//items.push_back(matos(500.0f, 700.0f, grille[0][0], textures, "piece_id"));
 }
 
 
