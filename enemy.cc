@@ -12,7 +12,7 @@ Enemy::Enemy(float size, float x, float y, const salle* salle, float vitesse, te
     Objet::forme.setTexture(textures.getTexture("crackhead"));
     Objet::forme.setPosition(x, y);
     salleAppartenance = salle;
-    hp = 15;
+    hp = 35;
 }
 
 Enemy::Enemy(float size,  float x, float y, const salle* salle, textureManager& textures) {

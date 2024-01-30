@@ -62,6 +62,8 @@ void Hero::changersalle( salle* &salleActive, salle &newsalle, std::string direc
                 salleActive=&newsalle;
             }
     }
+
+    balles.clear();
 }
 
 bool Hero::coll_ennemi(Enemy& foe, sf::Vector2f prevPositionEntity1){
