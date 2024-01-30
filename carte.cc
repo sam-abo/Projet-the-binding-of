@@ -96,20 +96,31 @@ void carte::Init0(textureManager& textures){
     entities.push_back(Entity(90.0f, textures, 500.0f, 800.0f,grille[0][0]));
 
     //vecteur d'ennemi de la carte 0
-    foes.push_back(Enemy(90.0f, 800.0f, 500.0f,grille[1][1], textures));
-    foes.push_back(Enemy(90.0f, 300.0f, 410.0f,grille[1][1], textures));
-    foes.push_back(Enemy(90.0f, 300.0f, 410.0f,grille[0][1], 0.65f, textures));
+    foes.push_back(Enemy(90.0f, 800.0f, 500.0f, grille[1][1], textures));
+    foes.push_back(Enemy(90.0f, 300.0f, 410.0f, grille[1][1], textures));
+    foes.push_back(Enemy(90.0f, 300.0f, 410.0f, grille[0][1], 0.65f, textures));
+    foes.push_back(Enemy(90.0f, 250.0f, 450.0f, grille[0][1], 0.70f, textures));
+    foes.push_back(Enemy(90.0f, 400.0f, 320.0f, grille[0][1], 0.75f, textures));
 
-    foes.push_back(Enemy(90.0f, 430.0f, 100.0f,grille[1][0], textures));
-    foes.push_back(Enemy(90.0f, 710.0f, 210.0f,grille[1][0], textures));
-    foes.push_back(Enemy(90.0f, 114.0f, 623.0f,grille[1][0], 0.55, textures));
-    
-    foes.push_back(Enemy(90.0f, 200.0f, 700.0f,grille[0][1], textures));
-    foes.push_back(Enemy(90.0f, 300.0f, 410.0f,grille[0][1], 0.65f, textures));
+    foes.push_back(Enemy(90.0f, 430.0f, 100.0f, grille[1][0], textures));
+    foes.push_back(Enemy(90.0f, 710.0f, 210.0f, grille[1][0], textures));
+    foes.push_back(Enemy(90.0f, 114.0f, 623.0f, grille[1][0], 0.55, textures));
+    foes.push_back(Enemy(90.0f, 150.0f, 500.0f, grille[1][0], 0.60f, textures));
+    foes.push_back(Enemy(90.0f, 200.0f, 300.0f, grille[1][0], 0.65f, textures));
 
-    foes.push_back(Enemy(90.0f, 207.0f, 580.0f,grille[2][1], textures));
-    foes.push_back(Enemy(90.0f, 550.0f, 500.0f,grille[2][2], 0.55f, textures));
-    foes.push_back(Enemy(90.0f, 810.0f, 453.0f,grille[2][0], 0.85f, textures));
+    foes.push_back(Enemy(90.0f, 200.0f, 700.0f, grille[0][1], textures));
+    foes.push_back(Enemy(90.0f, 300.0f, 410.0f, grille[0][1], 0.65f, textures));
+    foes.push_back(Enemy(90.0f, 350.0f, 500.0f, grille[0][1], 0.70f, textures));
+    foes.push_back(Enemy(90.0f, 400.0f, 600.0f, grille[0][1], 0.75f, textures));
+
+    foes.push_back(Enemy(90.0f, 207.0f, 580.0f, grille[2][1], textures));
+    foes.push_back(Enemy(90.0f, 550.0f, 500.0f, grille[2][2], 0.55f, textures));
+    foes.push_back(Enemy(90.0f, 810.0f, 453.0f, grille[2][0], 0.85f, textures));
+    foes.push_back(Enemy(90.0f, 600.0f, 320.0f, grille[2][0], 0.90f, textures));
+    foes.push_back(Enemy(90.0f, 700.0f, 400.0f, grille[2][0], 0.95f, textures));
+
+// Ajoutez autant d'ennemis que nécessaire...
+
     
 
     //vecteur d'objets de soin de la carte 0 :
@@ -156,14 +167,20 @@ void carte::Init2(textureManager& textures){
     //quelques ennemis ======================================================= il en faut beaucoup plus, faire des ennemis qui bougent (vite !), des ennemis qui bougent pas etc
     foes.push_back(Enemy(90.0f, 700.0f, 300.0f, grille[1][1], textures));
     foes.push_back(Enemy(90.0f, 400.0f, 200.0f, grille[1][1], 0.50f, textures));
+    foes.push_back(Enemy(90.0f, 350.0f, 180.0f, grille[1][1], 0.55f, textures));
 
     foes.push_back(Enemy(90.0f, 500.0f, 700.0f, grille[0][2], textures));
     foes.push_back(Enemy(90.0f, 600.0f, 400.0f, grille[0][2], 0.45f, textures));
+    foes.push_back(Enemy(90.0f, 650.0f, 350.0f, grille[0][2], 0.50f, textures));
 
     foes.push_back(Enemy(90.0f, 800.0f, 710.0f, grille[0][1], 0.65f, textures));
     foes.push_back(Enemy(90.0f, 300.0f, 500.0f, grille[2][1], 0.40f, textures));
     foes.push_back(Enemy(90.0f, 550.0f, 500.0f, grille[2][2], 0.55f, textures));
+
     foes.push_back(Enemy(90.0f, 800.0f, 460.0f, grille[1][0], 0.85f, textures));
+    foes.push_back(Enemy(90.0f, 750.0f, 420.0f, grille[1][0], 0.90f, textures));
+    foes.push_back(Enemy(90.0f, 700.0f, 480.0f, grille[1][0], 0.95f, textures));
+
 
 // Vecteur d'objets de soin de la carte :
 
@@ -178,21 +195,29 @@ void carte::Init2(textureManager& textures){
  
     
     items.push_back(matos(456.0f,802.0f, grille[2][1], textures,"keys")); 
-
-    //peut être une ou 2 entités au début du niveau ou dans d'autres salles pour parler avec elles et ettayer l'histoire. 
 };
 
 void carte::Init3(textureManager& textures){
     foes.push_back(Enemy(90.0f, 700.0f, 300.0f, grille[1][1], textures));
-foes.push_back(Enemy(90.0f, 400.0f, 200.0f, grille[1][1], 0.50f, textures));
+    foes.push_back(Enemy(90.0f, 400.0f, 200.0f, grille[1][1], 0.50f, textures));
 
-foes.push_back(Enemy(90.0f, 500.0f, 700.0f, grille[0][2], textures));
-foes.push_back(Enemy(90.0f, 600.0f, 400.0f, grille[0][2], 0.45f, textures));
+    foes.push_back(Enemy(90.0f, 500.0f, 700.0f, grille[0][2], textures));
+    foes.push_back(Enemy(90.0f, 600.0f, 400.0f, grille[0][2], 0.45f, textures));
 
-foes.push_back(Enemy(90.0f, 800.0f, 710.0f, grille[0][1], 0.65f, textures));
-foes.push_back(Enemy(90.0f, 300.0f, 500.0f, grille[2][1], 0.40f, textures));
-foes.push_back(Enemy(90.0f, 550.0f, 500.0f, grille[2][2], 0.55f, textures));
-foes.push_back(Enemy(90.0f, 800.0f, 460.0f, grille[1][0], 0.85f, textures));
+    foes.push_back(Enemy(90.0f, 800.0f, 710.0f, grille[0][1], 0.65f, textures));
+    foes.push_back(Enemy(90.0f, 300.0f, 500.0f, grille[2][1], 0.40f, textures));
+    foes.push_back(Enemy(90.0f, 550.0f, 500.0f, grille[2][2], 0.55f, textures));
+    foes.push_back(Enemy(90.0f, 800.0f, 460.0f, grille[1][0], textures));
+
+    foes.push_back(Enemy(90.0f, 200.0f, 300.0f, grille[2][0], textures));
+    foes.push_back(Enemy(90.0f, 700.0f, 550.0f, grille[2][1], 0.40f, textures));
+    foes.push_back(Enemy(90.0f, 500.0f, 400.0f, grille[0][2], textures));
+    foes.push_back(Enemy(90.0f, 900.0f, 620.0f, grille[1][0], 0.65f, textures));
+
+    foes.push_back(Enemy(90.0f, 300.0f, 500.0f, grille[1][2], 0.45f, textures));
+    foes.push_back(Enemy(90.0f, 550.0f, 400.0f, grille[2][0], 0.55f, textures));
+    foes.push_back(Enemy(90.0f, 750.0f, 650.0f, grille[1][2], textures));
+
 
 // Vecteur d'objets de soin de la carte :
 
@@ -210,28 +235,57 @@ items.push_back(matos(200.0f, 500.0f, grille[0][2], textures, "piece_id"));
 
 void carte::Init4(textureManager& textures){
     foes.push_back(Enemy(90.0f, 650.0f, 200.0f, grille[1][1], textures));
-foes.push_back(Enemy(90.0f, 300.0f, 150.0f, grille[1][1], 0.60f, textures));
+    foes.push_back(Enemy(90.0f, 300.0f, 150.0f, grille[1][1], 0.60f, textures));
 
-foes.push_back(Enemy(90.0f, 450.0f, 750.0f, grille[0][2], textures));
-foes.push_back(Enemy(90.0f, 700.0f, 350.0f, grille[0][2], 0.55f, textures));
+    foes.push_back(Enemy(90.0f, 450.0f, 750.0f, grille[0][2], textures));
+    foes.push_back(Enemy(90.0f, 700.0f, 350.0f, grille[0][2], 0.55f, textures));
 
-foes.push_back(Enemy(90.0f, 850.0f, 700.0f, grille[0][1], 0.75f, textures));
-foes.push_back(Enemy(90.0f, 400.0f, 550.0f, grille[2][1], 0.45f, textures));
-foes.push_back(Enemy(90.0f, 600.0f, 500.0f, grille[2][2], 0.50f, textures));
-foes.push_back(Enemy(90.0f, 900.0f, 420.0f, grille[1][0], 0.80f, textures));
+    foes.push_back(Enemy(90.0f, 850.0f, 700.0f, grille[0][1], 0.75f, textures));
+    foes.push_back(Enemy(90.0f, 400.0f, 550.0f, grille[2][1], 0.45f, textures));
+    foes.push_back(Enemy(90.0f, 600.0f, 500.0f, grille[2][2], 0.50f, textures));
+    foes.push_back(Enemy(90.0f, 900.0f, 420.0f, grille[1][0], 0.80f, textures));
 
-// Vecteur d'objets de soin de la carte :
+    // Vecteur d'objets de soin de la carte :
 
-pack_soin.push_back(soin(350.0f, 600.0f, grille[0][1], textures, 5));
-pack_soin.push_back(soin(800.0f, 250.0f, grille[1][0], textures, 7));
-pack_soin.push_back(soin(700.0f, 800.0f, grille[0][2], textures, 3));
-pack_soin.push_back(soin(500.0f, 400.0f, grille[2][2], textures, 9));
-pack_soin.push_back(soin(300.0f, 100.0f, grille[0][0], textures, 2));
-pack_soin.push_back(soin(400.0f, 600.0f, grille[1][1], textures, 6));
-pack_soin.push_back(soin(650.0f, 550.0f, grille[2][1], textures, 4));
-pack_soin.push_back(soin(750.0f, 500.0f, grille[1][2], textures, 8));
+    pack_soin.push_back(soin(350.0f, 600.0f, grille[0][1], textures, 5));
+    pack_soin.push_back(soin(800.0f, 250.0f, grille[1][0], textures, 7));
+    pack_soin.push_back(soin(700.0f, 800.0f, grille[0][2], textures, 3));
+    pack_soin.push_back(soin(500.0f, 400.0f, grille[2][2], textures, 9));
+    pack_soin.push_back(soin(300.0f, 100.0f, grille[0][0], textures, 2));
+    pack_soin.push_back(soin(400.0f, 600.0f, grille[1][1], textures, 6));
+    pack_soin.push_back(soin(650.0f, 550.0f, grille[2][1], textures, 4));
+    pack_soin.push_back(soin(750.0f, 500.0f, grille[1][2], textures, 8));
 
 //items.push_back(matos(500.0f, 700.0f, grille[0][0], textures, "piece_id"));
+}
+
+void carte::Init5(textureManager& textures){
+    foes.push_back(Enemy(90.0f, 600.0f, 250.0f, grille[1][1], textures));
+    foes.push_back(Enemy(90.0f, 350.0f, 180.0f, grille[1][1], 0.55f, textures));
+    foes.push_back(Enemy(90.0f, 450.0f, 120.0f, grille[1][1], textures));
+
+    foes.push_back(Enemy(90.0f, 500.0f, 800.0f, grille[0][2], textures));
+    foes.push_back(Enemy(90.0f, 650.0f, 350.0f, grille[0][2], 0.10f, textures));
+    foes.push_back(Enemy(90.0f, 720.0f, 600.0f, grille[0][2], 0.65f, textures));
+
+    foes.push_back(Enemy(90.0f, 800.0f, 700.0f, grille[0][1], textures));
+
+    foes.push_back(Enemy(90.0f, 700.0f, 550.0f, grille[2][1], 0.40f, textures));
+    foes.push_back(Enemy(90.0f, 400.0f, 600.0f, grille[2][1], 0.35f, textures));
+
+    foes.push_back(Enemy(90.0f, 900.0f, 620.0f, grille[1][0], 0.65f, textures));
+    foes.push_back(Enemy(90.0f, 900.0f, 420.0f, grille[1][0], textures));
+
+    foes.push_back(Enemy(90.0f, 300.0f, 500.0f, grille[1][2], 0.45f, textures));
+    foes.push_back(Enemy(90.0f, 750.0f, 650.0f, grille[1][2], 0.40f, textures));
+    foes.push_back(Enemy(90.0f, 450.0f, 120.0f, grille[1][2], textures));
+
+    foes.push_back(Enemy(90.0f, 550.0f, 400.0f, grille[2][0], 0.55f, textures));
+    foes.push_back(Enemy(90.0f, 200.0f, 300.0f, grille[2][0], textures));
+    
+    foes.push_back(Enemy(90.0f, 500.0f, 400.0f, grille[2][2], 0.55f, textures));
+    foes.push_back(Enemy(90.0f, 600.0f, 550.0f, grille[2][2], 0.60f, textures));
+
 }
 
 

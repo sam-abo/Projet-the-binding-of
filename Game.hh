@@ -40,6 +40,7 @@ class Game {
     carte* carteActive;
     //cette valeur nous sers avec le pointeur de carteActive, lorsqu'on change de carte, aller cherche la nouvelle dans le vecteur des cartes
     size_t numCarteActive;
+    
 
     //tout ce qui concerne la mise en place du jeu de façon graphique
     unsigned int screenWidth;

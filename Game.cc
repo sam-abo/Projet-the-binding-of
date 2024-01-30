@@ -1,7 +1,5 @@
 #include "Game.hh"
 #include <cmath> 
-#include <cstdlib>
-#include <ctime>
 
 void Game::game_design(Afficher& jeu, Hero& hero, sf::Vector2f prevPositionEntity1, Touches key){
         std::vector<Entity>& entities = carteActive->getEntities();
@@ -56,14 +54,9 @@ void Game::game_design(Afficher& jeu, Hero& hero, sf::Vector2f prevPositionEntit
             // if(numCarteActive == 0){
             cartes[numCarteActive].setSortie(); //la sortie apparait
             // }
-        //     else{
-        //         std::srand(static_cast<unsigned int>(std::time(nullptr)));
-
-        // // Générer deux nombres aléatoires entre 0 et 3 inclus
-        //         int w = std::rand() % 4 +1;  // % 4 donne un reste entre 0 et 3
-        //         int h = std::rand() % 4 +1;
-        //         cartes[numCarteActive].setSortie(w,h);
-        //     }
+            // else{
+            //     cartes[numCarteActive].setSortie(numCarteActive-3,numCarteActive-3);
+            // }
         }
         //=====================================================================
 
@@ -104,7 +97,7 @@ void Game :: jouer(){
     //idéalement, jouer devient juste une fonction avec niveau1 2 3 jusqu'à disons 5.
     //avec une fonction qui fait passer de niveau en niveau quand on atteint la sortie avec si possible une cinématique dedans.
 
-
+     sf::Clock chrono;
 
     // Creation de la fenêtre SFML avec son nom et de l'objet pour les touches du clavier
     Afficher jeu;
@@ -148,6 +141,9 @@ void Game :: jouer(){
             if (key.isKeyPressed(Space)){debutJeu = "quitter";}
             }
         else {
+        if (chrono.getElapsedTime().asSeconds() >= 300.0f) {
+            debutJeu = "mort";
+        }
 
         if(hero.getHP()==0){debutJeu = "mort";}
         
@@ -174,9 +170,14 @@ void Game :: jouer(){
                 cartes.push_back(carte(screenWidth-100, screenHeight-100,*textures));
                 cartes[numCarteActive].Init(numCarteActive, *textures);
                 carteActive=&cartes[numCarteActive];
+                if(numCarteActive == 4){
+                    debutJeu = "transi2";
+
+                }
             }
             //libererMemoireCartePrecedente();
             else    {
+
                 numCarteActive--;
                 debutJeu = "fin";
             }

@@ -37,7 +37,7 @@ Menu::Menu(int width, int height, std::string s){
     if(s=="transi1"){
         font.loadFromFile("textures/arial.ttf");
         startGameText.setFont(font);
-        startGameText.setString("Bienvenue a Chatelet les Halles jeune aventurier \n\n Appuyer sur espace pour commencer");
+        startGameText.setString("Bienvenue a Chatelet les Halles jeune etudiant. Ta situation est critique !\nA l'aube des J.O tu t est retrouve sans trop savoir comment,\nPerdu dans chatelet les halles\nEn fouillant tes poches, tu remarques que tes affaires importantes ne sont pas avec toi\nAlors fonce ! tu dois imperativement recuperer tes effets personnels\navant le depart du train, sinon, ton appartement Crous sera saisi !\nEt tu n'auras plus de logement !\n\n\nPour te deplacer, appuie sur les fleches directionnelles,\nPour tirer tes vieux tickets t+ desormais inutiles, appuie sur x.\n\nAttention aux autres parisiens du metro qui sont\nanormalement dangereux aujourd'hui\nTRES IMPORTANT TU N'AS PLUS QUE 5:00 min POUR ATTEINDRE TON METRO !\n\nAppuie sur espace pour commencer");
         startGameText.setCharacterSize(40);
         startGameText.setFillColor(sf::Color::White);
         startGameText.setPosition(30,30);
@@ -53,7 +53,7 @@ Menu::Menu(int width, int height, std::string s){
     if(s=="fin"){
         font.loadFromFile("textures/arial.ttf");
         startGameText.setFont(font);
-        startGameText.setString("Vous avez gagné \n\n Appuyer sur espace pour quitter");
+        startGameText.setString("Bravo ! tu as reussi a prendre ton train\n normalement tu pourras recuperer ton logement !\n\n Appuyer sur espace pour quitter");
         startGameText.setCharacterSize(40);
         startGameText.setFillColor(sf::Color::White);
         startGameText.setPosition(30,30);
