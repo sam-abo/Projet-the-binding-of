@@ -26,7 +26,7 @@ Hero::Hero(float size, textureManager& textures, float x, float y, float vitesse
     Objet::forme.setTexture(textures.getTexture("nezar"));
     Objet::forme.setPosition(x, y);
 
-    hp = 10;
+    hp = 25;
 
 };
 
