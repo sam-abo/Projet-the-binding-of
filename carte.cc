@@ -74,9 +74,9 @@ void carte::Init(size_t i, textureManager& textures){
     case 3 :
         Init3(textures);
         break;
-    // case 4 :
-    //     Init4(textures);
-    //     break;
+    case 4 :
+        Init4(textures);
+        break;
     // case 5 :
     //     Init5(textures);
     //     break;
@@ -206,12 +206,33 @@ pack_soin.push_back(soin(500.0f, 700.0f, grille[2][1], textures, 7));
 pack_soin.push_back(soin(600.0f, 500.0f, grille[1][2], textures, 5));
 
 items.push_back(matos(200.0f, 500.0f, grille[0][2], textures, "carte etudiante"));
-
-// Peut-être d'autres ennemis ou objets ici...
-
-
-    //peut être une ou 2 entités au début du niveau ou dans d'autres salles pour parler avec elles et ettayer l'histoire. 
 };
+
+void carte::Init4(textureManager& textures){
+    foes.push_back(Enemy(90.0f, 650.0f, 200.0f, grille[1][1], textures));
+foes.push_back(Enemy(90.0f, 300.0f, 150.0f, grille[1][1], 0.60f, textures));
+
+foes.push_back(Enemy(90.0f, 450.0f, 750.0f, grille[0][2], textures));
+foes.push_back(Enemy(90.0f, 700.0f, 350.0f, grille[0][2], 0.55f, textures));
+
+foes.push_back(Enemy(90.0f, 850.0f, 700.0f, grille[0][1], 0.75f, textures));
+foes.push_back(Enemy(90.0f, 400.0f, 550.0f, grille[2][1], 0.45f, textures));
+foes.push_back(Enemy(90.0f, 600.0f, 500.0f, grille[2][2], 0.50f, textures));
+foes.push_back(Enemy(90.0f, 900.0f, 420.0f, grille[1][0], 0.80f, textures));
+
+// Vecteur d'objets de soin de la carte :
+
+pack_soin.push_back(soin(350.0f, 600.0f, grille[0][1], textures, 5));
+pack_soin.push_back(soin(800.0f, 250.0f, grille[1][0], textures, 7));
+pack_soin.push_back(soin(700.0f, 800.0f, grille[0][2], textures, 3));
+pack_soin.push_back(soin(500.0f, 400.0f, grille[2][2], textures, 9));
+pack_soin.push_back(soin(300.0f, 100.0f, grille[0][0], textures, 2));
+pack_soin.push_back(soin(400.0f, 600.0f, grille[1][1], textures, 6));
+pack_soin.push_back(soin(650.0f, 550.0f, grille[2][1], textures, 4));
+pack_soin.push_back(soin(750.0f, 500.0f, grille[1][2], textures, 8));
+
+items.push_back(matos(500.0f, 700.0f, grille[0][0], textures, "piece_id"));
+}
 
 
 void carte::deplacementEntreSalle(Hero &hero) {

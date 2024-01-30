@@ -28,6 +28,7 @@ void textureManager::chargerToutesTextures(){
     loadTexture("carte etudiante", "textures/carte_etu.png");
     loadTexture("pass navigo", "textures/pass_navigo.png");
     loadTexture("keys", "textures/keys.png");
+    loadTexture("piece_id", "textures/piece_id.png");
 }
 
 const sf::Texture& textureManager::getTexture(const std::string& id) const {

@@ -227,7 +227,6 @@ void Hero :: collision_items(std::vector<matos>& quete, salle* salleActive){
     for (size_t i = 0; i < quete.size(); ++i) {
         if (this->getforme().getGlobalBounds().intersects(quete[i].getGlobalBounds()) && ( salleActive == quete[i].getSalleAppartenance())) {
             indices_a_supprimer.push_back(i);
-            std::cout<< quete[i].getName() << " récupéré !" <<std::endl;
         }
     }
 
