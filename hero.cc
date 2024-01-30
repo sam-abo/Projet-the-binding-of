@@ -25,7 +25,9 @@ Hero::Hero(float size, textureManager& textures, float x, float y, float vitesse
     Objet::forme.setScale(size / static_cast<float>(textures.getTexture("nezar").getSize().x), size / static_cast<float>(textures.getTexture("marchand").getSize().x));
     Objet::forme.setTexture(textures.getTexture("nezar"));
     Objet::forme.setPosition(x, y);
+
     hp = 10;
+
 };
 
 void Hero::changersalle( salle* &salleActive, salle &newsalle, std::string direction){
