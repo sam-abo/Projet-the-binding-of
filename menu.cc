@@ -33,13 +33,31 @@ Menu::Menu(int width, int height,textureManager& textures) {
         fond.setPosition(0.0f,0.0f);
     }
 
-Menu::Menu(int width, int height){
-    font.loadFromFile("textures/arial.ttf");
-    startGameText.setFont(font);
-    startGameText.setString("Bienvenue a Chatelet les Halles jeune aventurier \n\n Appuyer sur espace pour commencer");
-    startGameText.setCharacterSize(40);
-    startGameText.setFillColor(sf::Color::White);
-    startGameText.setPosition(30,30);
+Menu::Menu(int width, int height, std::string s){
+    if(s=="transi1"){
+        font.loadFromFile("textures/arial.ttf");
+        startGameText.setFont(font);
+        startGameText.setString("Bienvenue a Chatelet les Halles jeune aventurier \n\n Appuyer sur espace pour commencer");
+        startGameText.setCharacterSize(40);
+        startGameText.setFillColor(sf::Color::White);
+        startGameText.setPosition(30,30);
+    }
+    if(s=="mort"){
+        font.loadFromFile("textures/arial.ttf");
+        startGameText.setFont(font);
+        startGameText.setString("Vous avez perdu \n\n Appuyer sur espace pour quitter");
+        startGameText.setCharacterSize(40);
+        startGameText.setFillColor(sf::Color::White);
+        startGameText.setPosition(30,30);
+    }
+    if(s=="fin"){
+        font.loadFromFile("textures/arial.ttf");
+        startGameText.setFont(font);
+        startGameText.setString("Vous avez gagné \n\n Appuyer sur espace pour quitter");
+        startGameText.setCharacterSize(40);
+        startGameText.setFillColor(sf::Color::White);
+        startGameText.setPosition(30,30);
+    }
 }
 
 

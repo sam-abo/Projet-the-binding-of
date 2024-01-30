@@ -86,6 +86,7 @@ Game::Game(int i){
 
     cartes.push_back(carte(screenWidth-100, screenHeight-100,*textures)); //on ajoute une deuxième carte. On ne lui donne pas de sortie.
     cartes[1].Init(1,*textures);
+    cartes[cartes.size()-1].setSortie(); //o ajoute une 2eme carte qui a une sortie
     carteActive = &cartes[0]; //on définit la carte active comme la 1ère du vecteur de cartes.
 }
 
@@ -100,7 +101,9 @@ void Game :: jouer(){
     jeu.Fenetre_jeu("The binding of");
     Touches key;
     Menu menu(screenWidth-100,screenHeight-100, *textures);
-    Menu transi1(screenWidth-100,screenHeight-100);
+    Menu transi1(screenWidth-100,screenHeight-100, "transi1");
+    Menu mort(screenWidth-100,screenHeight-100, "mort");
+    Menu fin(screenWidth-100,screenHeight-100, "fin");
 
     // Creation du héro: le perso principal
     Hero hero(screenWidth/40.0f, *textures, 200.0f, 100.0f,1.0f);
@@ -126,7 +129,17 @@ void Game :: jouer(){
             jeu.dessiner_menu(transi1,event);
             if (key.isKeyPressed(Space)){debutJeu = "jeu";}
             }
+        else if (debutJeu == "mort"){
+            jeu.dessiner_menu(mort,event);
+            if (key.isKeyPressed(Space)){debutJeu = "quitter";}
+            }
+        else if (debutJeu == "fin"){
+            jeu.dessiner_menu(fin,event);
+            if (key.isKeyPressed(Space)){debutJeu = "quitter";}
+            }
         else {
+
+        if(hero.getHP()==0){debutJeu = "mort";}
         
         //quelque chose qui sauvegarde en permanence l'ancienne position du héro
         sf::Vector2f prevPositionEntity1 = hero.getforme().getPosition(); //plus pratique de l'avoir là vu le reste du code.
@@ -146,8 +159,12 @@ void Game :: jouer(){
             //le jeu ne devrait pas tout charger en même temps.
             //corps de fonction à changer pour faire l'appel potentiellement à d'autres niveaux ? ou a priori ça peut rester comme ça
             numCarteActive++;
+            printf("%d\n",cartes.size());
+            printf("%d\n",numCarteActive);
+            if(numCarteActive == cartes.size()) {debutJeu = "fin";}
             //libererMemoireCartePrecedente();
-            carteActive=&cartes[numCarteActive];
+            else
+                carteActive=&cartes[numCarteActive];
             //si ça reste comme ça, mettre un if numCarteActive = genre 6 -> fin du jeu, passer à un écran de fin
         }
         
